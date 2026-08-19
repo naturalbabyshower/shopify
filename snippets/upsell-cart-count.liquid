@@ -1,0 +1,119 @@
+<script>
+  const cartCountContainer = ".cart-link__bubble";
+  const cartCountSelector = ".cart-link__bubble-num"; // The HTML selector of the cart counter/bubble counter
+  const showCounterClass =  "cart-link__bubble--visible"; // When the counter is visible, sometimes they have a custom class that makes them visible
+
+  function AMP_updateCartCount(itemCount) {
+    let elms = document.querySelectorAll(cartCountSelector);
+    const containers = document.querySelectorAll(cartCountContainer);
+
+    elms.forEach(elm => {
+     elm.innerHTML = itemCount;
+     if(!showCounterClass) return;
+        containers.forEach(container => {
+          if (itemCount > 0){
+            container.classList.add(showCounterClass)
+          } else {
+            container.classList.remove(showCounterClass)
+          }
+        })
+    })
+  }
+
+  // --- View Cart button injection ---
+  function AMP_injectViewCart() {
+    try {
+      var footer = document.querySelector('.amp-cart__footer');
+      if (!footer) return;
+      if (footer.querySelector('.amp-cart__view-cart-btn')) return;
+
+      var checkoutBtn = footer.querySelector('.amp-cart__footer-checkout-button');
+      if (!checkoutBtn) return;
+
+      var link = document.createElement('a');
+      link.href = '/cart';
+      link.className = 'amp-cart__view-cart-btn';
+      link.textContent = 'View cart';
+
+      // Force navigation in JS so the drawer's own click handling can't swallow it
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = '/cart';
+      });
+
+      checkoutBtn.insertAdjacentElement('afterend', link);
+    } catch (e) {}
+  }
+
+  window.AMP_CART_UPDATED = (rawCart, cartTarget) => {
+    if(!cartTarget) return;
+    AMP_updateCartCount(rawCart.item_count)
+    setTimeout(AMP_injectViewCart, 0);
+    return { ...cartTarget }
+  }
+
+  window.AMP_CART_LOADED = (function (prev) {
+    return function (cart) {
+      if (typeof prev === 'function') { try { prev(cart); } catch (e) {} }
+      setTimeout(AMP_injectViewCart, 0);
+    };
+  })(window.AMP_CART_LOADED);
+
+  // safety net for late renders (debounced)
+  try {
+    var _ampDebounce;
+    new MutationObserver(function () {
+      clearTimeout(_ampDebounce);
+      _ampDebounce = setTimeout(AMP_injectViewCart, 100);
+    }).observe(document.body, { childList: true, subtree: true });
+  } catch (e) {}
+</script>
+<style>
+  .amp-cart-drawer {
+    --amp-cart-header-padding-bottom: 15px;
+    --amp-cart-header-padding-left: 20px;
+    --amp-cart-header-padding-right: 20px;
+    --amp-cart-header-padding-top: 15px;
+    --amp-cart-font-body-scale: 0.9;
+    --amp-cart-font-heading-scale: 0.8;
+    --amp-cart-header-content-gap: 10px;
+    --amp-cart-upsell-item-title-font-size: 14px;
+    --amp-cart-spacing-x-scale: 0.7;
+    --amp-cart-spacing-y-scale: 0.7;
+  }
+  .amp-cart__upsell--carousel {
+    --padding-bottom: var(--amp-cart-upsell-carousel-padding-bottom, 14px);
+  }
+    .amp-cart__header {
+  	position: sticky !important;
+  	z-index: 2 !important;
+  	top: 0 !important;
+  }
+  .amp-cart__footer {
+  	position: sticky !important;
+  	z-index: 1 !important;
+  	bottom: 0 !important;
+  }
+  .amp-cart__discount-box-error {
+      color: green;
+  }
+
+  /* View Cart button */
+  .amp-cart__footer .amp-cart__view-cart-btn {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 5px;
+    padding: 12px 16px;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid #585B56;
+    border-radius: 4px;
+    color: #585B56;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+  }
+</style>

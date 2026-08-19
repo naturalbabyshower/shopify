@@ -1,0 +1,127 @@
+{% comment %}
+  Trustpilot Inline Badge – square stars, single line
+  Matched Trustpilot green + corner radius
+{% endcomment %}
+
+{% assign rating = rating | default: 4.8 | plus: 0.0 %}
+{% assign reviews = reviews | default: '23,252' %}
+{% assign brand = brand | default: 'Trustpilot' %}
+{% assign label = label | default: 'Excellent' %}
+
+{% assign full_stars = rating | floor %}
+{% assign remainder = rating | minus: full_stars %}
+
+{% assign half_star = true %}
+{% if remainder >= 0.25 and remainder < 0.9 %}
+  {% assign half_star = true %}
+{% endif %}
+
+{% assign empty_stars = 5 | minus: full_stars %}
+{% if half_star %}
+  {% assign empty_stars = empty_stars | minus: 1 %}
+{% endif %}
+
+<section class="trustpilot-inline">
+  <strong class="tp-label">{{ label }}</strong>
+
+  <span class="tp-stars" aria-hidden="true">
+    {% for i in (1..full_stars) %}
+      <span class="tp-star">&#9733;</span>
+    {% endfor %}
+
+    {% if half_star %}
+      <span class="tp-star tp-star-half">&#9733;</span>
+    {% endif %}
+
+    {% for i in (1..empty_stars) %}
+      <span class="tp-star tp-star-empty">&#9733;</span>
+    {% endfor %}
+  </span>
+
+  <span class="tp-text">
+    <span>{{ reviews }} reviews</span>
+    <span class="tp-brand">
+      <span class="tp-brand-star">★</span>{{ brand }}
+    </span>
+  </span>
+</section>
+
+<style>
+/* Layout */
+.trustpilot-inline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  line-height: 1;
+  color:rgb(31, 30, 30);
+  white-space: nowrap;
+}
+
+.tp-label {
+  font-weight: 600;
+}
+
+/* Stars */
+.tp-stars {
+  display: inline-flex;
+  gap: 1px;
+  margin-left: 2px;
+}
+
+.tp-star {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #00B67A; /* Trustpilot brand green */
+  color: #ffffff;
+  font-size: 11px;
+  border-radius: 2px; /* ✅ exact Trustpilot square radius */
+}
+
+/* Empty star */
+.tp-star-empty {
+  background: #DCDCE6;
+}
+
+/* Half star */
+.tp-star-half {
+  background: linear-gradient(
+    90deg,
+    #00B67A 50%,
+    #DCDCE6 50%
+  );
+  color: #ffffff;
+}
+
+/* Text */
+.tp-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tp-sep {
+  color: #6B6B6B;
+}
+
+.tp-brand {
+    color: rgba(48, 48, 48, 1);
+    font-size: small;
+}
+
+.tp-brand-star {
+  color: #00B67A;
+  margin-right: 2px;
+}
+
+/* Mobile wrap */
+@media (max-width: 640px) {
+  .trustpilot-inline {
+    flex-wrap: wrap;
+    white-space: normal;
+  }
+}
+</style>

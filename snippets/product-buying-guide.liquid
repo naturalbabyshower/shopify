@@ -1,0 +1,90 @@
+{%- if product.type contains 'Sleeping Bags' -%}
+  <p id="product-brand-link">
+    <a
+      target="_blank"
+      title="Discover the {{ product.type }} buying guide"
+      href="https://journal.naturalbabyshower.co.uk/baby-sleeping-bag-buying-guide/sleeping-bags/"
+      >Discover the {{ product.type }} buying guide
+    </a>
+  </p>
+{%- elsif product.type contains 'Mattresses' -%}
+  <p id="product-brand-link">
+    <a
+      target="_blank"
+      title="Discover the {{ product.type }} buying guide"
+      href="https://journal.naturalbabyshower.co.uk/mattress-buying-guide/baby-mattress/"
+      >Discover the {{ product.type }} buying guide
+    </a>
+  </p>
+{%- elsif product.type contains 'Baby Carriers' -%}
+  <p id="product-brand-link">
+    <a
+      target="_blank"
+      title="Discover the {{ product.type }} buying guide"
+      href="https://journal.naturalbabyshower.co.uk/baby-carrier-buying-guide/baby-carriers/"
+      >Discover the {{ product.type }} buying guide
+    </a>
+  </p>
+{%- elsif product.type contains 'Strollers'
+  or product.type contains 'Stroller Bundles'
+  or product.type contains 'Travel Systems'
+-%}
+  <p id="product-brand-link">
+    <a
+      target="_blank"
+      title="Discover the {{ product.type }} buying guide"
+      href="https://journal.naturalbabyshower.co.uk/pushchair-buying-guide/pushchairs/"
+      >Discover the {{ product.type }} buying guide
+    </a>
+  </p>
+{%- elsif product.type contains 'Car Seats' or product.type contains 'Car Seat Bases' -%}
+  <p id="product-brand-link">
+    <a
+      target="_blank"
+      title="Discover the {{ product.type }} buying guide"
+      href="https://journal.naturalbabyshower.co.uk/car-seat-buying-guide/car-seats/"
+      >Discover the {{ product.type }} buying guide
+    </a>
+  </p>
+{%- elsif product.type contains 'Nappies'
+  or product.type contains 'Swim Nappies'
+  or product.type contains 'Nappy Packs'
+  or product.type contains 'Nappy Wraps'
+  or product.type contains 'Nappy Laundry & Storage'
+-%}
+  <p id="product-brand-link">
+    <a
+      target="_blank"
+      title="Discover the {{ product.type }} buying guide"
+      href="https://journal.naturalbabyshower.co.uk/reusable-nappy-buying-guide/reusable-nappies/"
+      >Discover the {{ product.type }} buying guide
+    </a>
+  </p>
+{%- elsif product.type contains 'Changing Bags' -%}
+  <p id="product-brand-link">
+    <a
+      target="_blank"
+      title="Discover the {{ product.type }} buying guide"
+      href="https://journal.naturalbabyshower.co.uk/changing-bag-buying-guide/changing-bags/"
+      >Discover the {{ product.type }} buying guide
+    </a>
+  </p>
+{%- elsif product.type contains 'Sleep Positioners + Pods' -%}
+  <p id="product-brand-link">
+    <a
+      target="_blank"
+      title="Discover the Baby Nest + Pod buying guide"
+      href="https://journal.naturalbabyshower.co.uk/baby-nest-pod-buying-guide/"
+      >Discover the {{ product.type }} buying guide
+    </a>
+  </p>
+{%- elsif product.type contains 'Breast' or product.type contains 'Nursing' or product.type contains 'Feeding' -%}
+  <p id="product-brand-link">
+    <a
+      target="_blank"
+      title="Discover the Breastfeeding buying guide"
+      href="https://journal.naturalbabyshower.co.uk/breastfeeding-buying-guide/breastfeeding-guide/"
+      >Discover the {{ product.type }} buying guide
+    </a>
+  </p>
+{%- endif -%}

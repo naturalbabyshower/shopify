@@ -1,0 +1,17 @@
+{%- liquid
+  assign oversell_reason = current_variant.metafields.custom.oversell_reason
+  if oversell_reason == 'Dropship'
+    assign returns_text = 'Return policy below'
+  elsif product_discount == 'Outlet'
+    assign returns_text = "14-day returns for Eco-Outlet"
+  else
+    assign returns_text = '60-day returns'
+  endif
+  if current_variant.price > 7499
+    assign delivery_text = 'Free delivery'
+  else
+    assign delivery_text = 'Free delivery over £75'
+  endif
+-%}
+
+<span>{{ delivery_text }} | {{ returns_text }}</span>

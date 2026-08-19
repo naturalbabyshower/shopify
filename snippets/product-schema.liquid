@@ -1,0 +1,48 @@
+{%- liquid
+  assign is_bundle = current_variant.metafields.custom.bundle | downcase | strip
+-%}
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+{% if product.has_only_default_variant or product.variants.size < 2 -%}
+"@type": "Product",
+{% else -%}
+"@type": "ProductGroup",
+{% endif -%}
+"@id": {{ product.url | prepend: shop.url | append: "#product" | json }},
+{% render 'schema-core', product: product -%}
+{% if product.has_only_default_variant or product.variants.size < 2 -%}
+{% render 'schema-product-single', product: product -%}
+{% else -%}
+"productGroupID": "{{ product.id }}",
+{% render 'schema-product-variants', product: product, is_bundle: is_bundle -%}
+{% endif -%}
+{% if is_bundle -%}
+  {%- assign vname = variant.title | downcase -%}
+  {%- capture parts_json -%}
+  {%- assign first = true -%}
+  {%- if vname contains 'cot' or vname contains 'carrycot' -%}
+    {%- unless first -%},{%- endunless -%}
+    { "@type": "Product", "name": "Carrycot" }
+    {%- assign first = false -%}
+  {%- endif -%}
+  {%- if vname contains 'bumper' -%}
+    {%- unless first -%},{%- endunless -%}
+    { "@type": "Product", "name": "Bumper Bar" }
+    {%- assign first = false -%}
+  {%- endif -%}
+  {%- if vname contains 'car seat' or vname contains 'carseat' -%}
+    {%- unless first -%},{%- endunless -%}
+    { "@type": "Product", "name": "Car Seat" }
+    {%- assign first = false -%}
+  {%- endif -%}
+  {%- endcapture -%}
+  {%- if parts_json != blank -%}
+  ,"hasPart": [
+    { "@type": "Product", "name": {{ product.title | json }} },
+    {{ parts_json }}
+  ]
+  {%- endif -%}
+{% endif -%}
+}
+</script>

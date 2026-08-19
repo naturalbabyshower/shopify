@@ -1,0 +1,22 @@
+{%- liquid
+  assign collection_list_title = 'Natural Baby Shower Collections'
+  assign shipping_policy_title = 'Natural Baby Shower Shipping Policy'
+-%}
+{%- capture seo_title -%}
+  {{ page_title }}
+  {%- if current_tags -%}
+    {%- assign meta_tags = current_tags | join: ', ' %} | {{ 'general.meta.tags' | t: tags: meta_tags -}}
+  {%- endif -%}
+  {%- if current_page != 1 -%} | {{ 'general.meta.page' | t: page: current_page }}
+  {%- endif -%}
+  {%- if template == 'password' -%}
+    {{ shop.name }}
+  {%- endif -%}
+{%- endcapture -%}
+{% if request.path contains '/policies/shipping-policy' %}
+  <title>{{ shipping_policy_title }}</title>
+{% elsif request.path == '/collections' %}
+  <title>{{ collection_list_title }}</title>
+{% else %}
+  <title>{{ seo_title }}</title>
+{%- endif -%}

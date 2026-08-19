@@ -1,0 +1,70 @@
+{%- liquid
+  assign lead = current_variant.metafields.custom.oversell_lead
+  assign due_date = current_variant.metafields.custom.due_date.value | date: '%b %e'
+  assign next_delivery_number = due_date | date: '%e'
+  if next_delivery_number == ' 1' or next_delivery_number == '21' or next_delivery_number == '31'
+    assign ordinal = 'st'
+  elsif next_delivery_number == ' 2' or next_delivery_number == '22'
+    assign ordinal = 'nd'
+  elsif next_delivery_number == ' 3' or next_delivery_number == '23'
+    assign ordinal = 'rd'
+  else
+    assign ordinal = 'th'
+  endif
+-%}
+{%- if dropship or oversell -%}
+  {%- if dropship -%}
+    <li
+      class="sales-point"
+    >
+      <span class="icon-and-text inventory--dropship">
+        <span class="icon icon--inventory"></span>
+        <b>Direct Dropship</b>
+        {%- if lead -%}
+          <span>&nbsp;|&nbsp;Shipped in&nbsp;</span>
+          <span class="direct_delivery">{{ lead }}</span>
+        {%- endif -%}
+      </span>
+    </li>
+  {%- elsif oversell_reason == 'Bundle Only' and current_variant.inventory_quantity < 1 -%}
+    <li
+      class="sales-point"
+    >
+      <span class="icon-and-text inventory--oversell">
+        <span class="icon icon--inventory"></span
+        ><span class="js-incoming-text"
+          ><b>{{- 'products.product.stock_incoming' | t }}</b>&nbsp;|&nbsp;Due latest&nbsp;<b>
+            {{- due_date -}}
+            <sup>{{- ordinal -}}</sup>
+          </b></span
+        ></span
+      >
+    </li>
+  {%- elsif oversell and current_variant.inventory_quantity > 0 -%}
+    <li
+      class="sales-point"
+    >
+      <span class="icon-and-text inventory">
+        <span class="icon icon--inventory"></span
+        ><span class="js-incoming-text"
+          ><b>{{- 'products.product.in_stock_label' | t }}</b>&nbsp;|&nbsp;Fastest delivery&nbsp;</span
+        >
+        {%- render 'product-inventory-delivery-available' -%}
+      </span>
+    </li>
+
+  {%- elsif oversell and current_variant.inventory_quantity < 1 -%}
+    <li
+      class="sales-point"
+    >
+      <span class="icon-and-text inventory--oversell">
+        <span class="icon icon--inventory"></span
+        ><span class="js-incoming-text"
+          ><b>{{- 'products.product.stock_incoming' | t }}</b>&nbsp;|&nbsp;Ship by&nbsp;</span
+        ><span
+          id="order-deadline"
+        ></span
+      ></span>
+    </li>
+  {%- endif -%}
+{%- endif -%}

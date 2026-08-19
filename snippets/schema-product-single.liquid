@@ -1,0 +1,19 @@
+{% assign variant = product.selected_or_first_available_variant -%}
+{% assign mpn = variant.metafields.mm-google-shopping.mpn.value -%}
+{% assign color_metaobject = product.metafields.custom.filter_colour.value -%}
+"sku": {{ variant.sku | json }},
+{% if variant.barcode != blank -%}
+"gtin13": {{ variant.barcode | json }},
+{% endif -%}
+{% if mpn != blank -%}
+"mpn": {{ mpn | json }},
+{% endif -%}
+{% if color_metaobject -%}
+"color": "{{ color_metaobject }}",
+{% endif -%}
+"additionalProperty": [{
+    "@type": "PropertyValue",
+    "name": "Type",
+    "value": {{ product.type | json }}
+    }],
+{% render 'schema-product-offer', variant: variant, product: product %}

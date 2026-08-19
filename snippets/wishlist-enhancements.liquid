@@ -1,0 +1,47 @@
+{% unless template %}
+<script type="text/javascript">
+WishlistLoadedCallback=function(){
+	if($("#bookmarks").has(".addsingleproduct").length>0)
+	{
+		if (shared_wishlist==0) wishlist_data_source=wishlist_item_data; else wishlist_data_source=wishlist_item_data_shared;
+		
+		$("#bookmarks .addsingleproduct").each(function()
+		{
+			var wp_disable_addbutton=0;	
+			var wp_jsonURL=$(this).data('url')+".json";
+			var current_button=$(this);
+			var current_product_id=$(this).data('productid');
+			var current_variant_id=$(this).data('variantid');
+			var is_chosen_variant=$(this).data("is_chosen_variant");
+			var variant_count=$(this).data("variant_count");
+			if(((is_chosen_variant==0)&&(variant_count==1))||(is_chosen_variant==1))
+			{
+						wishlist_data_source.forEach(function(wp_temp_product)
+						{
+							wp_temp_product.variants.forEach(function(wp_temp_variant)
+							{
+								if(wp_temp_variant.id==current_variant_id)
+								{
+									if((wp_temp_variant.inventory_quantity<1)&&(wp_temp_variant.inventory_policy=="deny"))
+									{
+										wp_disable_addbutton=1;
+										variantids.splice(variantids.indexOf(current_variant_id),1); //fix add all
+									}
+                                  	if(wp_temp_product.tags.includes("simple-bundle")&&(wp_temp_variant.inventory_quantity<1)&&(wp_temp_variant.inventory_policy=="continue"))
+									{
+										wp_disable_addbutton=2;
+									}
+								}
+							});
+						});
+			}
+			
+			if(wp_disable_addbutton==1) current_button.addClass("disabled").html("Out of Stock");;
+          if(wp_disable_addbutton==2) current_button.addClass("disabled").html("Back Soon");;
+				
+			
+		});
+	}	
+};
+</script>
+{% endunless %}

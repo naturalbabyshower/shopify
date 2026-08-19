@@ -1,0 +1,60 @@
+"offers": {
+  "@type": "Offer",
+  "url": {{ canonical_url | json }},
+  "priceCurrency": {{ shop.currency | json }},
+  {%- if variant.compare_at_price > variant.price -%}
+    "price": {{ variant.price | divided_by: 100.0 }},
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "price": {{ variant.compare_at_price | divided_by: 100.0 }},
+      "priceCurrency": "{{ shop.currency }}",
+      "priceType": "https://schema.org/ListPrice"
+    },
+  {%- else -%}
+    "price": {{ variant.price | divided_by: 100.0 }},
+  {%- endif -%}
+  "hasMerchantReturnPolicy": {
+    "@type": "MerchantReturnPolicy",
+    "applicableCountry": "GB",
+    "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+    "merchantReturnDays": {{ shop.metafields.custom.merchantreturndays.value }},
+    "merchantReturnLink": {{ shop.refund_policy.url | prepend: request.origin | json }},
+    "returnMethod": "https://schema.org/ReturnByMail",
+    "returnFees": "https://schema.org/ReturnShippingFees",
+    "returnShippingFeesAmount": {
+      "@type": "MonetaryAmount",
+      "value": {{ shop.metafields.custom.returnshippingfeesamount }},
+      "currency": {{ cart.currency.iso_code | json }}
+      }
+  },
+   "shippingDetails": {
+    "@type": "OfferShippingDetails",
+    "shippingDestination": {
+      "@type": "DefinedRegion",
+      "addressCountry": "GB"
+    },
+    "shippingRate": {
+      "@type": "MonetaryAmount",
+      "value": {{ shop.metafields.custom.shippingratenextday }},
+      "currency": {{ cart.currency.iso_code | json }}
+    },
+    "deliveryTime": {
+      "@type": "ShippingDeliveryTime",
+      "handlingTime": {
+        "@type": "QuantitativeValue",
+        "minValue": 0,
+        "maxValue": 1,
+        "unitCode": "DAY"
+      },
+      "transitTime": {
+        "@type": "QuantitativeValue",
+        "minValue": 0,
+        "maxValue": 2,
+        "unitCode": "DAY"
+      }
+    }
+  },
+  "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+  "itemCondition": "https://schema.org/NewCondition",
+  "priceValidUntil": "{{ 'now' | date: '%Y' | plus: 1 }}-12-31"
+}

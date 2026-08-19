@@ -1,0 +1,111 @@
+{%- liquid
+  assign vendor_handle = product.vendor | handleize
+  assign vendor_collection = collections[vendor_handle]
+  assign brand_collection = product.metafields.custom.brand_collection.value
+  assign brand_logo = ''
+  assign logos_mf = vendor_collection.metafields.custom.collection_logos
+  assign logos_value = logos_mf.value
+  assign matched_logo = ''
+  assign first_logo = ''
+
+  if logos_mf.type == 'list.metaobject_reference'
+    for logo_entry in logos_value
+      assign entry_logo = logo_entry.logo.value
+      if entry_logo != blank
+        if first_logo == blank
+          assign first_logo = entry_logo
+        endif
+        assign entry_brand = logo_entry.brand.value | handleize
+        assign entry_handle = logo_entry.system.handle
+        assign entry_link = logo_entry.link.value | handleize
+        if entry_handle == vendor_handle or entry_brand == vendor_handle or entry_link contains vendor_handle
+          assign matched_logo = entry_logo
+          break
+        endif
+      endif
+    endfor
+    if matched_logo != blank
+      assign brand_logo = matched_logo
+    else
+      assign brand_logo = first_logo
+    endif
+  elsif logos_mf.type == 'metaobject_reference'
+    assign brand_logo = logos_value.logo.value
+  elsif logos_mf.type == 'list.file_reference'
+    for logo_file in logos_value
+      if logo_file != blank
+        assign brand_logo = logo_file
+        break
+      endif
+    endfor
+  elsif logos_value.logo.value != blank
+    assign brand_logo = logos_value.logo.value
+  elsif logos_mf.type == 'file_reference' and logos_value != blank
+    assign brand_logo = logos_value
+  endif
+
+  if brand_logo == blank
+    assign brand_logo = vendor_collection.image
+  endif
+
+  if brand_logo == blank
+    assign logo_meta = shop.metaobjects.collection_logos[vendor_handle]
+    if logo_meta.logo.value != blank
+      assign brand_logo = logo_meta.logo.value
+    endif
+  endif
+
+  if vendor_collection.title == blank or vendor_collection.url == blank
+    assign vendor_collection = ''
+  endif
+
+  if brand_collection.handle == blank or brand_collection.title == blank or brand_collection.url == blank
+    assign brand_collection = ''
+  endif
+
+  if brand_collection.handle != blank and vendor_collection.handle == brand_collection.handle
+    assign brand_collection = ''
+  endif
+
+  assign show_brand = false
+  if vendor_collection != blank or brand_collection != blank
+    assign show_brand = true
+  endif
+-%}
+
+{%- if show_brand -%}
+  <div class="product-brand-links">
+    {%- if vendor_collection != blank -%}
+      <a
+        class="product-brand-logo"
+        href="{{ vendor_collection.url }}"
+        title="Shop {{ vendor_collection.title | escape }}"
+      >
+        {%- if brand_logo != blank -%}
+          {{
+            brand_logo
+            | image_url: width: 400
+            | image_tag:
+              class: 'product-brand-logo__img',
+              alt: vendor_collection.title,
+              loading: 'lazy',
+              widths: '160, 240, 320, 400',
+              sizes: '160px'
+          }}
+        {%- else -%}
+          <span class="product-brand-logo__name">{{ vendor_collection.title }}</span>
+        {%- endif -%}
+      </a>
+    {%- endif -%}
+
+    {%- if brand_collection != blank -%}
+      <a
+        class="product-brand-range"
+        href="{{ brand_collection.url }}"
+        title="Shop {{ brand_collection.title | escape }}"
+      >
+        {{ brand_collection.title }}
+      </a>
+    {%- endif -%}
+  </div>
+{%- endif -%}

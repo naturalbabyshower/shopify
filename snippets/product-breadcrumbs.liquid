@@ -1,0 +1,205 @@
+{%- liquid
+  assign type_handle = product.type | handleize
+  assign type_col = collections[type_handle]
+  if product.type == blank or product.type == 'Gift Cards' or product.type == 'Promo' or type_col.title == blank or type_col.handle == blank or type_col.url == blank
+    assign type_col = ''
+  endif
+
+  assign parent_mf = product.metafields.custom.parent_collection
+  assign parent_start = parent_mf.value
+  assign parent_list_titles = ''
+  assign parent_list_urls = ''
+  assign parent_list_count = 0
+
+  if parent_mf.type == 'list.collection_reference'
+    for list_col in parent_start
+      if list_col.handle != blank and list_col.title != blank and list_col.url != blank
+        if parent_list_titles == blank
+          assign parent_list_titles = list_col.title
+          assign parent_list_urls = list_col.url
+        else
+          assign parent_list_titles = parent_list_titles | append: '|||' | append: list_col.title
+          assign parent_list_urls = parent_list_urls | append: '|||' | append: list_col.url
+        endif
+        assign parent_list_count = parent_list_count | plus: 1
+        assign parent_start = list_col
+      endif
+    endfor
+    if parent_list_count == 1
+      assign parent_start = parent_mf.value | first
+    elsif parent_list_count == 0
+      assign parent_start = ''
+    endif
+  elsif parent_start != blank and parent_start.handle == blank
+    assign parent_start = collections[parent_start]
+  endif
+
+  assign type_titles = ''
+  assign type_urls = ''
+  assign type_count = 0
+  assign parent_titles = ''
+  assign parent_urls = ''
+  assign parent_count = 0
+
+  for pass in (1..2)
+    assign crumb_titles = ''
+    assign crumb_urls = ''
+    assign crumb_count = 0
+    assign current_col = ''
+    assign skip_walk = false
+
+    if pass == 1
+      assign current_col = type_col
+    elsif parent_list_count > 1
+      assign crumb_titles = parent_list_titles
+      assign crumb_urls = parent_list_urls
+      assign crumb_count = parent_list_count
+      assign skip_walk = true
+    else
+      assign current_col = parent_start
+    endif
+
+    if skip_walk == false and current_col.handle != blank and current_col.title != blank and current_col.url != blank
+      assign crumb_titles = current_col.title
+      assign crumb_urls = current_col.url
+      assign crumb_count = 1
+      assign visited = '|' | append: current_col.handle | append: '|'
+
+      for i in (1..20)
+        assign walk_mf = current_col.metafields.custom.parent_collection
+        assign parent_col = walk_mf.value
+        assign added_list = false
+
+        if walk_mf.type == 'list.collection_reference'
+          assign list_titles = ''
+          assign list_urls = ''
+          assign list_count = 0
+          for list_col in parent_col
+            if list_col.handle != blank and list_col.title != blank and list_col.url != blank
+              assign list_key = '|' | append: list_col.handle | append: '|'
+              unless visited contains list_key
+                if list_titles == blank
+                  assign list_titles = list_col.title
+                  assign list_urls = list_col.url
+                else
+                  assign list_titles = list_titles | append: '|||' | append: list_col.title
+                  assign list_urls = list_urls | append: '|||' | append: list_col.url
+                endif
+                assign visited = visited | append: list_col.handle | append: '|'
+                assign list_count = list_count | plus: 1
+              endunless
+            endif
+          endfor
+          if list_count > 1
+            assign crumb_titles = list_titles | append: '|||' | append: crumb_titles
+            assign crumb_urls = list_urls | append: '|||' | append: crumb_urls
+            assign crumb_count = crumb_count | plus: list_count
+            assign added_list = true
+          elsif list_count == 1
+            assign parent_col = parent_col | first
+          else
+            assign parent_col = ''
+          endif
+        endif
+
+        if added_list
+          break
+        endif
+
+        if parent_col != blank and parent_col.handle == blank
+          assign parent_col = collections[parent_col]
+        endif
+
+        if parent_col == blank or parent_col.handle == blank or parent_col.title == blank or parent_col.url == blank
+          break
+        endif
+
+        assign parent_key = '|' | append: parent_col.handle | append: '|'
+        if visited contains parent_key
+          break
+        endif
+
+        assign crumb_titles = parent_col.title | append: '|||' | append: crumb_titles
+        assign crumb_urls = parent_col.url | append: '|||' | append: crumb_urls
+        assign visited = visited | append: parent_col.handle | append: '|'
+        assign current_col = parent_col
+        assign crumb_count = crumb_count | plus: 1
+      endfor
+    endif
+
+    if pass == 1
+      assign type_titles = crumb_titles
+      assign type_urls = crumb_urls
+      assign type_count = crumb_count
+    else
+      assign parent_titles = crumb_titles
+      assign parent_urls = crumb_urls
+      assign parent_count = crumb_count
+    endif
+  endfor
+
+  if type_count < parent_count
+    assign crumb_titles = parent_titles
+    assign crumb_urls = parent_urls
+    assign crumb_count = parent_count
+  else
+    assign crumb_titles = type_titles
+    assign crumb_urls = type_urls
+    assign crumb_count = type_count
+  endif
+-%}
+
+{%- if crumb_count > 0 -%}
+  {%- assign origin = request.origin | default: shop.url -%}
+  {%- assign title_array = crumb_titles | split: '|||' -%}
+  {%- assign url_array = crumb_urls | split: '|||' -%}
+  <nav class="breadcrumb breadcrumb--product" role="navigation" aria-label="breadcrumbs">
+    <span class="visually-hidden">Home</span>
+    {%- assign show_sep = false -%}
+    {%- for title in title_array -%}
+      {%- if title != blank -%}
+        {%- assign parent_url = url_array[forloop.index0] -%}
+        {%- if parent_url != blank -%}
+          {%- if show_sep -%}<span class="breadcrumb__sep" aria-hidden="true">&nbsp;/&nbsp;&nbsp;</span>{%- endif -%}
+          <a href="{{ parent_url }}">{{ title }}</a>
+          {%- assign show_sep = true -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </nav>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": {{ origin | append: routes.root_url | json }}
+        }
+        {%- assign position = 2 -%}
+        {%- for title in title_array -%}
+          {%- if title != blank -%}
+            {%- assign parent_url = url_array[forloop.index0] -%}
+            {%- if parent_url != blank -%}
+              ,{
+                "@type": "ListItem",
+                "position": {{ position }},
+                "name": {{ title | json }},
+                "item": {{ origin | append: parent_url | json }}
+              }
+              {%- assign position = position | plus: 1 -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+        ,{
+          "@type": "ListItem",
+          "position": {{ position }},
+          "name": {{ product.title | json }},
+          "item": {{ origin | append: product.url | json }}
+        }
+      ]
+    }
+  </script>
+{%- endif -%}

@@ -1,0 +1,14 @@
+{%- liquid
+  assign reward_points = current_variant.price | divided_by: 100
+  assign reward_points_number = reward_points | times: 3
+-%}
+<div class="product-reward-points">
+  Collect {{ reward_points | floor }} points,
+  {%- if reward_points_number > 200 %} worth {{ reward_points_number | money }},{% endif -%}
+  &nbsp;<a
+    href="/pages/rewards"
+    target="_blank"
+    class="under light75"
+    >rewards info</a
+  >
+</div>

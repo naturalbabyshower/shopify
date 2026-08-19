@@ -1,0 +1,5 @@
+{% if product.tags contains 'wrapped:blocks:hide' %}
+    <span>Gift-wrap unavailable</span>
+{% else %}
+    <span>Gift-wrap available at checkout</span>
+{%- endif -%}
