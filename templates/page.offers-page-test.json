@@ -1,0 +1,342 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "dc9a8214-d120-425e-9015-a7c14f8ebfbf": {
+      "type": "slideshow",
+      "blocks": {
+        "9e92d22d-c8be-4b82-89cf-ad8672664e2d": {
+          "type": "hero",
+          "repeater": "{{ page.metafields.custom._page_hero_banners.value }}",
+          "settings": {
+            "top_subheading": "",
+            "title": "",
+            "title_size": 70,
+            "subheading": "",
+            "link": "",
+            "link_text": "",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "rgba(0,0,0,0)",
+            "text_align": "vertical-bottom horizontal-left",
+            "image": "{{ block.repeater.image.value }}",
+            "image_mobile": "{{ block.repeater.mobile_image.value }}",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "9e92d22d-c8be-4b82-89cf-ad8672664e2d"
+      ],
+      "settings": {
+        "full_width": true,
+        "desktop_size": 0,
+        "mobile_size": -20,
+        "style": "bars",
+        "autoplay": true,
+        "autoplay_speed": 7,
+        "lazyload_images": false
+      }
+    },
+    "16992633890d58ccbb": {
+      "type": "apps",
+      "blocks": {
+        "f9d548c3-ec86-40c4-8312-690e2819ffc8": {
+          "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/form-embed-block/2632fe16-c075-4321-a88b-50b567f42507",
+          "disabled": true,
+          "settings": {
+            "formId": "V9eTUT"
+          }
+        }
+      },
+      "block_order": [
+        "f9d548c3-ec86-40c4-8312-690e2819ffc8"
+      ],
+      "custom_css": [
+        ".shopify-block {margin: 0px 0 0px 0; padding: 0px;}",
+        ".index-section {margin: 0px; padding-top: 20px; padding-bottom: 10px;}"
+      ],
+      "settings": {
+        "full_width": true,
+        "space_around": false
+      }
+    },
+    "039853a2-2d0b-48b7-94b2-697a3dcc8ff0": {
+      "type": "rich-text",
+      "blocks": {
+        "text_emRTkA": {
+          "type": "text",
+          "settings": {
+            "enlarge_text": true,
+            "text": "<h1>Shop Our Offers</h1>"
+          }
+        },
+        "template--14971293073486__039853a2-2d0b-48b7-94b2-697a3dcc8ff0-text-1": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "enlarge_text": true,
+            "text": "<p><strong>Save up to 50% on selected brands and products for a limited time.<br/>There's pushchairs, car seats, clothing, feeding essentials and more on offer.</strong></p>"
+          }
+        },
+        "text_XgtLHk": {
+          "type": "text",
+          "settings": {
+            "enlarge_text": false,
+            "text": "<ul><li><a href=\"/collections/top-car-seat-offers\" title=\"Car Seat Offers\"><strong>Car Seats</strong></a></li><li><a href=\"/collections/pushchair-stroller-offers\" title=\"Pushchair | Strollers Offers\"><strong>Pushchairs</strong></a></li><li><a href=\"/collections/travel-out-offers\" title=\"Travel | Out Offers\"><strong>Travel</strong></a></li><li><a href=\"/collections/nursery-home-offers\" title=\"Nursery | Home Offers\"><strong>Nursery</strong></a></li><li><a href=\"/collections/bedding-sleep-offers\" title=\"Bedding | Sleep Offers\"><strong>Sleep</strong></a></li><li><a href=\"/collections/feeding-weaning-offers\" title=\"Feeding | Weaning Offers\"><strong>Feeding</strong></a></li><li><a href=\"/collections/care-change-offers\" title=\"Care | Change Offers\"><strong>Care & Change</strong></a></li><li><a href=\"/collections/clothes-shoes-offers\" title=\"Clothes | Shoes Offers\"><strong>Clothing</strong></a></li><li><a href=\"/collections/toys-activities-offers\" title=\"Toys | Activities Offers\"><strong>Toys</strong></a></li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "text_emRTkA",
+        "template--14971293073486__039853a2-2d0b-48b7-94b2-697a3dcc8ff0-text-1",
+        "text_XgtLHk"
+      ],
+      "custom_css": [
+        ".index-section {padding: 35px 0 0;}",
+        "h1 {margin: 10px 0 0;}",
+        "li {margin: 10px 0; display: inline-block; padding: 0;}",
+        "li a {font-size: calc(var(--typeBaseSize) * 0.85); margin: 0 8px 5px 0; padding: 7px 10px; border-radius: 11px; border-style: solid; border-width: 1px; background-color: #f8f8f8; line-height: initial; text-transform: uppercase; text-decoration: unset;}"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": false,
+        "color_scheme": "none",
+        "divider": false
+      }
+    },
+    "logo_blog_list_footer_HF6pNC": {
+      "type": "logo-blog-list-footer",
+      "blocks": {
+        "logo_image_pYwx7i": {
+          "type": "logo_image",
+          "repeater": "{{ page.metafields.custom.brands_logo_block_1.value }}",
+          "settings": {
+            "title": "",
+            "image": "{{ block.repeater.logo.value }}",
+            "link": "{{ block.repeater.link.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "logo_image_pYwx7i"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "heading_position": "left",
+        "divider": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "custom_css": [
+        "h1,header {display: none;}"
+      ],
+      "settings": {
+      }
+    },
+    "featured_collection_3kYjMc": {
+      "type": "featured-collection",
+      "custom_css": [
+        ".index-section {margin: 0px; padding: 0px;}"
+      ],
+      "settings": {
+        "title": "Top Car Seat Offers",
+        "heading_size": "h1",
+        "heading_position": "center",
+        "home_featured_products": "top-car-seat-offers",
+        "count": 10,
+        "products_per_row": 5,
+        "color_accent": "#809b6f",
+        "color_text": "#ffffff",
+        "title_size": 17,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "featured_collection_QPnK6B": {
+      "type": "featured-collection",
+      "custom_css": [
+        ".index-section {margin: 0px; padding: 0px;}"
+      ],
+      "settings": {
+        "title": "Top Pushchair Offers",
+        "heading_size": "h1",
+        "heading_position": "center",
+        "home_featured_products": "pushchair-stroller-offers",
+        "count": 10,
+        "products_per_row": 5,
+        "color_accent": "#f7f5f2",
+        "color_text": "#4C4C4C",
+        "title_size": 17,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "featured_collection_8xxx3K": {
+      "type": "featured-collection",
+      "custom_css": [
+        ".index-section {margin: 0px; padding: 0px;}"
+      ],
+      "settings": {
+        "title": "Top Travel Offers",
+        "heading_size": "h1",
+        "heading_position": "center",
+        "home_featured_products": "travel-out-offers",
+        "count": 5,
+        "products_per_row": 5,
+        "color_accent": "#809b6f",
+        "color_text": "#ffffff",
+        "title_size": 17,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "featured_collection_VEVQBi": {
+      "type": "featured-collection",
+      "custom_css": [
+        ".index-section {margin: 0px; padding: 0px;}"
+      ],
+      "settings": {
+        "title": "Top Nursery Offers",
+        "heading_size": "h1",
+        "heading_position": "center",
+        "home_featured_products": "nursery-home-offers",
+        "count": 5,
+        "products_per_row": 5,
+        "color_accent": "#f7f5f2",
+        "color_text": "#4C4C4C",
+        "title_size": 17,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "featured_collection_7WXqzP": {
+      "type": "featured-collection",
+      "custom_css": [
+        ".index-section {margin: 0px; padding: 0px;}"
+      ],
+      "settings": {
+        "title": "Top Sleep Offers",
+        "heading_size": "h1",
+        "heading_position": "center",
+        "home_featured_products": "bedding-sleep-offers",
+        "count": 5,
+        "products_per_row": 5,
+        "color_accent": "#809b6f",
+        "color_text": "#ffffff",
+        "title_size": 17,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "featured_collection_yRTiFW": {
+      "type": "featured-collection",
+      "custom_css": [
+        ".index-section {margin: 0px; padding: 0px;}"
+      ],
+      "settings": {
+        "title": "Top Feeding Offers",
+        "heading_size": "h1",
+        "heading_position": "center",
+        "home_featured_products": "feeding-weaning-offers",
+        "count": 5,
+        "products_per_row": 5,
+        "color_accent": "#f4f3ee",
+        "color_text": "#4C4C4C",
+        "title_size": 17,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "featured_collection_Tc7K8W": {
+      "type": "featured-collection",
+      "custom_css": [
+        ".index-section {margin: 0px; padding: 0px;}"
+      ],
+      "settings": {
+        "title": "Top Care | Change Offers",
+        "heading_size": "h1",
+        "heading_position": "center",
+        "home_featured_products": "care-change-offers",
+        "count": 5,
+        "products_per_row": 5,
+        "color_accent": "#809b6f",
+        "color_text": "#ffffff",
+        "title_size": 17,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "featured_collection_LTXHWV": {
+      "type": "featured-collection",
+      "custom_css": [
+        ".index-section {margin: 0px; padding: 0px;}"
+      ],
+      "settings": {
+        "title": "Top Clothing Offers",
+        "heading_size": "h1",
+        "heading_position": "center",
+        "home_featured_products": "clothes-shoes-offers",
+        "count": 5,
+        "products_per_row": 5,
+        "color_accent": "#f4f3ee",
+        "color_text": "#4C4C4C",
+        "title_size": 17,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "featured_collection_e6mxax": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Top Toys Offers",
+        "heading_size": "h1",
+        "heading_position": "center",
+        "home_featured_products": "toys-activities-offers",
+        "count": 5,
+        "products_per_row": 5,
+        "color_accent": "#809b6f",
+        "color_text": "#ffffff",
+        "title_size": 17,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    }
+  },
+  "order": [
+    "dc9a8214-d120-425e-9015-a7c14f8ebfbf",
+    "16992633890d58ccbb",
+    "039853a2-2d0b-48b7-94b2-697a3dcc8ff0",
+    "logo_blog_list_footer_HF6pNC",
+    "main",
+    "featured_collection_3kYjMc",
+    "featured_collection_QPnK6B",
+    "featured_collection_8xxx3K",
+    "featured_collection_VEVQBi",
+    "featured_collection_7WXqzP",
+    "featured_collection_yRTiFW",
+    "featured_collection_Tc7K8W",
+    "featured_collection_LTXHWV",
+    "featured_collection_e6mxax"
+  ]
+}

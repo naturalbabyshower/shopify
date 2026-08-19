@@ -1,0 +1,94 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
+{
+  "sections": {
+    "slideshow_split_eV4bUY": {
+      "type": "slideshow-split-article",
+      "blocks": {
+        "slide_8WX9P3": {
+          "type": "slide",
+          "settings": {
+            "top_subheading": "{{ article.title }}",
+            "title": "<p>{{ article.title }}</p>",
+            "title_size": 40,
+            "subheading": "{{ article.title }}",
+            "link": "shopify://blogs/b4baby",
+            "link_text": "ALL BLOGS",
+            "link_2": "",
+            "link_text_2": "",
+            "text_position": "left",
+            "indent_image": false,
+            "color_scheme": "none"
+          }
+        }
+      },
+      "block_order": [
+        "slide_8WX9P3"
+      ],
+      "custom_css": [
+        ".btn {margin-top: 10px; background-color: transparent; border: 1px solid #727c83; color: #727c83; font-size: calc(var(--typeBaseSize) - 2px); font-weight: 600;}",
+        ".hero--template--14836575404110__slideshow_split_eV4bUY {margin: 0 0 30px 0; padding: 0;}"
+      ],
+      "settings": {
+        "full_width": true,
+        "height": 350,
+        "height_mobile": 350,
+        "style": "minimal",
+        "autoplay": false,
+        "autoplay_speed": 7,
+        "lazyload_images": false
+      }
+    },
+    "main": {
+      "type": "article-template-nbs",
+      "custom_css": [
+        ".rte {margin: 20px 0 0 0;}"
+      ],
+      "settings": {
+        "blog_capitalize_first": true,
+        "blog_show_tags": true,
+        "blog_show_date": true,
+        "blog_show_comments": false,
+        "blog_show_author": true
+      }
+    },
+    "sidebar": {
+      "type": "blog-sidebar",
+      "blocks": {
+        "share": {
+          "type": "share",
+          "disabled": true,
+          "settings": {
+          }
+        },
+        "tags": {
+          "type": "tags",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "share",
+        "tags"
+      ],
+      "custom_css": [
+        ".theme-block {margin: 20px 0;}"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "slideshow_split_eV4bUY",
+    "main",
+    "sidebar"
+  ],
+  "wrapper": "div.page-width.page-content.blog-layout"
+}

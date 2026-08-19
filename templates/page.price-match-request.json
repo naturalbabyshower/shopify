@@ -1,0 +1,359 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
+{
+  "sections": {
+    "29f3dbaa-d66f-4675-9323-b0d1b9719afd": {
+      "type": "promo-grid",
+      "blocks": {
+        "de3be95e-0cca-483c-a173-89a4146359d0": {
+          "type": "banner",
+          "settings": {
+            "heading": "Generic Text Banner",
+            "text": "Offers that won't be beaten",
+            "link": "shopify://pages/black-friday",
+            "label": "VIEW OFFERS",
+            "color_scheme": "2"
+          }
+        }
+      },
+      "block_order": [
+        "de3be95e-0cca-483c-a173-89a4146359d0"
+      ],
+      "custom_css": [
+        ".type-banner__text {padding: 0px;}",
+        ".type-banner h2,.type-banner p {margin: 5px 4px 5px 8px;}",
+        ".h3,h3 {font-size: calc(var(--typeHeaderSize) * 0.6);}",
+        ".btn {margin: 5px 5px 5px 5px; padding: 5px 7px; background-color: transparent;}"
+      ],
+      "settings": {
+        "full_width": true,
+        "gutter_size": 0,
+        "space_above": false,
+        "space_below": false,
+        "lazyload_images": false
+      }
+    },
+    "936343ed-3d6a-4686-8ecb-49c9bde332c6": {
+      "type": "slideshow-split",
+      "blocks": {
+        "template--14836576419918__936343ed-3d6a-4686-8ecb-49c9bde332c6-slide-1": {
+          "type": "slide",
+          "repeater": "{{ page.metafields.custom._page_hero_banners.value }}",
+          "settings": {
+            "top_subheading": "{{ block.repeater.subheading.value }}",
+            "title": "{{ block.repeater.heading | metafield_tag }}",
+            "title_size": 40,
+            "subheading": "{{ block.repeater.text.value }}",
+            "link": "{{ block.repeater.slide_link.value }}",
+            "link_text": "",
+            "link_2": "{{ block.repeater.slide_link_2.value }}",
+            "link_text_2": "",
+            "text_position": "right",
+            "image": "{{ block.repeater.image.value }}",
+            "indent_image": false,
+            "color_scheme": "3"
+          }
+        }
+      },
+      "block_order": [
+        "template--14836576419918__936343ed-3d6a-4686-8ecb-49c9bde332c6-slide-1"
+      ],
+      "settings": {
+        "full_width": true,
+        "height": 350,
+        "height_mobile": 350,
+        "style": "bars",
+        "autoplay": false,
+        "autoplay_speed": 6,
+        "lazyload_images": false
+      }
+    },
+    "main": {
+      "type": "main-page-price-match",
+      "disabled": true,
+      "custom_css": [
+
+      ],
+      "settings": {
+      }
+    },
+    "adef8eb7-3d05-485f-af09-6f219ef1cd42": {
+      "type": "rich-text",
+      "blocks": {
+        "2b456f41-cc51-4b3e-a189-96dc885d9cbf": {
+          "type": "page",
+          "settings": {
+            "page_text": "{{ page }}"
+          }
+        },
+        "5167335e-b5e4-4d3e-9246-82623fd16ecd": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "title": "Price request form",
+            "heading_size": "h3"
+          }
+        }
+      },
+      "block_order": [
+        "2b456f41-cc51-4b3e-a189-96dc885d9cbf",
+        "5167335e-b5e4-4d3e-9246-82623fd16ecd"
+      ],
+      "custom_css": [
+        "p {font-size: 1.2em;}",
+        ".index-section {margin: 0 0 25px 0;}"
+      ],
+      "settings": {
+        "align_text": "left",
+        "narrow_column": true,
+        "color_scheme": "none",
+        "divider": false
+      }
+    },
+    "1811ee08-e333-48a1-92d1-f80e191b3b61": {
+      "type": "advanced-content",
+      "blocks": {
+        "template--14836576321614__1811ee08-e333-48a1-92d1-f80e191b3b61-liquid-1": {
+          "type": "liquid",
+          "settings": {
+            "code": "<script src=\"https://www.google.com/recaptcha/api.js\" async defer></script>\n<div class=\"page-width page-width--narrow page-content\" style=\"padding:0 40px\">\n  <div class=\"rte rte--nomargin\">\n        <form method=\"POST\" name=\"fa-form-1\" action=\"https://webhook.frontapp.com/forms/natural_baby_shower/vLbtOu-vvpLKb7MTSFf-I0nDdHTJYuEpmzEq5I50ObLHC-0TzxaqUPJezY1b9qwm9NLQMiASzCNqGq9aNwe0RrsncU4NQZAkDlZZM4vOdQ\" enctype=\"multipart/form-data\" accept-charset=\"utf-8\">\n          <input type=\"hidden\" name=\"subject\" value=\"New price match request\" />\n          <input type=\"hidden\" name=\"body\" value=\"New price match request.\" />\n          {%- if customer -%}\n          <div class=\"form_front\"><label style=\"display:inline\" for=\"name\">Account name: </label><b>{{ customer.first_name }} {{ customer.last_name }}</b></div>\n          <input type=\"hidden\" name=\"name\" value=\"{{ customer.first_name}} {{ customer.last_name }}\" />\n          <div class=\"form_front\"><label style=\"display:inline\" for=\"email\">Account email: </label><b>{{ customer.email }}</b></div>\n          <input type=\"hidden\" name=\"email\" value=\"{{ customer.email }}\" />\n            {%- if customer.phone == blank -%}\n            <div><label for=\"phone\">Phone</label> <input type=\"text\" name=\"phone\" placeholder=\"+44 1234 123456\" required=\"\" autocomplete=\"tel\" /></div>\n            {%- else -%}\n            <div class=\"form_front\"><label style=\"display:inline\" for=\"phone\">Account phone: </label><b>{{ customer.phone }}</b></div>\n            <input type=\"hidden\" name=\"phone\" value=\"{{ customer.phone }}\" />\n            {%- endif -%}\n          {%- else -%}\n          <div class=\"form_front\"><label for=\"name\">Name</label> <input style=\"width:250px; margin-bottom: 0px;\" type=\"text\" name=\"name\" required=\"\" placeholder=\"Full name\" autocomplete=\"cc-name\" /></div>\n          <div class=\"form_front\"><label for=\"email\">Email</label> <input style=\"width:350px; margin-bottom: 0px;\" type=\"email\" name=\"email\" placeholder=\"name@example.com\" required=\"\" autocomplete=\"email\" /></div>\n          <div class=\"form_front\"><label for=\"phone\">Contact number</label> <input style=\"width:250px; margin-bottom: 0px;\" type=\"text\" name=\"phone\" placeholder=\"+44 1234 123456\" required=\"\" autocomplete=\"tel\" /></div> \n          {%- endif -%}\n          <div class=\"form_front\"><label for=\"url1\">Our product URL</label> <input style=\"width:350px; margin-bottom: 0px;\" type=\"text\" name=\"url1\" placeholder=\"https://www.naturalbabyshower.co.uk/products/muslin-cloth-white\" required=\"\" /></div>\n          <div>\n\t\t<div class=\"form_front\"><label for=\"url1\">Competitors product URL (optional)</label> <input style=\"width:350px; margin-bottom: 0px;\" type=\"text\" name=\"url2\" placeholder=\"https://www.competitor.co.uk/product\" /></div>\n          <div>\n          <div class=\"form_front\"><label for=\"info\">Additional info (optional)</label><textarea style=\"height: 100px; width:350px; margin-bottom: 0px;\" name=\"info\"></textarea></div>\n          <div class=\"form_front\"><label for=\"file\">Send us an image (optional)</label><input type=\"file\" name=\"attachment\" /></div> <p> </p>\n          <div style=\"margin-top: 20px;\" id=\"html_element\"></div>\n<div class=\"g-recaptcha\" data-sitekey=\"6Ldb5xITAAAAAD0Rm1riCr6vkH9anasfQrvSmxpR\"></div>\n<div style=\"margin-top: 20px;\" class=\"btn\"><input type=\"submit\" value=\"Submit\"></div>\n <p> </p>\n            \n          </div>\n        </form>\n      </div>\n    </div>",
+            "width": "100%",
+            "alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "template--14836576321614__1811ee08-e333-48a1-92d1-f80e191b3b61-liquid-1"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".index-section {margin: 0; padding: 0;}"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": false,
+        "lazyload_images": false
+      }
+    },
+    "a744caa2-aa55-4be3-9108-30fdd1475c3b": {
+      "type": "rich-text",
+      "blocks": {
+        "template--14836576321614__a744caa2-aa55-4be3-9108-30fdd1475c3b-heading-1": {
+          "type": "heading",
+          "settings": {
+            "title": "Price match terms",
+            "heading_size": "h3"
+          }
+        },
+        "template--14836576321614__a744caa2-aa55-4be3-9108-30fdd1475c3b-text-1": {
+          "type": "text",
+          "settings": {
+            "enlarge_text": false,
+            "text": "<p></p><p>At Natural Baby Shower, we're committed to fair pricing. Our Price Match ensures you receive the most competitive price on our products. Before reaching out for a match, please keep these tips in mind:</p><ul><li>Double-check that the item is readily available on the competitor's website for immediate dispatch.</li><li>Make sure the product is an exact match with ours in terms of size, colour, make, and model.</li><li>Auction sites like eBay are not eligible for matching – we want to ensure a fair and transparent comparison.</li><li>While we strive to provide the best offers, please be aware that we can't retrospectively match prices once the item has been purchased.</li></ul><p>We're dedicated to providing you with the best possible value. While we always strive to match your price, if it proves to be exceptionally competitive, we'll send you a personalised quote with our very best offer. <strong>Thank you for considering Natural Baby Shower.</strong></p><p></p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--14836576321614__a744caa2-aa55-4be3-9108-30fdd1475c3b-heading-1",
+        "template--14836576321614__a744caa2-aa55-4be3-9108-30fdd1475c3b-text-1"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".index-section {margin: 40px 0; padding: 30px 0 10px 0;}"
+      ],
+      "settings": {
+        "align_text": "left",
+        "narrow_column": true,
+        "color_scheme": "3",
+        "divider": false
+      }
+    },
+    "c24fb834-525b-48de-aa9e-c7232dd6beb3": {
+      "type": "text-with-icons",
+      "blocks": {
+        "template--14804242202702__c24fb834-525b-48de-aa9e-c7232dd6beb3-16820681588b00f539-0": {
+          "type": "text_block",
+          "settings": {
+            "icon": "plant",
+            "title": "",
+            "text": "<p>We research every brand and product before we sell it, to ensure they are one’s families can trust.</p>"
+          }
+        },
+        "template--14804242202702__c24fb834-525b-48de-aa9e-c7232dd6beb3-16820681588b00f539-1": {
+          "type": "text_block",
+          "settings": {
+            "icon": "phone",
+            "title": "",
+            "text": "<p>We are proud of our expert customer service team who are always on hand to help answer any questions and offer their expert advice.</p>"
+          }
+        },
+        "template--14804242202702__c24fb834-525b-48de-aa9e-c7232dd6beb3-16820681588b00f539-2": {
+          "type": "text_block",
+          "settings": {
+            "icon": "envelope",
+            "title": "",
+            "text": "<p>We want you to be able to shop with us with confidence so we offer a seamless and hassle-free 90-days returns process.</p>"
+          }
+        },
+        "89c0dbb1-68f4-45d3-a65c-b38171613960": {
+          "type": "text_block",
+          "settings": {
+            "icon": "calendar",
+            "title": "",
+            "text": "<p>For extra peace of mind we offer our standard warranty on all our products against fault and breakage.</p>"
+          }
+        },
+        "44baec0d-0193-4294-9bf8-aff3f6b0b1dc": {
+          "type": "text_block",
+          "settings": {
+            "icon": "package",
+            "title": "",
+            "text": "<p>All our packaging is sustainable and recyclable and we use only the essential amount with no space waste inside boxes.</p>"
+          }
+        },
+        "918b0223-1fb2-4fb2-be99-fd9934f04b40": {
+          "type": "text_block",
+          "settings": {
+            "icon": "ribbon",
+            "title": "",
+            "text": "<p>We're rated 5 stars for our excellent customer service, delivery, aftercare and wide product range.</p>"
+          }
+        },
+        "ee7a3dcc-c662-4a76-bb4b-dc7bcc7a5ee6": {
+          "type": "text_block",
+          "settings": {
+            "icon": "chat",
+            "title": "",
+            "text": "<p>We ask real parents to do real reviews on our products to ensure they really are best for baby and best for you.</p>"
+          }
+        },
+        "9345f599-e0af-4795-a79d-27456203ba16": {
+          "type": "text_block",
+          "settings": {
+            "icon": "sales-tag",
+            "title": "",
+            "text": "<p>Earn points with every purchase you make, then turn those points into money off your next purchase.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--14804242202702__c24fb834-525b-48de-aa9e-c7232dd6beb3-16820681588b00f539-0",
+        "template--14804242202702__c24fb834-525b-48de-aa9e-c7232dd6beb3-16820681588b00f539-1",
+        "template--14804242202702__c24fb834-525b-48de-aa9e-c7232dd6beb3-16820681588b00f539-2",
+        "89c0dbb1-68f4-45d3-a65c-b38171613960",
+        "44baec0d-0193-4294-9bf8-aff3f6b0b1dc",
+        "918b0223-1fb2-4fb2-be99-fd9934f04b40",
+        "ee7a3dcc-c662-4a76-bb4b-dc7bcc7a5ee6",
+        "9345f599-e0af-4795-a79d-27456203ba16"
+      ],
+      "custom_css": [
+        ".index-section {margin: 100px 0 80px 0;}"
+      ],
+      "settings": {
+        "t:common.text_with_icons.settings.title.label": "What sets us apart?",
+        "align_text": "center",
+        "desktop_columns_per_row": 4,
+        "icon_color": "#809b6f",
+        "button_label": "",
+        "button_link": "",
+        "divider": false
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "825c5333-4f05-42b2-ac55-b29db2932b89": {
+          "type": "question",
+          "repeater": "{{ page.metafields.custom.page_faqs.value }}",
+          "settings": {
+            "title": "{{ block.repeater.question.value }}",
+            "text": "{{ block.repeater.text | metafield_tag }}"
+          }
+        }
+      },
+      "block_order": [
+        "825c5333-4f05-42b2-ac55-b29db2932b89"
+      ],
+      "custom_css": [
+        ".index-section {margin: 0; padding: 0 0 40px 0;}"
+      ],
+      "settings": {
+        "title": "{{ page.metafields.custom.page_faqs_heading.value }}",
+        "heading_size": "h2",
+        "heading_position": "center"
+      }
+    },
+    "585d5505-e81b-4a2f-acec-b910ff919b75": {
+      "type": "rich-text",
+      "blocks": {
+        "e3d4cdae-7c2b-4b4f-a594-e4ac79127243": {
+          "type": "button",
+          "source": "{{ page.metafields.custom.page_info.value }}",
+          "settings": {
+            "link": "{{ page.metafields.custom.page_info.value.button_link.value }}",
+            "link_text": "{{ page.metafields.custom.page_info.value.button_text.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "e3d4cdae-7c2b-4b4f-a594-e4ac79127243"
+      ],
+      "custom_css": [
+        ".index-section {padding-top: 0px;}"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "color_scheme": "none",
+        "divider": false
+      }
+    },
+    "1ddc14df-d78b-41ae-95ed-60ad38142670": {
+      "type": "text-columns",
+      "blocks": {
+        "template--14836576125006__1ddc14df-d78b-41ae-95ed-60ad38142670-text_block-1": {
+          "type": "text_block",
+          "repeater": "{{ page.metafields.custom.page_hero_columns.value }}",
+          "settings": {
+            "enable_image": true,
+            "image": "{{ block.repeater.image.value }}",
+            "image_mask": "square",
+            "image_width": 650,
+            "title": "{{ block.repeater.heading.value }}",
+            "text": "{{ block.repeater.text | metafield_tag }}",
+            "button_label": "{{ block.repeater.button_label.value }}",
+            "button_link": "{{ block.repeater.link.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "template--14836576125006__1ddc14df-d78b-41ae-95ed-60ad38142670-text_block-1"
+      ],
+      "settings": {
+        "title": "{{ page.metafields.custom.page_info.value.title.value }}",
+        "align_text": "center",
+        "divider": false,
+        "color_scheme": "none"
+      }
+    }
+  },
+  "order": [
+    "29f3dbaa-d66f-4675-9323-b0d1b9719afd",
+    "936343ed-3d6a-4686-8ecb-49c9bde332c6",
+    "main",
+    "adef8eb7-3d05-485f-af09-6f219ef1cd42",
+    "1811ee08-e333-48a1-92d1-f80e191b3b61",
+    "a744caa2-aa55-4be3-9108-30fdd1475c3b",
+    "c24fb834-525b-48de-aa9e-c7232dd6beb3",
+    "faq",
+    "585d5505-e81b-4a2f-acec-b910ff919b75",
+    "1ddc14df-d78b-41ae-95ed-60ad38142670"
+  ]
+}

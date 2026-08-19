@@ -1,0 +1,100 @@
+{%- paginate customer.orders by 20 -%}
+  <div class="page-width page-content">
+    <header class="section-header section-header--with-link">
+      <h1 class="section-header__title">
+        {{ 'customer.account.title' | t }}
+      </h1>
+      <nav class="breadcrumb-collection" role="navigation" aria-label="breadcrumbs">
+        <a href="/a/wishlist">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            role="presentation"
+            class="icon icon-heart"
+            viewBox="0 0 64 64"
+          >
+            <path d="M51.27 15.05a13 13 0 0 0-18.44 0l-.83.83-.83-.83a13 13 0 0 0-18.44 18.44l.83.83L32 52.77l18.44-18.45.83-.83a13 13 0 0 0 0-18.44Z"></path>
+          </svg>
+          &nbsp;My Wishlist</a
+        ><a href="{{ routes.account_logout_url }}">
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-user" viewBox="0 0 64 64">
+            <path d="M35 39.84v-2.53c3.3-1.91 6-6.66 6-11.42 0-7.63 0-13.82-9-13.82s-9 6.19-9 13.82c0 4.76 2.7 9.51 6 11.42v2.53c-10.18.85-18 6-18 12.16h42c0-6.19-7.82-11.31-18-12.16Z" style="stroke-miterlimit:10"></path>
+          </svg>
+          &nbsp;
+          {{- 'layout.customer.log_out' | t -}}
+        </a>
+      </nav>
+    </header>
+    {%- if customer.has_account -%}
+      <div class="yotpo-widget-instance" data-yotpo-instance-id="29371"></div>
+    {%- else -%}
+      <p>{{ 'layout.customer.create_account' | t | customer_register_link }}</p>
+    {%- endif -%}
+    <div class="grid">
+      <div class="grid__item medium-up--two-thirds">
+        <h2>{{ 'customer.orders.title' | t }}</h2>
+        {%- if customer.orders.size != 0 -%}
+          <table class="table--responsive table--small-text" style="width:95%; margin-bottom:40px">
+            <thead>
+              <tr>
+                <th>{{ 'customer.orders.order_number' | t }}</th>
+                <th>{{ 'customer.orders.date' | t }}</th>
+                <th>{{ 'customer.orders.payment_status' | t }}</th>
+                <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                <th>{{ 'customer.orders.total' | t }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%- for order in customer.orders -%}
+                <tr class="table__section">
+                  <td class="t-green" data-label="{{ 'customer.orders.order_number' | t }}">
+                    {{ order.name | link_to: order.customer_url }}
+                  </td>
+                  <td data-label="{{ 'customer.orders.date' | t }}">
+                    {{ order.created_at | time_tag: format: 'date' }}
+                  </td>
+                  <td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
+                  <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">
+                    {{ order.fulfillment_status_label }}
+                  </td>
+                  <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+                </tr>
+              {%- endfor -%}
+            </tbody>
+          </table>
+
+        {%- else -%}
+          <p>{{ 'customer.orders.none' | t }}</p>
+        {%- endif -%}
+      </div>
+
+      <div class="grid__item medium-up--one-third">
+        <h2>{{ 'customer.account.details' | t }}</h2>
+
+        <p class="h5">{{ customer.name }}</p>
+
+        {{ customer.default_address | format_address }}
+
+        <p>
+          <a href="{{ routes.account_addresses_url }}" class="text-link t-green">
+            {{- 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a
+          >
+        </p>
+      </div>
+    </div>
+
+    {%- liquid
+      if paginate.pages > 1
+        render 'pagination', paginate: paginate
+      endif
+    -%}
+  </div>
+{%- endpaginate -%}
+<!-- Start NBS -->
+<div class="page-width page-content">
+  <div class="yotpo-widget-instance" data-yotpo-instance-id="29372"></div>
+  <div class="yotpo-widget-instance" data-yotpo-instance-id="29370"></div>
+  <div class="yotpo-widget-instance" data-yotpo-instance-id="1173572"></div>
+</div>
+<hr class="hr--clear">
+<!-- End NBS -->

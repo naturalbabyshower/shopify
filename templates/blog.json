@@ -1,0 +1,147 @@
+/*
+* ------------------------------------------------------------
+* IMPORTANT: The contents of this file are auto-generated.
+*
+* This file may be updated by the Shopify admin theme editor
+* or related systems. Please exercise caution as any changes
+* made to this file may be overwritten.
+* ------------------------------------------------------------
+*/
+{
+  "sections": {
+    "slideshow_split_wYVJxG": {
+      "type": "slideshow-split-blog",
+      "blocks": {
+        "slide_w7NDWn": {
+          "type": "slide",
+          "source": "{{ blog.metafields.custom.hero_banners.value }}",
+          "settings": {
+            "top_subheading": "{{ blog.metafields.custom.hero_banners.value.subheading.value }}",
+            "title": "{{ blog.metafields.custom.hero_banners.value.heading | metafield_tag }}",
+            "title_size": 40,
+            "subheading": "{{ blog.metafields.custom.hero_banners.value.text.value }}",
+            "link": "{{ blog.metafields.custom.hero_banners.value.slide_link.value }}",
+            "link_text": "{{ blog.metafields.custom.hero_banners.value.slide_link_text.value }}",
+            "link_2": "{{ blog.metafields.custom.hero_banners.value.slide_link_2.value }}",
+            "link_text_2": "{{ blog.metafields.custom.hero_banners.value.slide_link_text_2.value }}",
+            "text_position": "left",
+            "image": "{{ blog.metafields.custom.hero_banners.value.image.value }}",
+            "indent_image": false,
+            "color_scheme": "3"
+          }
+        }
+      },
+      "block_order": [
+        "slide_w7NDWn"
+      ],
+      "custom_css": [
+        ".btn {margin-top: 10px; background-color: transparent; border: 1px solid #727c83; color: #727c83; font-size: calc(var(--typeBaseSize) - 2px); font-weight: 600;}",
+        ".hero--template--14836575436878__slideshow_split_wYVJxG {height: 350px; margin: 0; padding: 0;}"
+      ],
+      "settings": {
+        "full_width": true,
+        "height": 350,
+        "height_mobile": 350,
+        "style": "minimal",
+        "autoplay": false,
+        "autoplay_speed": 7,
+        "lazyload_images": false
+      }
+    },
+    "logo_list_VFnm6a": {
+      "type": "logo-blog-list",
+      "blocks": {
+        "logo_image_jm3AY9": {
+          "type": "logo_image",
+          "repeater": "{{ blog.metafields.custom.logos.value }}",
+          "settings": {
+            "title": "{{ block.repeater.brand.value }}",
+            "image": "{{ block.repeater.logo.value }}",
+            "link": "{{ block.repeater.link.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "logo_image_jm3AY9"
+      ],
+      "custom_css": [
+        ".grid-product:after {background: none;}",
+        ".breadcrumb-collection {display: none;}",
+        ".index-section {margin: 10px 0; padding: 0;}"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "heading_position": "center",
+        "divider": false
+      }
+    },
+    "main": {
+      "type": "blog-template",
+      "custom_css": [
+        ".section-header {margin: 30px 0; text-align: center;}",
+        ".grid-article[data-style=\"medium\"] .article__title {font-size: calc(var(--typeBaseSize) + 4px); font-weight: 500;}",
+        ".section-header__title {display: none;}"
+      ],
+      "settings": {
+        "blog_show_rss": true,
+        "blog_show_tags": true,
+        "blog_show_date": true,
+        "blog_show_comments": false,
+        "blog_show_author": false,
+        "blog_image_size": "wide"
+      }
+    },
+    "sidebar": {
+      "type": "blog-sidebar",
+      "blocks": {
+        "tags": {
+          "type": "tags",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "tags"
+      ],
+      "disabled": true,
+      "settings": {
+      }
+    },
+    "logo_blog_list_YVBgY4": {
+      "type": "logo-blog-list-footer",
+      "blocks": {
+        "logo_image_3yiJh7": {
+          "type": "logo_image",
+          "repeater": "{{ blog.metafields.custom.logos.value }}",
+          "settings": {
+            "title": "{{ block.repeater.brand.value }}",
+            "image": "{{ block.repeater.logo.value }}",
+            "link": "{{ block.repeater.link.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "logo_image_3yiJh7"
+      ],
+      "custom_css": [
+        ".grid-product:after {background: none;}",
+        ".breadcrumb-collection {display: none;}",
+        ".index-section {margin: 30px 0; padding: 0;}"
+      ],
+      "settings": {
+        "title": "Blog Categories",
+        "heading_size": "h2",
+        "heading_position": "center",
+        "divider": false
+      }
+    }
+  },
+  "order": [
+    "slideshow_split_wYVJxG",
+    "logo_list_VFnm6a",
+    "main",
+    "sidebar",
+    "logo_blog_list_YVBgY4"
+  ]
+}
