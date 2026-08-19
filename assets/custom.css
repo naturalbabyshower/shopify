@@ -5,8 +5,10 @@
 /* ==========================================================================
    Brand colours — Natural Baby Shower
    Inserted for the 2026 palette. Existing colour utilities below are unchanged.
-   Use CSS variables (var(--color-matcha-green)) or the matching utility classes.
-   Background: .matcha-green   Text: .t-matcha-green
+   Use CSS variables (var(--color-matcha-green) / var(--bg-matcha-green))
+   or the matching utility classes:
+   Background: .bg-matcha-green   Text: .t-matcha-green
+   Unprefixed names (.matcha-green) also set background-color, matching .green / .cream.
    ========================================================================== */
 
 :root {
@@ -27,24 +29,66 @@
   --color-cranberry-red: #621D20;
   --color-navy-blue: #3A5779;
   --color-ice-blue: #8BB1D8;
+
+  /* Background tokens (same hex values, for background-color: var(--bg-*)) */
+  --bg-charcoal-grey: var(--color-charcoal-grey);
+  --bg-forest-green: var(--color-forest-green);
+  --bg-matcha-green: var(--color-matcha-green);
+  --bg-soft-matcha: var(--color-soft-matcha);
+  --bg-light-sage: var(--color-light-sage);
+  --bg-oat-milk: var(--color-oat-milk);
+  --bg-baby-blue: var(--color-baby-blue);
+  --bg-frosting-pink: var(--color-frosting-pink);
+  --bg-honey-suckle: var(--color-honey-suckle);
+  --bg-fuzzy-peach: var(--color-fuzzy-peach);
+  --bg-coral-blush: var(--color-coral-blush);
+  --bg-cranberry-red: var(--color-cranberry-red);
+  --bg-navy-blue: var(--color-navy-blue);
+  --bg-ice-blue: var(--color-ice-blue);
 }
 
-/* Background utilities */
-.charcoal-grey { background-color: var(--color-charcoal-grey); }
-.forest-green { background-color: var(--color-forest-green); }
-.matcha-green { background-color: var(--color-matcha-green); }
-.soft-matcha { background-color: var(--color-soft-matcha); }
-.light-sage { background-color: var(--color-light-sage); }
-.oat-milk { background-color: var(--color-oat-milk); }
+/* Background colour utilities — .bg-* (preferred) and unprefixed aliases */
+.bg-charcoal-grey,
+.charcoal-grey { background-color: var(--bg-charcoal-grey); }
 
-.baby-blue { background-color: var(--color-baby-blue); }
-.frosting-pink { background-color: var(--color-frosting-pink); }
-.honey-suckle { background-color: var(--color-honey-suckle); }
-.fuzzy-peach { background-color: var(--color-fuzzy-peach); }
-.coral-blush { background-color: var(--color-coral-blush); }
-.cranberry-red { background-color: var(--color-cranberry-red); }
-.navy-blue { background-color: var(--color-navy-blue); }
-.ice-blue { background-color: var(--color-ice-blue); }
+.bg-forest-green,
+.forest-green { background-color: var(--bg-forest-green); }
+
+.bg-matcha-green,
+.matcha-green { background-color: var(--bg-matcha-green); }
+
+.bg-soft-matcha,
+.soft-matcha { background-color: var(--bg-soft-matcha); }
+
+.bg-light-sage,
+.light-sage { background-color: var(--bg-light-sage); }
+
+.bg-oat-milk,
+.oat-milk { background-color: var(--bg-oat-milk); }
+
+.bg-baby-blue,
+.baby-blue { background-color: var(--bg-baby-blue); }
+
+.bg-frosting-pink,
+.frosting-pink { background-color: var(--bg-frosting-pink); }
+
+.bg-honey-suckle,
+.honey-suckle { background-color: var(--bg-honey-suckle); }
+
+.bg-fuzzy-peach,
+.fuzzy-peach { background-color: var(--bg-fuzzy-peach); }
+
+.bg-coral-blush,
+.coral-blush { background-color: var(--bg-coral-blush); }
+
+.bg-cranberry-red,
+.cranberry-red { background-color: var(--bg-cranberry-red); }
+
+.bg-navy-blue,
+.navy-blue { background-color: var(--bg-navy-blue); }
+
+.bg-ice-blue,
+.ice-blue { background-color: var(--bg-ice-blue); }
 
 /* Text utilities */
 .t-charcoal-grey,
