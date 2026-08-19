@@ -1,0 +1,29 @@
+<div class="page-width page-width--narrow page-content">
+  <header class="section-header">
+    <h1 class="section-header__title hide">
+      {{ page.title | escape }}
+    </h1>
+  </header>
+
+  <div class="rte rte--nomargin">
+    {{ page.content }}
+    <div class="grid">
+      <div style="text-align: center;" class="grid__item">
+        <script type="text/javascript">
+          // <![CDATA[
+          var onloadCallback = function() {
+          grecaptcha.render('html_element', {sitekey: '6Ldb5xITAAAAAD0Rm1riCr6vkH9anasfQrvSmxpR'});
+          };
+          // ]]>
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-page.name",
+  "tag": "section"
+}
+{% endschema %}

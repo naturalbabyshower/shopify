@@ -1,0 +1,207 @@
+{%- liquid
+  assign section_nbs = false
+  for block in section.blocks
+    if block.settings.image != blank
+      assign section_nbs = true
+    endif
+  endfor
+  for tag in blog.all_tags
+    if current_tags contains tag
+      assign section_nbs = false
+      assign section_tag = tag
+    endif
+  endfor
+-%}
+{%- if section_nbs and section.blocks.size > 1 -%}
+  {%- if section.settings.divider -%}<div class="section--divider">{%- endif -%}
+  <a name="section-logo" id="section-logo" class="section-logo"></a>
+  <div class="page-width text-{{ section.settings.heading_position }}">
+    {%- if section.settings.title != blank -%}
+      <div class="section-header section-header">
+        <h2 class="section-header__title {{ section.settings.heading_size }}">
+          {{ section.settings.title }}
+        </h2>
+        {%- render 'scroll-up' -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 1 -%}
+      <div class="logo-bar logo-bar--{{ section.id }}">
+        <div class="new-grid scrollable-grid--small" data-view="custom-grid-item-width" data-type="subcollections">
+          {%- for block in section.blocks -%}
+            {%- if block.settings.image != blank -%}
+              <div class="grid-item grid-product" {{ block.shopify_attributes }}>
+                <div class="logo-bar__item{% if block.settings.image == blank %} logo-bar__item-svg{% endif %}">
+                  {%- if block.settings.link != blank -%}
+                    <a
+                      href="{{ block.settings.link }}"
+                      class="logo-bar__link"
+                      aria-label="{{ block.settings.image.alt }}"
+                    >
+                  {%- endif -%}
+                  {%- if block.settings.image != blank -%}
+                    {%-
+                      render 'image-element',
+                      img: block.settings.image,
+                      sizeVariable: '6',
+                      fallback: '50vw',
+                      widths: '360, 540, 720, 1020',
+                      classes: 'logo-bar__image',
+                    -%}
+                  {%- else -%}
+                    {{ 'logo' | placeholder_svg_tag: 'placeholder-svg placeholder-svg--no-padding' }}
+                  {%- endif -%}
+                  <div class="logo-bar__title">
+                    <a href="{{ block.settings.link }}" class="article__title">
+                      {{- block.settings.title -}}
+                      {{- section_tag -}}
+                    </a>
+                  </div>
+                  {%- if block.settings.link != blank -%}
+                    </a>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        {% unless template.name == 'page' or template.name == 'product' %}
+          <nav class="breadcrumb-collection" role="navigation" aria-label="breadcrumb-collection">
+            <a href="/pages/brands" title>All Brands</a>
+          </nav>
+        {% endunless %}
+      </div>
+    {%- endif -%}
+  </div>
+  {%- if section.settings.divider -%}</div>{%- endif -%}
+{%- endif -%}
+{% schema %}
+{
+  "name": "t:sections.logo-list.name",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.logo-list.settings.title.label",
+      "default": "Our brands"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "t:common.heading_size.label",
+      "default": "h2",
+      "options": [
+        {
+          "value": "h3",
+          "label": "t:common.heading_size.options.small.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:common.heading_size.options.medium.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:common.heading_size.options.large.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:common.heading_size.options.extra_large.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "heading_position",
+      "label": "t:common.heading_position.label",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:common.heading_position.options.left.label"
+        },
+        {
+          "value": "center",
+          "label": "t:common.heading_position.options.center.label"
+        },
+        {
+          "value": "right",
+          "label": "t:common.heading_position.options.right.label"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "divider",
+      "label": "t:sections.logo-list.settings.divider.label",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo_image",
+      "name": "t:sections.logo-list.blocks.logo.name",
+      "settings": [
+            {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.logo-list.blocks.logo.settings.title.label",
+      "info": "t:sections.logo-list.blocks.logo.settings.title.info"
+    },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.logo-list.blocks.logo.settings.image.label",
+          "info": "t:sections.logo-list.blocks.logo.settings.image.info"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.logo-list.blocks.logo.settings.link.label",
+          "info": "t:sections.logo-list.blocks.logo.settings.link.info"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 50,
+  "presets": [
+    {
+      "name": "t:sections.logo-list.presets.logo_list.name",
+      "blocks": [
+        {
+          "type": "logo_image"
+        },
+        {
+          "type": "logo_image"
+        },
+        {
+          "type": "logo_image"
+        },
+        {
+          "type": "logo_image"
+        },
+        {
+          "type": "logo_image"
+        },
+        {
+          "type": "logo_image"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["footer", "header", "custom.popups"]
+  },
+  "locales": {
+    "en": {
+      "section_name": "logo-list"
+    },
+    "es": {
+      "section_name": "logo-list"
+    },
+    "fr": {
+      "section_name": "logo-list"
+    }
+  }
+}
+{% endschema %}

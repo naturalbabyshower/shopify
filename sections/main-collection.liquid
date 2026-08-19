@@ -1,0 +1,318 @@
+{%- liquid
+  assign show_sidebar = true
+  if section.settings.enable_sidebar == false or collection.filters.size == 0
+    assign show_sidebar = false
+  endif
+-%}
+
+<div
+  id="CollectionAjaxResult"
+  class="collection-content"
+  data-section-id="{{ section.id }}"
+  data-section-type="collection-template"
+  data-collection-template="true"
+>
+  
+  <div id="CollectionAjaxContent">
+    <div class="page-width">
+      {%- liquid
+        assign paginate_by = 60
+
+        assign current_filter_size = 0
+        for filter in collection.filters
+          assign current_filter_size = current_filter_size | plus: filter.active_values.size
+        endfor
+      -%}
+      {%- paginate collection.products by paginate_by -%}
+        <div class="grid">
+          <div class="grid__item medium-up--one-fifth grid__item--sidebar">
+            {%- render 'collection-grid-filters',
+              collection: collection,
+              enable_sidebar: section.settings.enable_sidebar,
+              enable_color_swatches: section.settings.enable_color_swatches,
+              tags_combine: section.settings.tags_combine,
+              enable_sort: section.settings.enable_sort,
+              collapse_filters: section.settings.collapse_filters
+            -%}
+          </div>
+          <div class="grid__item medium-up--four-fifths grid__item--content">
+            {%- render 'collection-breadcrumbs' -%}
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                {%- when 'collection_description' -%}
+                  {%- if collection.description != blank and current_filter_size == 0 -%}
+                    <div class="rte rte--collection-desc" {{ block.shopify_attributes }}>
+                      <div class="collection-description">
+                        {{ collection.description }}
+                      </div>
+                    </div>
+                  {%- endif -%}
+                {%- when 'subcollections' -%}
+                  {%- if current_filter_size == 0 -%}
+                    <div {{ block.shopify_attributes }}>
+                      {%- render 'subcollections' -%}
+                    </div>
+                  {%- endif -%}
+                {%- when 'product_grid' -%}
+                  <div {{ block.shopify_attributes }}>
+                    {%- render 'collection-grid',
+                      collection: collection,
+                      items: collection.products,
+                      grid_style: block.settings.grid_style,
+                      quick_shop_enable: settings.quick_shop_enable
+                    -%}
+                  </div>
+
+                  {%- liquid
+                    if paginate.pages > 1
+                      render 'pagination', paginate: paginate
+                    endif
+                  -%}
+              {%- endcase -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endpaginate -%}
+    </div>
+  </div>
+</div>
+{%- render 'scroll-up' -%}
+{%- if show_sidebar == false -%}
+  {% comment %}
+    Disable sidebar & filter features
+  {% endcomment %}
+  {%- style -%}
+    .collection-content .grid__item--sidebar {
+      display: none;
+    }
+    .collection-content .grid__item--content {
+      width: 100% !important;
+    }
+  {%- endstyle -%}
+{%- endif -%}
+{% paginate collection.products by 10 %}
+{% assign collection_description = collection.metafields.global.description_tag.value %}
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "@id": "{{ collection.url | prepend: shop.url }}#collection",
+      "name": {{ collection.title | json }},
+      {% if collection_description != blank -%}
+      "description": {{ collection_description | strip_html | replace: '&nbsp;', ' ' | json }},
+      {% endif -%}
+      {% if collection.image -%}
+      "image": [{{ collection.image | image_url | prepend: "https:" | json }}],
+      {% endif -%}   
+      "url": "{{ shop.url }}{{ collection.url }}",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "{{ shop.url }}#website"
+      },
+      "mainEntityOfPage": {
+        "@id": "{{ collection.url | prepend: shop.url }}#collection"
+      },
+      "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": {{ collection.products.size }},
+        "itemListOrder": "https://schema.org/ItemListUnordered",
+        "itemListElement": [
+        {% for product in collection.products -%}
+          {% assign variant = product.selected_or_first_available_variant -%}
+          {% assign meta_product_description = product.metafields.global.description_tag.value -%}
+          {% assign color_metaobject = product.metafields.custom.filter_colour.value -%}
+          {% assign mpn = variant.metafields.mm-google-shopping.mpn.value -%}
+          {% assign rating_value = product.metafields.yotpo.reviews_average -%}
+          {% assign review_count = product.metafields.yotpo.reviews_count -%}
+          {% assign review_count_num = review_count | times: 1.0 -%}
+        {
+            "@type": "ListItem",
+            "position": {{ forloop.index }},
+            "item": {
+              "@type": "Product",
+              "@id": "{{ product.url | prepend: shop.url }}#product",
+              "url": "{{ product.url | prepend: shop.url }}",
+              "name": {{ product.title | replace: '\t', '' | json }},
+              "description": {{ meta_product_description | default: product.description | strip_html | replace: '&nbsp;', ' '| truncate: 180 | json }},
+              "sku": {{ variant.sku | json }}, 
+              {% if variant.barcode != blank -%}
+              "gtin13": {{ variant.barcode | json }},
+              {% endif -%}
+              {% if mpn != blank -%}
+              "mpn": {{ mpn | json }},
+              {% endif -%}
+              {% if color_metaobject -%}
+              "color": {{ color_metaobject | json }},
+              {% endif -%}
+              "image": [{{ product.featured_image | image_url | prepend: "https:" | json }}],
+              "brand": {
+                "@type": "Brand",
+                "name": {{ product.vendor | json }}
+              },
+              "manufacturer": {
+                "@type": "Organization",
+                "name": {{ product.vendor | json }}
+              },
+              {% if review_count_num > 0 -%}
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "{{ rating_value }}",
+                "reviewCount": "{{ review_count }}"
+              },
+              {% endif -%}
+              
+              "offers": {
+                "@type": "Offer",
+                "itemCondition": "https://schema.org/NewCondition",
+                "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+                "priceCurrency": {{ cart.currency.iso_code | json }},
+                {% if product.compare_at_price > product.price -%}
+                "price": {{ product.price | divided_by: 100.0 }},
+                "priceSpecification": {
+                  "@type": "UnitPriceSpecification",
+                  "price": {{ product.compare_at_price | divided_by: 100.0 }},
+                  "priceCurrency": {{ cart.currency.iso_code | json }},
+                  "priceType": "https://schema.org/ListPrice"
+                },
+                {% else -%}
+                "price":{{ product.price | divided_by: 100.0 }},
+                {% endif -%}
+                "priceValidUntil": "{{ 'now' | date: '%Y' | plus: 1 }}-12-31",
+                {% if shop.refund_policy.body != blank -%}
+                "hasMerchantReturnPolicy": {
+                  "@type": "MerchantReturnPolicy",
+                  "applicableCountry": "GB",
+                  "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+                  "merchantReturnDays": {{ shop.metafields.custom.merchantreturndays.value }},
+                  "merchantReturnLink": {{ shop.refund_policy.url | prepend: request.origin | json }},
+                  "returnMethod": "https://schema.org/ReturnByMail",
+                  "returnFees": "https://schema.org/ReturnShippingFees",
+                  "returnShippingFeesAmount": {
+                    "@type": "MonetaryAmount",
+                    "value": {{ shop.metafields.custom.returnshippingfeesamount }},
+                    "currency": {{ cart.currency.iso_code | json }}
+                  }
+                },
+                "shippingDetails": {
+                  "@type": "OfferShippingDetails",
+                  "shippingDestination": {
+                    "@type": "DefinedRegion",
+                    "addressCountry": "GB"
+                  },
+                  "shippingRate": {
+                    "@type": "MonetaryAmount",
+                    "value": {{ shop.metafields.custom.shippingratenextday }},
+                    "currency": {{ cart.currency.iso_code | json }}
+                  },
+                  "deliveryTime": {
+                    "@type": "ShippingDeliveryTime",
+                    "handlingTime": {
+                      "@type": "QuantitativeValue",
+                      "minValue": 0,
+                      "maxValue": 1,
+                      "unitCode": "DAY"
+                    },
+                    "transitTime": {
+                      "@type": "QuantitativeValue",
+                      "minValue": 0,
+                      "maxValue": 2,
+                      "unitCode": "DAY"
+                    }
+                  }
+                }
+                {%- endif -%}
+              }
+            }
+          }{% unless forloop.last -%},{% endunless -%}
+          {% endfor -%}
+        ]
+      }
+    }
+</script>
+{% endpaginate %}
+
+{% schema %}
+{
+  "name": "t:sections.main-collection.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.main-collection.settings.header_filtering_and_sorting"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sidebar",
+      "label": "t:sections.main-collection.settings.enable_sidebar.label",
+      "default": true,
+      "info": "t:sections.main-collection.settings.enable_sidebar.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "collapse_filters",
+      "label": "t:sections.main-collection.settings.collapse_filters.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_color_swatches",
+      "label": "t:sections.main-collection.settings.enable_color_swatches.label",
+      "info": "t:sections.main-collection.settings.enable_color_swatches.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sort",
+      "label": "t:sections.main-collection.settings.enable_sort.label",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_description",
+      "name": "t:sections.main-collection.blocks.collection_description.name",
+      "limit": 1
+    },
+    {
+      "type": "product_grid",
+      "name": "t:sections.main-collection.blocks.products.name",
+      "settings": [
+        {
+          "type": "select",
+          "id": "grid_style",
+          "label": "t:sections.main-collection.blocks.products.settings.grid_style.label",
+          "default": "small",
+          "options": [
+            {
+              "value": "large",
+              "label": "t:sections.main-collection.blocks.products.settings.grid_style.options.large.label"
+            },
+            {
+              "value": "medium",
+              "label": "t:sections.main-collection.blocks.products.settings.grid_style.options.medium.label"
+            },
+            {
+              "value": "small",
+              "label": "t:sections.main-collection.blocks.products.settings.grid_style.options.small.label"
+            },
+            {
+              "value": "list",
+              "label": "t:sections.main-collection.blocks.products.settings.grid_style.options.list.label"
+            }
+          ]
+        }
+      ],
+      "limit": 1
+    },
+    {
+      "type": "subcollections",
+      "name": "t:sections.main-collection.blocks.subcollections.name",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-collection.blocks.subcollections.settings.content"
+        }
+      ],
+      "limit": 1
+    }
+  ]
+}
+{% endschema %}
