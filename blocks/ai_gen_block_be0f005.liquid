@@ -1,0 +1,423 @@
+{% doc %}
+  @prompt
+    article header taken from article image
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-article-header-{{ ai_gen_id }} {
+    position: relative;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    overflow: hidden;
+    display: block;
+  }
+
+  .ai-article-header-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    height: {{ block.settings.header_height }}px;
+    min-height: 300px;
+  }
+
+  .ai-article-header-image-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-article-header-placeholder-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f6f3ee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-article-header-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    max-height: 400px;
+  }
+
+  .ai-article-header-overlay-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: {{ block.settings.overlay_color }};
+    opacity: {{ block.settings.overlay_opacity }};
+  }
+
+  .ai-article-header-content-{{ ai_gen_id }} {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: {{ block.settings.vertical_alignment }};
+    align-items: {{ block.settings.horizontal_alignment }};
+    height: 100%;
+    padding: 40px 20px;
+    text-align: {{ block.settings.text_alignment }};
+  }
+
+  .ai-article-header-title-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.title_size }}px;
+    margin: 0 0 16px;
+    max-width: {{ block.settings.content_max_width }}px;
+    line-height: 1.2;
+  }
+
+  .ai-article-header-meta-{{ ai_gen_id }} {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: {{ block.settings.text_alignment }};
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.meta_size }}px;
+    opacity: 0.9;
+  }
+
+  .ai-article-header-meta-item-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ai-article-header-excerpt-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.excerpt_size }}px;
+    margin: 16px 0 0;
+    max-width: {{ block.settings.content_max_width }}px;
+    line-height: 1.5;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-article-header-wrapper-{{ ai_gen_id }} {
+      height: {{ block.settings.mobile_header_height }}px;
+      min-height: 250px;
+    }
+
+    .ai-article-header-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.7 }}px;
+    }
+
+    .ai-article-header-meta-{{ ai_gen_id }} {
+      font-size: {{ block.settings.meta_size | times: 0.9 }}px;
+    }
+
+    .ai-article-header-excerpt-{{ ai_gen_id }} {
+      font-size: {{ block.settings.excerpt_size | times: 0.9 }}px;
+    }
+
+    .ai-article-header-content-{{ ai_gen_id }} {
+      padding: 30px 16px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-article-header-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-article-header-wrapper-{{ ai_gen_id }}">
+    {% if article.image %}
+      <img
+        src="{{ article.image | image_url: width: 2000 }}"
+        alt="{{ article.image.alt | escape }}"
+        loading="eager"
+        width="{{ article.image.width }}"
+        height="{{ article.image.height }}"
+        class="ai-article-header-image-{{ ai_gen_id }}"
+      >
+    {% else %}
+      <div class="ai-article-header-placeholder-{{ ai_gen_id }}">
+        {{ 'image' | placeholder_svg_tag }}
+      </div>
+    {% endif %}
+
+    {% if block.settings.show_overlay %}
+      <div class="ai-article-header-overlay-{{ ai_gen_id }}"></div>
+    {% endif %}
+
+    <div class="ai-article-header-content-{{ ai_gen_id }}">
+      {% if block.settings.show_title %}
+        <h1 class="ai-article-header-title-{{ ai_gen_id }}">
+          {{ article.title }}
+        </h1>
+      {% endif %}
+
+      {% if block.settings.show_meta %}
+        <div class="ai-article-header-meta-{{ ai_gen_id }}">
+          {% if block.settings.show_author and article.author != blank %}
+            <div class="ai-article-header-meta-item-{{ ai_gen_id }}">
+              <span>By {{ article.author }}</span>
+            </div>
+          {% endif %}
+
+          {% if block.settings.show_date %}
+            <div class="ai-article-header-meta-item-{{ ai_gen_id }}">
+              <span>{{ article.published_at | date: block.settings.date_format }}</span>
+            </div>
+          {% endif %}
+
+          {% if block.settings.show_reading_time %}
+            {% assign word_count = article.content | strip_html | split: ' ' | size %}
+            {% assign reading_time = word_count | divided_by: 200 %}
+            {% if reading_time == 0 %}
+              {% assign reading_time = 1 %}
+            {% endif %}
+            <div class="ai-article-header-meta-item-{{ ai_gen_id }}">
+              <span>{{ reading_time }} min read</span>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_excerpt and article.excerpt != blank %}
+        <div class="ai-article-header-excerpt-{{ ai_gen_id }}">
+          {{ article.excerpt }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Article header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "header_height",
+      "label": "Desktop height",
+      "min": 300,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "mobile_header_height",
+      "label": "Mobile height",
+      "min": 250,
+      "max": 600,
+      "step": 50,
+      "unit": "px",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "label": "Content max width",
+      "min": 400,
+      "max": 1000,
+      "step": 50,
+      "unit": "px",
+      "default": 800
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show title",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_meta",
+      "label": "Show metadata",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show author",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show date",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "date_format",
+      "label": "Date format",
+      "default": "%B %d, %Y"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reading_time",
+      "label": "Show reading time",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "label": "Show excerpt",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Alignment"
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "horizontal_alignment",
+      "label": "Horizontal alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 24,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "meta_size",
+      "label": "Metadata size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "excerpt_size",
+      "label": "Excerpt size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_overlay",
+      "label": "Show overlay",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Article header"
+    }
+  ]
+}
+{% endschema %}
