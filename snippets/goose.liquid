@@ -1,0 +1,11 @@
+<script>
+  var variantMetafieldOversell = {};
+  var variantMetafieldDate = {};
+  var variantMetafieldLead = {};
+  
+ {% for variant in product.variants %}
+  variantMetafieldOversell[{{- variant.id -}}] = "{{ variant.metafields.custom.oversell_reason.value }}";
+  variantMetafieldDate{{- variant.id -}}] = "{{ variant.metafields.custom.due_date }}";
+  variantMetafieldLead{{- variant.id -}}] = "{{ variant.metafields.custom.oversell_lead.value }}";
+ {% endfor %}
+</script>

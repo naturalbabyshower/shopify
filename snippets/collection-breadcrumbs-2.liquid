@@ -1,0 +1,49 @@
+{% assign current = collection %}
+{% assign crumbs = '' %}
+<nav class="breadcrumb-collection" role="navigation" aria-label="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a class="breadcrumb-top" itemprop="item" href="{{ routes.root_url }}" title="back Home">Home</a>
+    <meta itemprop="name" content="Home"></span>
+    <meta itemprop="position" content="1">
+    
+{% for i in (1..20) %}
+  {% assign parent = collection.metafields.custom.parent_collection.value %}
+
+  {% if parent %}
+    {% capture crumb %}
+      <span itemprop="itemListElement"
+            itemscope
+            itemtype="https://schema.org/ListItem">
+        &nbsp;/&nbsp;
+        {{ parent.title | link_to: parent.url, itemprop: 'item' }}
+        <meta itemprop="name" content="{{ parent.title }}">
+     </span>
+    {% endcapture %}
+
+    {% assign crumbs = crumb | append: '|||' | append: crumbs %}
+    {% assign current = parent %}
+  {% else %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% assign crumb_array = crumbs | split: '|||' %}
+{% assign position = 2 %}
+
+{% for crumb in crumb_array %}
+  {% unless crumb == blank %}
+    {{ crumb }}
+    <meta itemprop="position" content="{{ position }}">
+     
+    {% assign position = position | plus: 1 %}
+  {% endunless %}
+{% endfor %}
+    <span itemprop="itemListElement"
+            itemscope
+            itemtype="https://schema.org/ListItem">
+        &nbsp;/&nbsp;&nbsp;{{ collection.title }}
+    
+    <meta itemprop="name" content="{{ collection.title }}"></span>
+    <meta itemprop="position" content="{{ position }}">
+    
+</nav>

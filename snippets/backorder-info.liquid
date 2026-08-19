@@ -1,0 +1,73 @@
+{% comment %}
+  Backorder Info Snippet
+  - This snippet is used to display the backorder properties
+
+  Parameters:
+  - product: The product object
+  - current_variant: The current variant object
+
+  Usage:
+  {% include 'product-form' with product: product, current_variant: current_variant %}
+{% endcomment %}
+
+
+  {%- liquid
+    assign due_date = false
+    assign lead = false
+    assign backorder_text = false
+    assign backorder_date = false
+    assign input_name = ''
+    assign inventory_policy = current_variant.inventory_policy
+    assign due_date = current_variant.metafields.custom.due_date.value | date: '%e %b %y'
+    assign lead = current_variant.metafields.custom.oversell_lead
+    if current_variant.inventory_quantity <= 0 and inventory_policy == 'continue'
+      if due_date != blank
+        assign backorder_text = 'Ship by'
+        assign backorder_date = due_date
+      else
+        assign backorder_text = 'Ship in'
+        assign backorder_date = lead
+      endif
+      assign input_name = 'properties[Delayed dispatch]'
+      assign backorder_properties = backorder_text | append: backorder_date
+    endif
+  -%}
+
+  <input type="hidden" id="backorder_info" type="text" name="{{ input_name }}" value="{{ backorder_properties }}">
+
+  <script>
+      var input_name = {};
+      var backorder_properties = {};
+      var backorder_text = {};
+      var backorder_date = {};
+      {% for variant in product.variants %}
+        {%- liquid
+          assign backorder_text = false
+          assign backorder_date = false
+          assign input_name = ''
+          assign due_date = variant.metafields.custom.due_date.value | date: '%e %b %Y'
+          assign lead = variant.metafields.custom.oversell_lead
+          if due_date != blank
+            assign backorder_date = due_date
+            assign backorder_text = 'Ship by'
+            assign input_name = 'properties[Delayed dispatch]'
+          else
+            assign backorder_date = lead
+            assign backorder_text = 'Ship in'
+            assign input_name = 'properties[Delayed dispatch]'
+          endif
+        -%}
+        {%- if variant.inventory_quantity < 1 and variant.inventory_policy == 'continue' and variant.metafields.custom.oversell_reason.value == 'Standard' %}
+          input_name[{{- variant.id -}}] = "{{ input_name }}";
+          backorder_properties[{{- variant.id -}}] = "{{ backorder_text }} {{ backorder_date }}";
+        {%- elsif variant.inventory_quantity < 1 and variant.inventory_policy == 'continue' and variant.metafields.custom.oversell_reason.value == 'Dropship' %}
+          input_name[{{- variant.id -}}] = "{{ input_name }}";
+          backorder_properties[{{- variant.id -}}] = "{{ backorder_text }} {{ backorder_date }}";
+        {%- endif -%}
+      {% endfor %}
+        document.addEventListener('variant:change', function (evt) {
+        console.log(evt.detail.variant);
+          $("#backorder_info").attr({name: input_name[evt.detail.variant.id]})
+          $("#backorder_info").val(backorder_properties[evt.detail.variant.id]);
+        });
+  </script>

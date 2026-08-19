@@ -1,0 +1,12 @@
+{%- comment -%}
+  Collection hero copy with a Read more / Read less toggle.
+  Pass the banner text so links in the metafield HTML stay clickable.
+{%- endcomment -%}
+<div class="hero__collection-desc is-collapsed" data-hero-readmore>
+  <div class="hero__collection-desc-inner">
+    {{ text }}
+  </div>
+  <button type="button" class="hero__readmore-toggle under pointer" hidden aria-expanded="false">
+    read more
+  </button>
+</div>

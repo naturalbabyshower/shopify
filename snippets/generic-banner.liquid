@@ -1,0 +1,36 @@
+{%- liquid
+  assign banner_heading = shop.metaobjects.generic['site-wide-offer'].banner_heading
+  assign banner_text = shop.metaobjects.generic['site-wide-offer'].banner_text
+  assign banner_link = shop.metaobjects.generic['site-wide-offer'].banner_link
+  assign banner_link_label = shop.metaobjects.generic['site-wide-offer'].banner_link_label
+  assign banner_background_color = shop.metaobjects.generic['site-wide-offer'].banner_background_color
+  assign banner_text_color = shop.metaobjects.generic['site-wide-offer'].banner_text_color
+%}
+
+{%- if banner_link != blank -%}
+  <a href="{{ banner_link }}" class="type-banner__link">
+{%- endif -%}
+<div
+  class="promo-grid__container"
+  style="background-color:{{ banner_background_color }}; color:{{ banner_text_color }}"
+>
+  <div class="type-banner__content text-center">
+    <div class="type-banner__text">
+      <p class="h3">{{ banner_heading }}</p>
+
+      <p class="banner_text">{{ banner_text }}</p>
+
+      {%- if banner_link_label != blank -%}
+        <p
+          class="btn btn--secondary btn--small"
+          style="background-color:{{ banner_background_color }}; color:{{ banner_text_color }}; border: solid 1px {{ banner_text_color }} !important;"
+        >
+          {{ banner_link_label }}
+        </p>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+{%- if banner_link != blank -%}
+  </a>
+{%- endif -%}

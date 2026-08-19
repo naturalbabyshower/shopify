@@ -1,0 +1,150 @@
+.nbs-chat-launcher {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 99999990;
+      display: flex;
+      height: 64px;
+      width: 64px;
+      opacity: 1;
+      transition-property: opacity;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 0.3s;
+    }
+    .nbs-chat-launcher[data-opacity="0"] {
+      opacity: 0;
+    }
+    .nbs-chat-launcher__loader {
+      display: none;
+      height: 100%;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      background-color: #809b6f;
+      box-shadow: 0 0 10px #0000003a;
+    }
+    .nbs-chat-launcher__loader div {
+      width: 50%;
+      padding: 5px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #fff;
+      --_m: conic-gradient(#0000 10%, #000),
+        linear-gradient(#000 0 0) content-box;
+      -webkit-mask: var(--_m);
+      mask: var(--_m);
+      -webkit-mask-composite: source-out;
+      mask-composite: subtract;
+      animation: a 1s infinite linear;
+    }
+    @keyframes a {
+      to {
+        transform: rotate(1turn);
+      }
+    }
+    .nbs-chat-launcher__loader span {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+    .nbs-chat-launcher[data-loading="true"] .nbs-chat-launcher__loader {
+      display: flex;
+    }
+    .nbs-chat-launcher__show-chat,
+    .nbs-chat-launcher__shutdown-chat {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      border-style: none;
+      background-color: transparent;
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+    }
+    .nbs-chat-launcher__show-chat:before,
+    .nbs-chat-launcher__shutdown-chat:before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      opacity: 0;
+      transition-property: opacity;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 0.3s;
+      background-color: #0000001a;
+      content: "";
+    }
+    .nbs-chat-launcher[data-loading="true"] .nbs-chat-launcher__show-chat,
+    .nbs-chat-launcher[data-loading="true"]
+      .nbs-chat-launcher__shutdown-chat {
+      display: none;
+    }
+    .nbs-chat-launcher__show-chat span,
+    .nbs-chat-launcher__shutdown-chat span {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+    .nbs-chat-launcher__show-chat:hover:before,
+    .nbs-chat-launcher__show-chat:focus-visible:before,
+    .nbs-chat-launcher__shutdown-chat:hover:before,
+    .nbs-chat-launcher__shutdown-chat:focus-visible:before {
+      opacity: 1;
+    }
+    .nbs-chat-launcher__show-chat {
+      z-index: 1;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 9999px;
+      background-color: #809b6f;
+      box-shadow: 0 0 10px #0000003a;
+    }
+    .nbs-chat-launcher__show-chat svg {
+      z-index: 2;
+      transform: translate(-2px);
+    }
+    .nbs-chat-launcher__shutdown-chat {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      z-index: 2;
+      height: 26px;
+      width: 26px;
+      border-radius: 9999px;
+      padding: 0;
+      transition-property: transform;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 0.3s;
+      background-color: #809b6f;
+    }
+    .nbs-chat-launcher__shutdown-chat svg {
+      width: 10px;
+      transform: translateY(1px);
+    }
+    .nbs-chat-launcher__shutdown-chat:hover,
+    .nbs-chat-launcher__shutdown-chat:focus-visible {
+      transform: scale(1.2);
+    }
+    #gis-cta-container {
+      transition: transform 0.3s ease-in-out;
+    }
+    .nbs-chat-active #gis-cta-container {
+      transform: translate(0, -84px);
+    }

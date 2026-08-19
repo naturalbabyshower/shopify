@@ -1,0 +1,9 @@
+{%- liquid
+  assign parent_journey = product.metafields.custom.parenting_journey
+-%}
+<script type="text/javascript">
+  var item = {
+    "ParentingJourney": {{ parent_journey }}
+  };
+  klaviyo.track("Viewed Product Parent Journey", item);
+</script>

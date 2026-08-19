@@ -1,0 +1,138 @@
+{% liquid
+  for tag in blog.all_tags
+    if current_tags contains tag
+      assign blog_tagged_slideshow_tag = tag
+    endif
+  endfor
+
+  assign blog_tagged_slideshow = blog_tagged_slideshow_tag
+
+  case blog_tagged_slideshow
+    when 'seasonal'
+      assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-seasonal'].subheading.value
+      assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-seasonal'].heading | metafield_tag
+      assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-seasonal'].text.value
+      assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-seasonal'].slide_link.value
+      assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-seasonal'].slide_link_text.value
+      assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-seasonal'].slide_link_2.value
+      assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-seasonal'].slide_link_text_2.value
+      assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-seasonal'].image.value
+    when 'sustainability'
+      assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-sustainability'].subheading.value
+      assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-sustainability'].heading | metafield_tag
+      assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-sustainability'].text.value
+      assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-sustainability'].slide_link.value
+      assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-sustainability'].slide_link_text.value
+      assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-sustainability'].slide_link_2.value
+      assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-sustainability'].slide_link_text_2.value
+      assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-sustainability'].image.value
+    when 'toddler | child'
+      assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-toddler'].subheading.value
+      assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-toddler'].heading | metafield_tag
+      assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-toddler'].text.value
+      assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-toddler'].slide_link.value
+      assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-toddler'].slide_link_text.value
+      assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-toddler'].slide_link_2.value
+      assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-toddler'].slide_link_text_2.value
+      assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-toddler'].image.value
+    when 'feeding'
+      assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-feeding'].subheading.value
+      assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-feeding'].heading | metafield_tag
+      assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-feeding'].text.value
+      assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-feeding'].slide_link.value
+      assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-feeding'].slide_link_text.value
+      assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-feeding'].slide_link_2.value
+      assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-feeding'].slide_link_text_2.value
+      assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-feeding'].image.value
+    when 'newborn | baby'
+      assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-newborn'].subheading.value
+      assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-newborn'].heading | metafield_tag
+      assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-newborn'].text.value
+      assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-newborn'].slide_link.value
+      assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-newborn'].slide_link_text.value
+      assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-newborn'].slide_link_2.value
+      assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-newborn'].slide_link_text_2.value
+      assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-newborn'].image.value
+    when 'nursery | home'
+      assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-nursery'].subheading.value
+      assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-nursery'].heading | metafield_tag
+      assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-nursery'].text.value
+      assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-nursery'].slide_link.value
+      assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-nursery'].slide_link_text.value
+      assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-nursery'].slide_link_2.value
+      assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-nursery'].slide_link_text_2.value
+      assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-nursery'].image.value
+    when 'Nursery | Home'
+      assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-nursery'].subheading.value
+      assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-nursery'].heading | metafield_tag
+      assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-nursery'].text.value
+      assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-nursery'].slide_link.value
+      assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-nursery'].slide_link_text.value
+      assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-nursery'].slide_link_2.value
+      assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-nursery'].slide_link_text_2.value
+      assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-nursery'].image.value
+    when 'play'
+      assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-play'].subheading.value
+      assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-play'].heading | metafield_tag
+      assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-play'].text.value
+      assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-play'].slide_link.value
+      assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-play'].slide_link_text.value
+      assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-play'].slide_link_2.value
+      assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-play'].slide_link_text_2.value
+      assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-play'].image.value
+    when 'pregnancy'
+      assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-pregnancy'].subheading.value
+      assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-pregnancy'].heading | metafield_tag
+      assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-pregnancy'].text.value
+      assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-pregnancy'].slide_link.value
+      assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-pregnancy'].slide_link_text.value
+      assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-pregnancy'].slide_link_2.value
+      assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-pregnancy'].slide_link_text_2.value
+      assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-pregnancy'].image.value
+    when 'safety'
+      assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-safety'].subheading.value
+      assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-safety'].heading | metafield_tag
+      assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-safety'].text.value
+      assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-safety'].slide_link.value
+      assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-safety'].slide_link_text.value
+      assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-safety'].slide_link_2.value
+      assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-safety'].slide_link_text_2.value
+      assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-safety'].image.value
+    when 'parent approved'
+      assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-parent-approved'].subheading.value
+      assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-parent-approved'].heading | metafield_tag
+      assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-parent-approved'].text.value
+      assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-parent-approved'].slide_link.value
+      assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-parent-approved'].slide_link_text.value
+      assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-parent-approved'].slide_link_2.value
+      assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-parent-approved'].slide_link_text_2.value
+      assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-parent-approved'].image.value
+    when 'travel'
+      assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-travel'].subheading.value
+      assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-travel'].heading | metafield_tag
+      assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-travel'].text.value
+      assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-travel'].slide_link.value
+      assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-travel'].slide_link_text.value
+      assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-travel'].slide_link_2.value
+      assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-travel'].slide_link_text_2.value
+      assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-travel'].image.value
+    when 'sleep'
+      assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-sleep'].subheading.value
+      assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-sleep'].heading | metafield_tag
+      assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-sleep'].text.value
+      assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-sleep'].slide_link.value
+      assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-sleep'].slide_link_text.value
+      assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-sleep'].slide_link_2.value
+      assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-sleep'].slide_link_text_2.value
+      assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-sleep'].image.value
+    else
+      assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners.blog.subheading.value
+      assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners.blog.heading | metafield_tag
+      assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners.blog.text.value
+      assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners.blog.slide_link.value
+      assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners.blog.slide_link_text.value
+      assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners.blog.slide_link_2.value
+      assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners.blog.slide_link_text_2.value
+      assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners.blog.image.value
+  endcase
+%}

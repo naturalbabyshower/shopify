@@ -1,0 +1,28 @@
+  <div class="grid-item__meta-secondary">
+    <div class="grid-product__status">
+      {% if product.available %}
+        {%- if product.tags contains 'selling-fast' -%}
+          <span class="selling-fast t-coral-blush">{{ 'products.product.selling_fast' | t }}</span>
+        {%- endif -%}
+        {% if offer_collection %}
+          <div class="listing-offer__text {{ offer_color }}">
+            {{- offer_collection }}
+          </div>
+        {%- endif -%}
+      {%- else -%}
+        {%- if product_state == 'Coming Soon' -%}
+          <span class="coming-soon">{{ 'products.product.coming_soon' | t }}</span>
+        {%- elsif product_state == 'Discontinued' -%}
+          <span class="discontinued">
+            {{ 'products.product.sold_out' | t }}
+            &nbsp;|&nbsp;{{ 'products.product.discontinued' | t }}
+          </span>
+        {%- else -%}
+          <span class="sold-out">
+            {{ 'products.product.out_of_stock' | t }}
+            &nbsp;|&nbsp;{{ 'products.product.back_soon' | t }}
+          </span>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </div>

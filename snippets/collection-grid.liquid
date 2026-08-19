@@ -1,0 +1,170 @@
+{% comment %}
+  - collection: Liquid 'collection' or 'search' object
+  - items: Paginated 'collection.products' or 'search.results' list. Cannot be pulled from the the 'collection' object passed in above
+  - grid_style
+  - quick_shop_enable
+{% endcomment %}
+
+{% liquid
+  if collection.products
+    assign count = collection.products_count
+    assign count_label = 'collections.general.items_with_count'
+  endif
+
+  if collection.results
+    assign count = collection.results_count
+    assign count_label = 'general.search.result_count'
+  endif
+
+  assign current_filter_size = 0
+  for filter in filters
+    assign current_filter_size = current_filter_size | plus: filter.active_values.size
+  endfor
+%}
+
+<div class="collection-grid__wrapper">
+  <div class="collection-filter">
+    <div class="collection-filter__inner">
+      <div class="collection-filter__item collection-filter__item--drawer">
+        <button
+          type="button"
+          class="collection-filter__btn text-link"
+        >
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-filter" viewBox="0 0 64 64">
+            <path d="M48 42h10">.</path><path d="M48 42a5 5 0 1 1-5-5 5 5 0 0 1 5 5Z"/><path d="M7 42h31">.</path><path d="M16 22H6">.</path><path d="M16 22a5 5 0 1 1 5 5 5 5 0 0 1-5-5Z"/><path d="M57 22H26">.</path>
+          </svg>
+          {{ 'collections.filters.title_tags' | t }}
+          {%- if current_filter_size > 0 -%}
+            ({{ current_filter_size }})
+          {%- endif -%}
+        </button>
+      </div>
+
+      <div class="collection-filter__item collection-filter__item--count small--hide">
+        <span>{{ count_label | t: count: count }}</span>
+      </div>
+
+      <div class="collection-filter__item collection-filter__item--right">
+        {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+        <div class="collection-filter__sort small--hide">
+          <label for="SortBy" class="hidden-label">{{ 'collections.sorting.title' | t }}</label>
+          <select name="SortBy" id="SortBy" data-default-sortby="{{ collection.default_sort_by }}">
+            <option
+              value="title-ascending"
+              {% if sort_by == collection.default_sort_by %}
+                selected="selected"
+              {% endif %}
+            >
+              {{ 'collections.sorting.title' | t }}
+            </option>
+            {%- for option in collection.sort_options -%}
+              <option
+                value="{{ option.value }}"
+                {% if option.value == sort_by %}
+                  selected="selected"
+                {% endif %}
+              >
+                {{ option.name }}
+              </option>
+            {%- endfor -%}
+          </select>
+        </div>
+
+        {%- liquid
+          assign productGridView = grid_style
+          if cart.attributes.product_view != blank
+            assign productGridView = cart.attributes.product_view
+          endif
+        -%}
+          <ul class="no-bullets inline-list text-right">
+          <li>
+            <button
+              type="button"
+              class="grid-view-btn{% if productGridView == 'large' %} is-active{% endif %} small--hide"
+              data-view="large"
+              title="{{ 'collections.general.large' | t }}"
+            >
+             <at-icon src="{{ 'icon-view-large.svg' | asset_img_url: 'large' }}" data-name="view-large">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon icon-view-large"><!--!Font Awesome Pro 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2025 Fonticons, Inc.--><path d="M64 80c-8.8 0-16 7.2-16 16l0 320c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-320c0-8.8-7.2-16-16-16L64 80zM0 96C0 60.7 28.7 32 64 32l320 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zm190.7 88.7l-24.2 18.4c-10.5 8-25.6 6-33.6-4.5s-6-25.6 4.5-33.6l24.2-18.4c15.8-12 35.2-18.4 55.1-18.1l3.4 .1c46.5 .7 83.8 38.6 83.8 85.1c0 23.5-9.7 46-26.9 62.1L212.7 336l83.3 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-144 0c-9.8 0-18.7-6-22.3-15.2s-1.3-19.6 5.9-26.3L244.3 240.6c7.5-7 11.7-16.8 11.7-27.1c0-20.3-16.3-36.8-36.6-37.1l-3.4-.1c-9.1-.1-18 2.8-25.3 8.3z"></path></svg></at-icon>
+              <noscript>
+                <img class="icon icon-view-large" src="{{ 'icon-view-large.svg' | asset_img_url: 'small' }}" height="25" width="25" alt="view-large">
+              </noscript>
+              <span class="icon__fallback-text visually-hidden">{{ 'collections.general.large' | t }}</span>
+            </button>
+          </li>
+          <li>
+            <button
+              type="button"
+              class="grid-view-btn{% if productGridView == 'medium' %} is-active{% endif %} small--hide"
+              data-view="medium"
+              title="{{ 'collections.general.medium' | t }}"
+            >
+             <at-icon src="{{ 'icon-view-medium.svg' | asset_img_url: 'medium' }}" data-name="view-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon icon-view-medium"><!--!Font Awesome Pro 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2025 Fonticons, Inc.--><path d="M64 80c-8.8 0-16 7.2-16 16l0 320c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-320c0-8.8-7.2-16-16-16L64 80zM0 96C0 60.7 28.7 32 64 32l320 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zm152 32l128 0c9.9 0 18.8 6.1 22.4 15.3s1.1 19.7-6.2 26.4l-50.8 46.5c41.9 4.8 74.6 40.4 74.6 83.6c0 46.5-37.7 84.2-84.2 84.2L208 384c-30.1 0-58.1-15.6-73.9-41.2l-2.6-4.2c-7-11.3-3.5-26.1 7.8-33s26.1-3.5 33 7.8l2.6 4.2c7.1 11.5 19.6 18.4 33 18.4l27.8 0c20 0 36.2-16.2 36.2-36.2c0-20.1-16.3-36.3-36.4-36.2l-51.5 .3c-9.9 .1-18.9-6-22.5-15.2s-1.2-19.8 6.1-26.5L218.3 176 152 176c-13.3 0-24-10.7-24-24s10.7-24 24-24z"></path></svg></at-icon>
+            <noscript>
+                <img class="icon icon-view-medium" src="{{ 'icon-view-medium.svg' | asset_img_url: 'small' }}" height="25" width="25" alt="view-medium">
+              </noscript>
+              <span class="icon__fallback-text visually-hidden">{{ 'collections.general.medium' | t }}</span>
+            </button>
+          </li>
+          <li>
+            <button
+              type="button"
+              class="grid-view-btn{% if productGridView == 'small' %} is-active{% endif %} small--hide"
+              data-view="small"
+              title="{{ 'collections.general.small' | t }}"
+            >
+             <at-icon src="{{ 'icon-view-small.svg' | asset_img_url: 'small' }}" data-name="view-small">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon icon-view-small"><!--!Font Awesome Pro 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2025 Fonticons, Inc.--><path d="M384 80c8.8 0 16 7.2 16 16l0 320c0 8.8-7.2 16-16 16L64 432c-8.8 0-16-7.2-16-16L48 96c0-8.8 7.2-16 16-16l320 0zM64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zm127.6 97.2c-12.6-4.2-26.2 2.6-30.4 15.2l-48 144c-2.4 7.3-1.2 15.4 3.3 21.6s11.8 10 19.5 10l104 0 0 40c0 13.3 10.7 24 24 24s24-10.7 24-24l0-40 8 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-8 0 0-56c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 56-70.7 0 37.5-112.4c4.2-12.6-2.6-26.2-15.2-30.4z"></path></svg></at-icon>
+            <noscript>
+                <img class="icon icon-view-small" src="{{ 'icon-view-small.svg' | asset_img_url: 'small' }}" height="25" width="25" alt="view-small">
+              </noscript>
+              <span class="icon__fallback-text visually-hidden">{{ 'collections.general.small' | t }}</span>
+            </button>
+          </li>
+          <li>
+            <button
+              type="button"
+              class="grid-view-btn{% if productGridView == 'list' %} is-active{% endif %} small--hide"
+              data-view="list"
+              title="{{ 'collections.general.list' | t }}"
+            >
+            <at-icon src="{{ 'icon-view-list.svg' | asset_img_url: 'small' }}" data-name="view-list">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon icon-view-list"><!--!Font Awesome Pro 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2025 Fonticons, Inc.--><path d="M64 80c-8.8 0-16 7.2-16 16l0 320c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-320c0-8.8-7.2-16-16-16L64 80zM0 96C0 60.7 28.7 32 64 32l320 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zm96 64a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm104 0c0-13.3 10.7-24 24-24l96 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-96 0c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24l96 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-96 0c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24l96 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-96 0c-13.3 0-24-10.7-24-24zm-72-64a32 32 0 1 1 0-64 32 32 0 1 1 0 64zM96 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"></path></svg></at-icon>
+            <noscript>
+            <img class="icon icon-view-list" src="{{ 'icon-view-list.svg' | asset_img_url: 'small' }}" height="25" width="25" alt="view-list">
+            </noscript>
+            <span class="icon__fallback-text visually-hidden">{{ 'collections.general.list' | t }}</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="collection-mobile-filters medium-up--hide">
+      <div class="collection-mobile-filters__holder" id="CollectionInlineFilterWrap"></div>
+    </div>
+  </div>
+
+  {%- if items == blank -%}
+    <div class="index-section">{{ 'collections.general.no_matches' | t }}</div>
+  {%- endif -%}
+
+  <div
+    class="new-grid product-grid collection-grid"
+    data-view="{{ productGridView }}"
+    data-scroll-to
+  >
+    {%- for item in items -%}
+      {%- if item.object_type == 'product' -%}
+        {%- render 'product-grid-item', product: item -%}
+
+        {%- if quick_shop_enable -%}
+          {%- render 'quick-shop-modal', product: item -%}
+        {%- endif -%}
+      {%- else -%}
+        {%- render 'search-grid-item', item: item -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
