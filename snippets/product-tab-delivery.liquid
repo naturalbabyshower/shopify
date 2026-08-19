@@ -1,0 +1,20 @@
+{%- liquid
+  assign product_discount = product.metafields.custom.product_discount
+  assign oversell_reason = product.selected_or_first_available_variant.metafields.custom.oversell_reason.value 
+  assign standard_delivery = shop.metaobjects.faqs['standard-delivery-product-page'].text | metafield_tag
+  assign outlet_delivery = shop.metaobjects.faqs['outlet-global-standard-delivery-product-page'].text | metafield_tag
+  assign delivery_meta = product.metafields.custom.delivery | metafield_tag
+  assign dropship_faq = shop.metaobjects.faqs['dropship-returns'].text | metafield_tag
+  assign oversell_reason = product.selected_or_first_available_variant.metafields.custom.oversell_reason.value 
+-%}
+{% if oversell_reason == 'Dropship' %}
+  {{ delivery_meta }}
+  <p>
+    <strong>Dropship returns</strong>
+  </p>
+  {{ dropship_faq }}
+{% elsif product_discount == 'Outlet' %}
+  {{ outlet_delivery }}
+{% else %}
+  {{ standard_delivery }}
+{%- endif %}

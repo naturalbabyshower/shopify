@@ -1,0 +1,75 @@
+{%- liquid
+  assign hero_logo = ''
+  assign col_handle = collection.handle
+  assign logos_mf = collection.metafields.custom.collection_logos
+  assign level_mf = collection.metafields.custom.collection_level
+  assign logos_value = logos_mf.value
+  assign matched_logo = ''
+  assign first_logo = ''
+  assign logo_count = 0
+
+  if logos_mf.type == 'list.metaobject_reference'
+    for logo_entry in logos_value
+      assign entry_logo = logo_entry.logo.value
+      if entry_logo != blank
+        assign logo_count = logo_count | plus: 1
+        if first_logo == blank
+          assign first_logo = entry_logo
+        endif
+        assign entry_brand = logo_entry.brand.value | handleize
+        assign entry_handle = logo_entry.system.handle
+        assign entry_link = logo_entry.link.value | handleize
+        if entry_handle == col_handle or entry_brand == col_handle or entry_link contains col_handle
+          assign matched_logo = entry_logo
+          break
+        endif
+      endif
+    endfor
+    if matched_logo != blank
+      assign hero_logo = matched_logo
+    elsif logo_count == 1
+      assign hero_logo = first_logo
+    endif
+  elsif logos_mf.type == 'metaobject_reference'
+    assign hero_logo = logos_value.logo.value
+  elsif logos_mf.type == 'list.file_reference'
+    assign logo_count = 0
+    for logo_file in logos_value
+      if logo_file != blank
+        assign logo_count = logo_count | plus: 1
+        if hero_logo == blank
+          assign hero_logo = logo_file
+        endif
+      endif
+    endfor
+    if logo_count > 1
+      assign hero_logo = ''
+    endif
+  elsif logos_value.logo.value != blank
+    assign hero_logo = logos_value.logo.value
+  elsif logos_mf.type == 'file_reference' and logos_value != blank
+    assign hero_logo = logos_value
+  endif
+
+  if hero_logo == blank
+    assign logo_meta = shop.metaobjects.collection_logos[col_handle]
+    if logo_meta.logo.value != blank
+      assign hero_logo = logo_meta.logo.value
+    endif
+  endif
+-%}
+
+{%- if hero_logo != blank and level_mf == 'Brand' -%}
+  <div class="hero-brand-logo">
+    {{
+      hero_logo
+      | image_url: width: 440
+      | image_tag:
+        class: 'hero-brand-logo__img',
+        alt: collection.title,
+        loading: 'eager',
+        widths: '160, 220, 320, 440',
+        sizes: '(min-width: 769px) 180px, 140px'
+    }}
+  </div>
+{%- endif -%}

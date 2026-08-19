@@ -1,0 +1,41 @@
+{%- liquid
+  assign open = false
+  assign activetemplate = true
+  assign currentday = 'now' | date: '%a'
+  assign currenttime = 'now' | date: '%H%M'
+  if currentday == 'Mon'
+    if currenttime > '0805' and currenttime < '2010'
+      assign open = true
+    endif
+  elsif currentday == 'Tue'
+    if currenttime > '0805' and currenttime < '2010'
+      assign open = true
+    endif
+  elsif currentday == 'Wed'
+    if currenttime > '0805' and currenttime < '2010'
+      assign open = true
+    endif
+  elsif currentday == 'Thu'
+    if currenttime > '0805' and currenttime < '2010'
+      assign open = true
+    endif
+  elsif currentday == 'Fri'
+    if currenttime > '0805' and currenttime < '2010'
+      assign open = true
+    endif
+  elsif currentday == 'Sat'
+    if currenttime > '0805' and currenttime < '1740'
+      assign open = true
+    endif
+  elsif currentday == 'Sun'
+    if currenttime > '1105' and currenttime < '1610'
+      assign open = true
+    endif
+  endif
+  if template.name == 'cart'
+    assign activetemplate = false
+  endif
+-%}
+{% if open and activetemplate %}
+  <script src="//gis.goinstore.com/gis/script/1174f497-c288-4ce1-8133-2a879c68056b" defer></script>
+{% endif %}

@@ -1,0 +1,214 @@
+{%- liquid
+  assign inventory_qty = current_variant.inventory_quantity
+  assign inventory_policy = current_variant.inventory_policy
+  assign oversell_reason = current_variant.metafields.custom.oversell_reason.value
+  assign product_state = product.metafields.custom.product_state.value
+  assign due_date = current_variant.metafields.custom.due_date.value | date: '%b %e'
+  assign lead = current_variant.metafields.custom.oversell_lead
+
+  # --------------------------
+  # STOCK STATUS
+  # --------------------------
+  assign stock_status = 'oos'
+  assign stock_text = ''
+  assign ship_text = ''
+  assign css_class = ''
+
+  if inventory_qty > 4
+    assign stock_status = 'instock'
+    assign stock_text = 'products.product.in_stock' | t
+    assign ship_text = ' | Get it by '
+  elsif inventory_qty > 0
+    assign stock_status = 'low'
+    assign stock_text = 'products.product.stock_label' | t: count: inventory_qty
+    assign ship_text = ' | Get it by '
+    assign css_class = 'inventory--low'
+  elsif inventory_qty <= 0 and inventory_policy == 'continue'
+    if oversell_reason == 'Standard'
+      assign stock_status = 'oversell'
+      assign stock_text = 'products.product.stock_incoming' | t
+      assign ship_text = ' | Ship by '
+      assign css_class = 'inventory--oversell'
+    elsif oversell_reason == 'Bundle Only'
+      assign stock_status = 'bundle'
+      assign stock_text = 'Available in Bundles'
+      assign ship_text = ' | Back soon '
+      assign css_class = 'inventory--sold-out'
+    elsif oversell_reason == 'Dropship'
+      assign stock_status = 'dropship'
+      assign stock_text = 'products.product.direct' | t
+      assign ship_text = ' | Ship in '
+      assign css_class = 'inventory--dropship'
+    endif
+  else
+    assign stock_status = 'oos'
+    assign css_class = 'inventory--sold-out'
+
+    if product_state == 'Discontinued'
+      assign stock_text = 'products.product.sold_out' | t
+      assign ship_text = ' | Product discontinued '
+    else
+      assign stock_text = 'products.product.out_of_stock' | t
+      assign ship_text = ' | Back soon '
+    endif
+  endif
+
+  # --------------------------
+  # DELIVERY DATE CALCULATION
+  # --------------------------
+assign now_s = 'now' | date: '%s'
+assign weekday = 'now' | date: '%w'
+assign hour = 'now' | date: '%H' | plus: 0
+
+assign cutoff = 16
+
+if weekday >= 1 and weekday <= 5
+  if hour < cutoff
+    assign offset_days = 1
+  else
+    assign offset_days = 2
+  endif
+elsif weekday == 6
+  if hour < 12
+    assign offset_days = 1
+  else
+    assign offset_days = 3
+  endif
+else
+  assign offset_days = 2
+endif
+
+assign next_delivery = now_s | plus: offset_days | times: 86400
+assign next_delivery_date = next_delivery | date: '%a, %b %e'
+assign delivery_number = next_delivery | date: '%e'
+
+  # --------------------------
+  # LEAD TIME (NO DUPLICATION)
+  # --------------------------
+  assign lead_date = ''
+
+  if lead contains 'weeks'
+    assign weeks = lead | split: ' ' | first | plus: 0
+    assign lead_date = now_s | plus: weeks | times: 7 | times: 86400 | date: '%b %e'
+  endif
+
+  # --------------------------
+  # FINAL SHIPPING DATE
+  # --------------------------
+  assign shipping_date = ''
+
+  if stock_status == 'instock' or stock_status == 'low'
+    assign shipping_date = next_delivery_date
+  elsif stock_status == 'oversell'
+    if due_date != blank
+      assign shipping_date = due_date
+    elsif lead_date != blank
+      assign shipping_date = lead_date
+    else
+      assign shipping_date = lead
+    endif
+  elsif stock_status == 'dropship'
+    assign shipping_date = lead
+  endif
+
+  # --------------------------
+  # ORDINAL
+  # --------------------------
+  assign ordinal = 'th'
+  if delivery_number == '1' or delivery_number == '21' or delivery_number == '31'
+    assign ordinal = 'st'
+  elsif delivery_number == '2' or delivery_number == '22'
+    assign ordinal = 'nd'
+  elsif delivery_number == '3' or delivery_number == '23'
+    assign ordinal = 'rd'
+  endif
+-%}
+
+<div class="product-block product-block--sales-point">
+  <ul class="sales-points">
+    <li class="sales-point">
+      <span class="icon-and-text {{ css_class }}">
+        <span class="icon icon--inventory"></span>
+
+        <b id="stock_text">{{ stock_text }}</b>
+        <span id="ship_text">{{ ship_text }}</span>
+
+        <b id="shipping_date">
+          {{ shipping_date }}<sup>{{ ordinal }}</sup>
+        </b>
+      </span>
+    </li>
+  </ul>
+</div>
+
+<script>
+  window.variantData = {
+    {% for variant in product.variants %}
+      "{{ variant.id }}": {
+        stockText: "{% if variant.inventory_quantity > 4 %}
+          {{ 'products.product.in_stock' | t }}
+        {% elsif variant.inventory_quantity > 0 %}
+          {{ 'products.product.low_stock' | t }}
+        {% else %}
+          {{ 'products.product.out_of_stock' | t }}
+        {% endif %}",
+
+        inventory: {{ variant.inventory_quantity | default: 0 }},
+        policy: "{{ variant.inventory_policy }}",
+        oversell: "{{ variant.metafields.custom.oversell_reason.value }}",
+
+        {% liquid
+          assign due_date = variant.metafields.custom.due_date.value | date: '%b %e'
+          assign lead = variant.metafields.custom.oversell_lead
+        %}
+
+        shipText: "{% if variant.inventory_quantity > 0 %}
+            | Get it by
+          {% elsif variant.inventory_policy == 'continue' and variant.metafields.custom.oversell_reason.value == 'Standard' %}
+            | Ship by
+          {% elsif variant.metafields.custom.oversell_reason.value == 'Dropship' %}
+            | Ship in
+          {% else %}
+            
+          {% endif %}",
+
+        shippingDate: "{% if variant.inventory_quantity > 0 %}
+            {{ next_delivery_date }}{{ ordinal }}
+          {% elsif due_date != blank %}
+            {{ due_date }}
+          {% elsif lead != blank %}
+            {{ lead }}
+          {% else %}
+            
+          {% endif %}",
+
+        css: "{% if variant.inventory_quantity > 4 %}
+          
+          {% elsif variant.inventory_quantity > 0 %}
+            inventory--low
+          {% elsif variant.inventory_policy == 'continue' and variant.metafields.custom.oversell_reason.value == 'Standard' %}
+            inventory--oversell
+          {% elsif variant.metafields.custom.oversell_reason.value == 'Dropship' %}
+            inventory--dropship
+          {% else %}
+            inventory--sold-out
+          {% endif %}"
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  };
+
+  document.addEventListener('variant:change', function (evt) {
+    const v = window.variantData[evt.detail.variant.id];
+    if (!v) return;
+
+    const wrapper = document.querySelector(".icon-and-text");
+    const stockEl = document.getElementById("stock_text");
+    const shipEl = document.getElementById("ship_text");
+    const dateEl = document.getElementById("shipping_date");
+
+    wrapper.className = "icon-and-text " + v.css;
+    stockEl.textContent = v.stockText.trim();
+    shipEl.textContent = v.shipText.trim();
+    dateEl.textContent = v.shippingDate.trim();
+  });
+</script>

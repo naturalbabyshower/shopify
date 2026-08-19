@@ -1,0 +1,38 @@
+{%- liquid
+  assign car_seat_age = product.metafields.custom.car_seat_age
+  assign car_option_3 = product.metafields.custom.car_option_3
+  assign stroller_model = product.metafields.custom.stroller_model
+-%}
+{% capture stroller_mode %}
+   {{ product.metafields.custom.stroller_mode.value }}
+{% endcapture %}
+{% capture stroller_subtype %}
+   {{ product.metafields.custom.stroller_subtype.value }}
+{% endcapture %}
+
+{%- liquid
+  if stroller_subtype contains "Terrain"
+    assign stroller_subtype = "All Terrain"
+  elsif stroller_subtype contains "City"
+    assign stroller_subtype = "City/Urban"
+  elsif stroller_subtype contains "Compact"
+    assign stroller_subtype = "Compact/Travel"
+  endif
+  if stroller_mode != blank
+    assign stroller_use = stroller_mode | prepend: ' | ' | append: ' mode'
+  endif
+  if car_option_3 != blank
+    assign car_seat_direction = car_option_3
+  endif
+-%}
+
+{% if car_seat_age %}
+  <div class="listing-extra-details">
+    {{ car_seat_age }} | {{ car_seat_direction }}
+  </div>
+{% elsif stroller_model %}
+  <div class="listing-extra-details">
+    {{ stroller_subtype -}}
+    {{- stroller_use }}
+  </div>
+{%- endif -%}

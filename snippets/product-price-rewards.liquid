@@ -1,0 +1,5 @@
+{%- unless product.tags contains 'nopoints' -%}
+  <div class="product-natural__rewards light75 rte">
+    <a href="/pages/rewards">earn {{ current_variant.price | divided_by: 100 | floor }} natural reward points</a>
+  </div>
+{%- endunless -%}

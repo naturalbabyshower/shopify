@@ -1,0 +1,250 @@
+{%- if section.blocks.size == 0 -%}
+  <style>
+    .blog-layout__sidebar { display: none; }
+  </style>
+{%- endif -%}
+
+{%- for block in section.blocks -%}
+  {%- case block.type -%}
+    {%- when 'article' -%}
+      {%- assign article_object = articles[block.settings.article] -%}
+      <div class="theme-block" {{ block.shopify_attributes }}>
+        {%- if block.settings.title != blank -%}
+          <h4>{{ block.settings.title }}</h4>
+        {%- endif -%}
+        {%- render 'article-grid-item',
+          blog: blog,
+          article: article_object,
+          style: 'compact',
+          show_tags: block.settings.blog_show_tags,
+          show_date: block.settings.blog_show_date,
+          show_comments: block.settings.blog_show_comments,
+          show_author: block.settings.blog_show_author,
+          image_size: block.settings.blog_image_size
+        -%}
+      </div>
+    {%- when 'tags' -%}
+      {%- if blog.all_tags.size > 0 -%}
+        <div class="theme-block" {{ block.shopify_attributes }}>
+          <h4>{{ 'blogs.article.explore_more' | t }} articles</h4>
+
+          {%- for tag in blog.all_tags -%}
+            {%- assign article_tagged = tag | downcase -%}
+            {%- case article_tagged -%}
+              {%- when 'seasonal' -%}
+                {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-seasonal'].brand.value -%}
+                {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-seasonal'].link.value -%}
+                {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-seasonal'].logo.value -%}
+              {%- when 'sustainability' -%}
+                {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-sustainability'].brand.value -%}
+                {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-sustainability'].link.value -%}
+                {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-sustainability'].logo.value -%}
+              {%- when 'toddler | child' -%}
+                {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-toddler'].brand.value -%}
+                {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-toddler'].link.value -%}
+                {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-toddler'].logo.value -%}
+              {%- when 'feeding' -%}
+                {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-feeding'].brand.value -%}
+                {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-feeding'].link.value -%}
+                {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-feeding'].logo.value -%}
+              {%- when 'newborn | baby' -%}
+                {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-newborn'].brand.value -%}
+                {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-newborn'].link.value -%}
+                {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-newborn'].logo.value -%}
+              {%- when 'nursery | home' -%}
+                {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-nursery'].brand.value -%}
+                {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-nursery'].link.value -%}
+                {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-nursery'].logo.value -%}
+              {%- when 'play' -%}
+                {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-play'].brand.value -%}
+                {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-play'].link.value -%}
+                {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-play'].logo.value -%}
+              {%- when 'pregnancy' -%}
+                {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-pregnancy'].brand.value -%}
+                {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-pregnancy'].link.value -%}
+                {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-pregnancy'].logo.value -%}
+              {%- when 'safety' -%}
+                {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-safety'].brand.value -%}
+                {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-safety'].link.value -%}
+                {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-safety'].logo.value -%}
+              {%- when 'parent approved' -%}
+                {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-parent-approved'].brand.value -%}
+                {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-parent-approved'].link.value -%}
+                {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-parent-approved'].logo.value -%}
+              {%- when 'travel' -%}
+                {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-travel'].brand.value -%}
+                {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-travel'].link.value -%}
+                {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-travel'].logo.value -%}
+              {%- when 'sleep' -%}
+                {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-sleep'].brand.value -%}
+                {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-sleep'].link.value -%}
+                {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-sleep'].logo.value -%}
+              {%- else -%}
+                {%- assign article_tagged_brand = shop.metaobjects.collection_logos.blog.brand.value -%}
+                {%- assign article_tagged_link = shop.metaobjects.collection_logos.blog.link.value -%}
+                {%- assign article_tagged_logo = shop.metaobjects.collection_logos.blog.logo.value -%}
+            {%- endcase -%}
+
+            <div style="display:inline-block; padding:10px 30px 20px 0; width:140px">
+              <a
+                href="{{ article_tagged_link }}"
+                class="logo-bar__link"
+                aria-label="{{ article_tagged_logo.alt }}"
+              >
+                {%-
+                  render 'image-element',
+                  img: article_tagged_logo,
+                  sizeVariable: '6',
+                  fallback: '50vw',
+                  widths: '360, 540, 720, 1020',
+                  classes: 'logo-bar__image',
+                -%}
+              </a>
+              <div class="logo-bar__title center">
+                <a
+                  href="{{ article_tagged_link }}"
+                  class="logo-bar__link"
+                  aria-label="{{ article_tagged_logo.alt }}"
+                >
+                  {{- article_tagged_brand -}}
+                </a>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    {%- when 'product' -%}
+      {%- assign product = all_products[block.settings.featured_product] -%}
+      {%- unless product.empty? -%}
+        <div class="theme-block" {{ block.shopify_attributes }}>
+          <h4>{{ 'blogs.article.featured_product' | t }}</h4>
+          {%- render 'product-grid-item', product: product, no_actions: true, sizeVariable: '40vw' -%}
+        </div>
+      {%- endunless -%}
+    {%- when 'share' -%}
+      {%- if article -%}
+        <div class="theme-block" {{ block.shopify_attributes }}>
+          <h4>{{ 'general.social.share_this' | t }}</h4>
+          {%- render 'social-sharing',
+            share_title: article.title,
+            share_permalink: article.url,
+            share_image: article.image
+          -%}
+        </div>
+      {%- endif -%}
+  {%- endcase -%}
+{%- endfor -%}
+
+{% schema %}
+{
+  "name": "t:sections.blog-sidebar.name",
+  "class": "blog-layout__sidebar",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.blog-sidebar.settings.content"
+    }
+  ],
+  "max_blocks": 5,
+  "blocks": [
+    {
+      "type": "article",
+      "name": "t:sections.blog-sidebar.blocks.featured_article.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.blog-sidebar.blocks.featured_article.settings.title.label",
+          "default": "Popular posts"
+        },
+        {
+          "type": "article",
+          "id": "article",
+          "label": "t:sections.blog-sidebar.blocks.featured_article.settings.article.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_tags",
+          "label": "t:sections.blog-sidebar.blocks.featured_article.settings.blog_show_tags.label",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_date",
+          "label": "t:sections.blog-sidebar.blocks.featured_article.settings.blog_show_date.label",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_comments",
+          "label": "t:sections.blog-sidebar.blocks.featured_article.settings.blog_show_comments.label",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_author",
+          "label": "t:sections.blog-sidebar.blocks.featured_article.settings.blog_show_author.label"
+        },
+        {
+          "type": "select",
+          "id": "blog_image_size",
+          "label": "t:sections.blog-sidebar.blocks.featured_article.settings.blog_image_size.label",
+          "default": "wide",
+          "options": [
+            {
+              "value": "natural",
+              "label": "t:sections.blog-sidebar.blocks.featured_article.settings.blog_image_size.options.natural.label"
+            },
+            {
+              "value": "square",
+              "label": "t:sections.blog-sidebar.blocks.featured_article.settings.blog_image_size.options.square.label"
+            },
+            {
+              "value": "landscape",
+              "label": "t:sections.blog-sidebar.blocks.featured_article.settings.blog_image_size.options.landscape.label"
+            },
+            {
+              "value": "portrait",
+              "label": "t:sections.blog-sidebar.blocks.featured_article.settings.blog_image_size.options.portrait.label"
+            },
+            {
+              "value": "wide",
+              "label": "t:sections.blog-sidebar.blocks.featured_article.settings.blog_image_size.options.wide.label"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "tags",
+      "name": "t:sections.blog-sidebar.blocks.tags.name",
+      "limit": 1
+    },
+    {
+      "type": "product",
+      "name": "t:sections.blog-sidebar.blocks.featured_product.name",
+      "settings": [
+        {
+          "type": "product",
+          "id": "featured_product",
+          "label": "t:sections.blog-sidebar.blocks.featured_product.settings.featured_product.label"
+        }
+      ]
+    },
+    {
+      "type": "share",
+      "name": "t:sections.blog-sidebar.blocks.share_links.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.blog-sidebar.blocks.share_links.settings.content"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["footer", "header", "custom.popups"]
+  }
+}
+{% endschema %}

@@ -1,0 +1,39 @@
+{%- if product.available -%}
+  {%- if product_discount == 'Outlet' -%}
+      {%- if product_discount_reason == 'Like New'-%}
+        <div class="grid-product__tag {{ outlet_color }}">
+        {{ 'products.general.outlet' | t }} | {{ 'products.general.like_new' | t }}
+        </div>
+      {%- elsif product_discount_reason == 'Very Good'-%}
+        <div class="grid-product__tag {{ outlet_color }}">
+        {{ 'products.general.outlet' | t }} | {{ 'products.general.very_good' | t }}
+        </div>
+      {%- elsif product_discount_reason == 'Good'-%}
+        <div class="grid-product__tag {{ outlet_color }}">
+        {{ 'products.general.outlet' | t }} | {{ 'products.general.good' | t }}
+        </div>
+      {%- else-%}
+      {%- endif -%}
+  {%- elsif product_discount == 'Clearance' -%}
+    <div class="grid-product__tag {{ clearance_color }}">
+      {{ 'products.general.clearance' | t }}
+    </div>
+  {%- elsif product_discount == 'Offer' and product_discount_type == 'Standard'-%}
+    <div class="grid-product__tag {{ offer_color }}">
+      {{ 'products.general.offer' | t }}
+    </div>
+  {%- elsif product_discount == 'Offer' and product_discount_type == 'Bundle' -%}
+    <div class="grid-product__tag {{ offer_color }}">
+      {{ 'products.general.bundle' | t }}
+    </div>
+  {%- elsif product_discount == 'Offer' and product_discount_type == 'Freebie' -%}
+    <div class="grid-product__tag {{ offer_color }}">
+      {{ 'products.general.freebies' | t }}
+    </div>
+  {%- elsif product_discount == 'Offer' and product_discount_type == 'Multibuy' -%}
+    <div class="grid-product__tag {{ offer_color }}">
+      {{ 'products.general.multibuy' | t }}
+    </div>
+  {%- endif -%}
+  {%- render 'product-grid-item-tags2', product: product, tag_color: tag_color -%}
+{%- endif -%}

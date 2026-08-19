@@ -1,0 +1,19 @@
+"offers": {
+  "@type": "Offer",
+  "url": {{ product.url | prepend: shop.url | append: "?variant=" | append: variant.id | json }},
+  "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+  "itemCondition": "https://schema.org/NewCondition",
+  "priceCurrency": {{ cart.currency.iso_code | json }},
+  {%- if variant.compare_at_price > variant.price -%}
+    "price": {{ variant.price | divided_by: 100.0 }},
+    "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": {{ variant.compare_at_price | divided_by: 100.0 }},
+      "priceCurrency": {{ cart.currency.iso_code | json }},
+      "priceType": "https://schema.org/ListPrice"
+    },
+  {%- else -%}
+    "price": {{ variant.price | divided_by: 100.0 }},
+  {%- endif -%}
+  "priceValidUntil": "{{ 'now' | date: '%Y' | plus: 1 }}-12-31"
+}

@@ -1,0 +1,84 @@
+{%- liquid
+  assign due_date = current_variant.metafields.custom.due_date.value | date: '%b %e'
+  assign lead = current_variant.metafields.custom.oversell_lead
+
+  assign today = 'today' | date: '%s'
+  assign due = false
+  assign lead_days = false
+
+  case lead
+    when '5-7 days'
+      assign lead_date = lead
+      assign lead_days = true
+    when '7-10 days'
+      assign lead_date = lead
+      assign lead_days = true
+    when '10-14 days'
+      assign lead_date = lead
+      assign lead_days = true
+    when '2 weeks'
+      assign seconds = 14 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '3 weeks'
+      assign seconds = 21 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '4 weeks'
+      assign seconds = 28 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '5 weeks'
+      assign seconds = 35 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '6 weeks'
+      assign seconds = 42 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '7 weeks'
+      assign seconds = 49 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '8 weeks'
+      assign seconds = 56 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '9 weeks'
+      assign seconds = 63 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '10 weeks'
+      assign seconds = 70 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    else
+      assign seconds = 30 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+  endcase
+  if due_date != blank
+    assign due = true
+  endif
+-%}
+
+{%- if dropship -%}
+  <li class="sales-point">
+    <span class="icon-and-text inventory--dropship">
+      <span class="icon icon--inventory"></span>
+      <b>Direct Dropship</b>
+      {%- if lead -%}
+        <span>&nbsp;|&nbsp;Ship in&nbsp;</span>
+        <span class="direct_delivery">{{ lead }}</span>
+      {%- endif -%}
+    </span>
+  </li>
+{%- elsif oversell and current_variant.inventory_quantity < 1 -%}
+  <li class="sales-point">
+    <span class="icon-and-text inventory--oversell">
+      <span class="icon icon--inventory"></span>
+      <span class="js-incoming-text">
+        <b>{{- 'products.product.stock_incoming' | t }}</b>&nbsp;|&nbsp;
+        {%- if due -%}
+          Ship by&nbsp;</span><span id="order-deadline"></span>
+        {%- elsif lead_days -%}
+          Ship in&nbsp;</span>
+          {{- lead_date -}}
+        {%- else -%}
+          Ship by&nbsp;</span>
+          {{- lead_date -}}
+        {%- endif -%}
+      </span>
+    </span>
+  </li>
+{%- endif -%}

@@ -1,0 +1,777 @@
+<slideshow-section>
+  {%- unless section.settings.full_width -%}
+    <div class="page-width hero--padded">
+  {%- endunless -%}
+
+  {% style %}
+    .hero--{{ section.id }} {
+      height: {{ section.settings.height }}px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .hero--{{ section.id }} {
+        height: {{ section.settings.height_mobile }}px;
+      }
+    }
+  {% endstyle %}
+
+  {% liquid
+    for tag in blog.all_tags
+      if current_tags contains tag
+        assign blog_tagged_slideshow_tag = tag | downcase
+      endif
+    endfor
+
+    assign blog_tagged_slideshow = blog_tagged_slideshow_tag
+
+    case blog_tagged_slideshow
+      when 'seasonal'
+        assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-seasonal'].subheading.value
+        assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-seasonal'].heading | metafield_tag
+        assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-seasonal'].text.value
+        assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-seasonal'].slide_link.value
+        assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-seasonal'].slide_link_text.value
+        assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-seasonal'].slide_link_2.value
+        assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-seasonal'].slide_link_text_2.value
+        assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-seasonal'].image.value
+      when 'sustainability'
+        assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-sustainability'].subheading.value
+        assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-sustainability'].heading | metafield_tag
+        assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-sustainability'].text.value
+        assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-sustainability'].slide_link.value
+        assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-sustainability'].slide_link_text.value
+        assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-sustainability'].slide_link_2.value
+        assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-sustainability'].slide_link_text_2.value
+        assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-sustainability'].image.value
+      when 'toddler | child'
+        assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-toddler'].subheading.value
+        assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-toddler'].heading | metafield_tag
+        assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-toddler'].text.value
+        assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-toddler'].slide_link.value
+        assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-toddler'].slide_link_text.value
+        assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-toddler'].slide_link_2.value
+        assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-toddler'].slide_link_text_2.value
+        assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-toddler'].image.value
+      when 'feeding'
+        assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-feeding'].subheading.value
+        assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-feeding'].heading | metafield_tag
+        assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-feeding'].text.value
+        assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-feeding'].slide_link.value
+        assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-feeding'].slide_link_text.value
+        assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-feeding'].slide_link_2.value
+        assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-feeding'].slide_link_text_2.value
+        assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-feeding'].image.value
+      when 'newborn | baby'
+        assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-newborn'].subheading.value
+        assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-newborn'].heading | metafield_tag
+        assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-newborn'].text.value
+        assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-newborn'].slide_link.value
+        assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-newborn'].slide_link_text.value
+        assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-newborn'].slide_link_2.value
+        assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-newborn'].slide_link_text_2.value
+        assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-newborn'].image.value
+      when 'nursery | home'
+        assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-nursery'].subheading.value
+        assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-nursery'].heading | metafield_tag
+        assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-nursery'].text.value
+        assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-nursery'].slide_link.value
+        assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-nursery'].slide_link_text.value
+        assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-nursery'].slide_link_2.value
+        assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-nursery'].slide_link_text_2.value
+        assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-nursery'].image.value
+      when 'play'
+        assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-play'].subheading.value
+        assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-play'].heading | metafield_tag
+        assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-play'].text.value
+        assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-play'].slide_link.value
+        assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-play'].slide_link_text.value
+        assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-play'].slide_link_2.value
+        assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-play'].slide_link_text_2.value
+        assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-play'].image.value
+      when 'pregnancy'
+        assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-pregnancy'].subheading.value
+        assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-pregnancy'].heading | metafield_tag
+        assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-pregnancy'].text.value
+        assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-pregnancy'].slide_link.value
+        assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-pregnancy'].slide_link_text.value
+        assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-pregnancy'].slide_link_2.value
+        assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-pregnancy'].slide_link_text_2.value
+        assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-pregnancy'].image.value
+      when 'safety'
+        assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-safety'].subheading.value
+        assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-safety'].heading | metafield_tag
+        assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-safety'].text.value
+        assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-safety'].slide_link.value
+        assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-safety'].slide_link_text.value
+        assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-safety'].slide_link_2.value
+        assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-safety'].slide_link_text_2.value
+        assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-safety'].image.value
+      when 'parent approved'
+        assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-parent-approved'].subheading.value
+        assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-parent-approved'].heading | metafield_tag
+        assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-parent-approved'].text.value
+        assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-parent-approved'].slide_link.value
+        assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-parent-approved'].slide_link_text.value
+        assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-parent-approved'].slide_link_2.value
+        assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-parent-approved'].slide_link_text_2.value
+        assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-parent-approved'].image.value
+      when 'travel'
+        assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-travel'].subheading.value
+        assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-travel'].heading | metafield_tag
+        assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-travel'].text.value
+        assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-travel'].slide_link.value
+        assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-travel'].slide_link_text.value
+        assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-travel'].slide_link_2.value
+        assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-travel'].slide_link_text_2.value
+        assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-travel'].image.value
+      when 'sleep'
+        assign blog_tagged_slideshow_top_subheading = shop.metaobjects.hero_banners['blog-sleep'].subheading.value
+        assign blog_tagged_slideshow_heading = shop.metaobjects.hero_banners['blog-sleep'].heading | metafield_tag
+        assign blog_tagged_slideshow_subheading = shop.metaobjects.hero_banners['blog-sleep'].text.value
+        assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners['blog-sleep'].slide_link.value
+        assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners['blog-sleep'].slide_link_text.value
+        assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners['blog-sleep'].slide_link_2.value
+        assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners['blog-sleep'].slide_link_text_2.value
+        assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners['blog-sleep'].image.value
+      else
+        assign blog_tagged_slideshow_top_subheading = 'ARTICLE'
+        assign blog_tagged_slideshow_heading = article.title
+        assign blog_tagged_slideshow_subheading = article.published_at | time_tag: format: 'month_day_year'
+        assign blog_tagged_slideshow_slide_link = shop.metaobjects.hero_banners.blog.slide_link.value
+        assign blog_tagged_slideshow_slide_link_text = shop.metaobjects.hero_banners.blog.slide_link_text.value
+        assign blog_tagged_slideshow_slide_link_2 = shop.metaobjects.hero_banners.blog.slide_link_2.value
+        assign blog_tagged_slideshow_slide_link_text_2 = shop.metaobjects.hero_banners.blog.slide_link_text_2.value
+        assign blog_tagged_slideshow_image = shop.metaobjects.hero_banners.blog.image.value
+    endcase
+  %}
+
+  <div
+    data-section-id="{{ section.id }}"
+    data-section-type="slideshow-section"
+    data-immediate-load
+  >
+    {%- if section.blocks.size > 0 -%}
+      <div class="slideshow-wrapper">
+        {%- if section.settings.autoplay and section.settings.style == 'bars' and section.blocks.size > 1 -%}
+          {%- style -%}
+            [data-bars][data-autoplay="true"] .flickity-page-dots .dot:after {
+              animation-duration: {{ section.settings.autoplay_speed | times: 1000 }}ms;
+            }
+          {%- endstyle -%}
+
+          <button type="button" class="visually-hidden slideshow__pause" data-id="{{ section.id }}" aria-live="polite">
+            <span class="slideshow__pause-stop">
+              <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-pause" viewBox="0 0 10 13">
+                <path d="M0 0h3v13H0zm7 0h3v13H7z" fill-rule="evenodd"/>
+              </svg>
+              <span class="icon__fallback-text">{{ 'sections.slideshow.pause_slideshow' | t }}</span>
+            </span>
+            <span class="slideshow__pause-play">
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                role="presentation"
+                class="icon icon-play"
+                viewBox="18.24 17.35 24.52 28.3"
+              >
+                <path fill="#323232" d="M22.1 19.151v25.5l20.4-13.489-20.4-12.011z"/>
+              </svg>
+              <span class="icon__fallback-text">{{ 'sections.slideshow.play_slideshow' | t }}</span>
+            </span>
+          </button>
+        {%- endif -%}
+
+        <div
+          id="Slideshow-{{ section.id }}"
+          class="hero hero--{{ section.id }} loading loading--delayed"
+          data-autoplay="{{ section.settings.autoplay }}"
+          data-speed="{{ section.settings.autoplay_speed | times: 1000 }}"
+          {% if section.settings.style == 'arrows' %}
+            data-arrows="true"
+          {% endif %}
+          {% if section.settings.style == 'dots' %}
+            data-dots="true"
+          {% endif %}
+          {% if section.settings.style == 'bars' %}
+            data-dots="true"
+            data-bars="true"
+          {% endif %}
+          data-slide-count="{{ section.blocks.size }}"
+        >
+          {%- for block in section.blocks -%}
+            <div
+              {{ block.shopify_attributes }}
+              class="slideshow__slide slideshow__slide--{{ block.id }}"
+              data-index="{{ forloop.index0 }}"
+              data-id="{{ block.id }}"
+            >
+              {%- style -%}
+                .slideshow__slide--{{ block.id }} .hero__title {
+                  font-size: {{ block.settings.title_size | times: 0.43 }}px;
+                }
+                @media only screen and (min-width: 769px) {
+                  .slideshow__slide--{{ block.id }} .hero__title {
+                    font-size: {{ block.settings.title_size }}px;
+                  }
+                }
+              {%- endstyle -%}
+
+              <div class="hero__sidebyside hero__sidebyside-text--{{ block.settings.text_position }} color-scheme-{{ block.settings.color_scheme }}">
+                {%- if block.settings.indent_image -%}
+                  {%- if block.settings.color_scheme != 'none' -%}
+                    {% assign color_scheme = block.settings.color_scheme %}
+                    {% comment %}
+                      Images:
+                        - space
+                        - paper
+                        - marble
+                      SVG:
+                        - swirl
+                        - squiggle
+                      CSS:
+                        - darken
+                    {% endcomment %}
+                    {%- capture key -%}color_scheme_{{ color_scheme }}_texture{%- endcapture -%}
+                    {%- assign texture = settings[key] -%}
+
+                    {%- if texture == 'space.jpg' or texture == 'paper.jpg' or texture == 'marble.jpg' -%}
+                      {% capture image_classes %}
+    scheme-image scheme-texture--{{ texture }}
+  {% endcapture %}
+                      {%- render 'image-element',
+                        asset: texture,
+                        host: 'theme',
+                        type: 'asset',
+                        classes: image_classes,
+                        data-name: 'texture',
+                        data-value: texture
+                      -%}
+                    {%- else -%}
+                      <div class="scheme-{{ texture }}"></div>
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endif -%}
+                <div class="hero__sidebyside-content">
+                  <div class="hero__sidebyside-content-inner{% if block.settings.indent_image %} hero__sidebyside-content-inner--indented{% endif %} small--text-center">
+                    {%- unless block.settings.indent_image -%}
+                      {%- if block.settings.color_scheme != 'none' -%}
+                        {% assign color_scheme = block.settings.color_scheme %}
+                        {% comment %}
+                          Images:
+                            - space
+                            - paper
+                            - marble
+                          SVG:
+                            - swirl
+                            - squiggle
+                          CSS:
+                            - darken
+                        {% endcomment %}
+                        {%- capture key -%}color_scheme_{{ color_scheme }}_texture{%- endcapture -%}
+                        {%- assign texture = settings[key] -%}
+
+                        {%- if texture == 'space.jpg' or texture == 'paper.jpg' or texture == 'marble.jpg' -%}
+                          {% capture image_classes %}
+    scheme-image scheme-texture--{{ texture }}
+  {% endcapture %}
+                          {%- render 'image-element',
+                            asset: texture,
+                            host: 'theme',
+                            type: 'asset',
+                            classes: image_classes,
+                            data-name: 'texture',
+                            data-value: texture
+                          -%}
+                        {%- else -%}
+                          <div class="scheme-{{ texture }}"></div>
+                        {%- endif -%}
+                      {%- endif -%}
+                    {%- endunless -%}
+                    <div class="article-tag__wrapper">
+                      {%- for tag in article.tags -%}
+                        {%- assign article_tagged = tag | downcase -%}
+                        {%- case article_tagged -%}
+                          {%- when 'seasonal' -%}
+                            {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-seasonal'].brand.value -%}
+                            {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-seasonal'].link.value -%}
+                            {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-seasonal'].logo.value -%}
+                          {%- when 'sustainability' -%}
+                            {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-sustainability'].brand.value -%}
+                            {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-sustainability'].link.value -%}
+                            {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-sustainability'].logo.value -%}
+                          {%- when 'toddler | child' -%}
+                            {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-toddler'].brand.value -%}
+                            {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-toddler'].link.value -%}
+                            {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-toddler'].logo.value -%}
+                          {%- when 'feeding' -%}
+                            {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-feeding'].brand.value -%}
+                            {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-feeding'].link.value -%}
+                            {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-feeding'].logo.value -%}
+                          {%- when 'newborn | baby' -%}
+                            {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-newborn'].brand.value -%}
+                            {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-newborn'].link.value -%}
+                            {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-newborn'].logo.value -%}
+                          {%- when 'nursery | home' -%}
+                            {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-nursery'].brand.value -%}
+                            {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-nursery'].link.value -%}
+                            {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-nursery'].logo.value -%}
+                          {%- when 'play' -%}
+                            {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-play'].brand.value -%}
+                            {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-play'].link.value -%}
+                            {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-play'].logo.value -%}
+                          {%- when 'pregnancy' -%}
+                            {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-pregnancy'].brand.value -%}
+                            {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-pregnancy'].link.value -%}
+                            {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-pregnancy'].logo.value -%}
+                          {%- when 'safety' -%}
+                            {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-safety'].brand.value -%}
+                            {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-safety'].link.value -%}
+                            {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-safety'].logo.value -%}
+                          {%- when 'parent approved' -%}
+                            {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-parent-approved'].brand.value -%}
+                            {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-parent-approved'].link.value -%}
+                            {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-parent-approved'].logo.value -%}
+                          {%- when 'travel' -%}
+                            {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-travel'].brand.value -%}
+                            {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-travel'].link.value -%}
+                            {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-travel'].logo.value -%}
+                          {%- when 'sleep' -%}
+                            {%- assign article_tagged_brand = shop.metaobjects.collection_logos['category-sleep'].brand.value -%}
+                            {%- assign article_tagged_link = shop.metaobjects.collection_logos['category-sleep'].link.value -%}
+                            {%- assign article_tagged_logo = shop.metaobjects.collection_logos['category-sleep'].logo.value -%}
+                          {%- else -%}
+                            {%- assign article_tagged_brand = shop.metaobjects.collection_logos.blog.brand.value -%}
+                            {%- assign article_tagged_link = shop.metaobjects.collection_logos.blog.link.value -%}
+                            {%- assign article_tagged_logo = shop.metaobjects.collection_logos.blog.logo.value -%}
+                        {%- endcase -%}
+
+                        <div class="logo-bar__home">
+                          <a
+                            href="{{ article_tagged_link }}"
+                            class="logo-bar__link"
+                            aria-label="{{ article_tagged_logo.alt }}"
+                          >
+                            {%- render 'image-element',
+                              img: article_tagged_logo,
+                              sizeVariable: '6',
+                              fallback: '50vw',
+                              widths: '100, 360, 540, 720, 1020',
+                              classes: 'logo-bar__image'
+                            -%}
+                          </a>
+                          <div class="slideshow_logo-bar__title center">
+                            <a
+                              href="{{ article_tagged_link }}"
+                              class="logo-bar__link"
+                              aria-label="{{ article_tagged_logo.alt }}"
+                            >
+                              {{- article_tagged_brand -}}
+                            </a>
+                          </div>
+                        </div>
+                      {%- endfor -%}
+                    </div>
+                    {%- unless blog_tagged_slideshow_top_subheading == blank -%}
+                      <div class="hero__top-subtitle">
+                        <div class="hero__animation-contents">
+                          {{ blog_tagged_slideshow_top_subheading | escape }} by {{ article.author }}
+                        </div>
+                      </div>
+                    {%- endunless -%}
+                    {%- unless blog_tagged_slideshow_heading == blank -%}
+                      <h1 class="h1 hero__title">
+                        <div class="hero__animation-contents">
+                          {{ blog_tagged_slideshow_heading | newline_to_br }}
+                        </div>
+                      </h1>
+                    {%- endunless -%}
+                    {%- if blog_tagged_slideshow_subheading
+                      or blog_tagged_slideshow_slide_link
+                      or blog_tagged_slideshow_slide_link_2
+                    -%}
+                      {%- unless blog_tagged_slideshow_subheading == blank -%}
+                        <div class="hero__subtitle">
+                          <div class="hero__animation-contents">
+                            {{ blog_tagged_slideshow_subheading }}
+                            {% assign reading_time = article.content
+                              | strip_html
+                              | split: ' '
+                              | size
+                              | times: 1.0
+                              | divided_by: 250
+                              | ceil
+                            -%}
+                            <span class="article__sub-meta-date proper"
+                              >&nbsp;|&nbsp;&nbsp;
+                              {{- 'blogs.article.reading_time' | t }}:
+                              {{ 'blogs.article.minutes' | t: count: reading_time -}}
+                            </span>
+                          </div>
+                        </div>
+                      {%- endunless -%}
+                    {%- endif -%}
+                  </div>
+                </div>
+                <div class="hero__sidebyside-image{% if block.settings.indent_image %} hero__sidebyside-image--indented{% endif %}">
+                  {%- if blog_tagged_slideshow_image != blank -%}
+                    {%- if blog_tagged_slideshow_slide_link != blank -%}
+                      <a
+                        href="{{ blog_tagged_slideshow_slide_link }}"
+                        class="hero__sidebyside-image-link"
+                        aria-hidden="true"
+                      >
+                    {%- endif -%}
+
+                    {%- capture image_classes -%}
+                        hero__image hero__image--{{ block.id }}
+                      {%- endcapture -%}
+
+                    {%- liquid
+                      if forloop.index == 1
+                        assign loading = section.settings.lazyload_images
+                      else
+                        assign loading = true
+                      endif
+                    -%}
+                    {%- render 'image-element',
+                      img: blog_tagged_slideshow_image,
+                      loading: loading,
+                      classes: image_classes,
+                      sizeVariable: '60vw'
+                    -%}
+
+                    {%- if blog_tagged_slideshow_slide_link != blank -%}
+                      </a>
+                    {%- endif -%}
+                  {%- else -%}
+                    {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif -%}
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if section.blocks.size == 0 -%}
+    {%- endif -%}
+  </div>
+  {%- unless section.settings.full_width -%}
+    </div>
+  {%- endunless -%}
+</slideshow-section>
+
+{% schema %}
+{
+  "name": "t:sections.slideshow-split.name",
+  "class": "index-section--hero",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "t:sections.slideshow-split.settings.full_width.label",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "label": "t:sections.slideshow-split.settings.height.label",
+      "default": 650,
+      "min": 350,
+      "max": 750,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "height_mobile",
+      "label": "t:sections.slideshow-split.settings.height_mobile.label",
+      "default": 450,
+      "min": 350,
+      "max": 650,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "t:sections.slideshow-split.settings.style.label",
+      "default": "arrows",
+      "options": [
+        {
+          "value": "minimal",
+          "label": "t:sections.slideshow-split.settings.style.options.minimal.label"
+        },
+        {
+          "value": "arrows",
+          "label": "t:sections.slideshow-split.settings.style.options.arrows.label"
+        },
+        {
+          "value": "bars",
+          "label": "t:sections.slideshow-split.settings.style.options.bars.label"
+        },
+        {
+          "value": "dots",
+          "label": "t:sections.slideshow-split.settings.style.options.dots.label"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "t:sections.slideshow-split.settings.autoplay.label",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "t:sections.slideshow-split.settings.autoplay_speed.label",
+      "default": 7,
+      "min": 5,
+      "max": 10,
+      "step": 1,
+      "unit": "s"
+    },
+    {
+      "type": "checkbox",
+      "id": "lazyload_images",
+      "label": "t:common.lazyload_images.label",
+      "info": "t:common.lazyload_images.info",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "t:sections.slideshow-split.blocks.slide.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "top_subheading",
+          "label": "t:sections.slideshow-split.blocks.slide.settings.top_subheading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "title",
+          "label": "t:sections.slideshow-split.blocks.slide.settings.title.label",
+          "default": "<p>Side by Side Slide</p>"
+        },
+        {
+          "type": "range",
+          "id": "title_size",
+          "label": "t:sections.slideshow-split.blocks.slide.settings.title_size.label",
+          "default": 60,
+          "min": 40,
+          "max": 100,
+          "unit": "px"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "t:sections.slideshow-split.blocks.slide.settings.subheading.label",
+          "default": "Add optional subtext"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.slideshow-split.blocks.slide.settings.link.label"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "t:sections.slideshow-split.blocks.slide.settings.link_text.label",
+          "default": "Optional button"
+        },
+        {
+          "type": "url",
+          "id": "link_2",
+          "label": "t:sections.slideshow-split.blocks.slide.settings.link_2.label"
+        },
+        {
+          "type": "text",
+          "id": "link_text_2",
+          "label": "t:sections.slideshow-split.blocks.slide.settings.link_text_2.label"
+        },
+        {
+          "type": "select",
+          "id": "text_position",
+          "label": "t:sections.slideshow-split.blocks.slide.settings.text_position.label",
+          "default": "left",
+          "options": [
+            {
+              "value": "left",
+              "label": "t:sections.slideshow-split.blocks.slide.settings.text_position.options.left.label"
+            },
+            {
+              "value": "right",
+              "label": "t:sections.slideshow-split.blocks.slide.settings.text_position.options.right.label"
+            }
+          ],
+          "info": "t:sections.slideshow-split.blocks.slide.settings.text_position.info"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.slideshow-split.blocks.slide.settings.image.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "indent_image",
+          "label": "t:sections.slideshow-split.blocks.slide.settings.indent_image.label"
+        },
+        {
+          "type": "select",
+          "id": "color_scheme",
+          "label": "t:sections.slideshow-split.blocks.slide.settings.color_scheme.label",
+          "default": "none",
+          "options": [
+            {
+              "value": "none",
+              "label": "t:sections.slideshow-split.blocks.slide.settings.color_scheme.options.none.label"
+            },
+            {
+              "value": "1",
+              "label": "1"
+            },
+            {
+              "value": "2",
+              "label": "2"
+            },
+            {
+              "value": "3",
+              "label": "3"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "t:sections.slideshow-split.presets.split_optional_slides.name",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "title": "<p>Side by Side Slide</p>",
+            "subheading": "Tailored for longer text and smaller images. Explain more about your promotion.",
+            "text_position": "right",
+            "color_scheme": "2"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "title": "<p>Highlight products</p>",
+            "subheading": "Repurpose your product photography with our \"Indented\" image option",
+            "text_position": "left",
+            "color_scheme": "1",
+            "indent_image": true
+          }
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["footer", "header", "custom.popups"]
+  },
+  "locales": {
+    "de": {
+      "home_page": {
+        "onboarding": {
+          "no_content": "Dieser Bereich hat zur Zeit keinen Inhalt. Füge diesem Bereich über die Seitenleiste Inhalte hinzu."
+        }
+      },
+      "sections": {
+        "slideshow": {
+          "play_slideshow": "Diashow abspielen",
+          "pause_slideshow": "Pause Diashow"
+        }
+      }
+    },
+    "en": {
+      "home_page": {
+        "onboarding": {
+          "no_content": "This section doesn’t currently include any content. Add content to this section using the sidebar."
+        }
+      },
+      "sections": {
+        "slideshow": {
+          "play_slideshow": "Play slideshow",
+          "pause_slideshow": "Pause slideshow"
+        }
+      },
+      "snippet_name": "color-scheme-texture"
+    },
+    "es": {
+      "home_page": {
+        "onboarding": {
+          "no_content": "Esta secção não inclui de momento qualquer conteúdo. Adicione conteúdo a esta secção através da barra lateral."
+        }
+      },
+      "sections": {
+        "slideshow": {
+          "play_slideshow": "Juego de diapositivas",
+          "pause_slideshow": "diapositivas pausa"
+        }
+      },
+      "snippet_name": "color-scheme-texture"
+    },
+    "fr": {
+      "home_page": {
+        "onboarding": {
+          "no_content": "Cette section ne contient actuellement aucun contenu. Ajoutez-en en utilisant la barre latérale."
+        }
+      },
+      "sections": {
+        "slideshow": {
+          "play_slideshow": "Lire le diaporama",
+          "pause_slideshow": "Diaporama Pause"
+        }
+      },
+      "snippet_name": "color-scheme-texture"
+    },
+    "it": {
+      "home_page": {
+        "onboarding": {
+          "no_content": "Questa sezione non include attualmente alcun contenuto. Aggiungi contenuti a questa sezione utilizzando la barra laterale."
+        }
+      },
+      "sections": {
+        "slideshow": {
+          "play_slideshow": "Avvia presentazione",
+          "pause_slideshow": "Metti in pausa presentazione"
+        }
+      }
+    },
+    "pt-BR": {
+      "home_page": {
+        "onboarding": {
+          "no_content": "Atualmente, esta seção não inclui nenhum conteúdo. Adicione conteúdo nesta seção usando a barra lateral."
+        }
+      },
+      "sections": {
+        "slideshow": {
+          "play_slideshow": "Reproduzir de slides",
+          "pause_slideshow": "slideshow pausa"
+        }
+      }
+    },
+    "pt-PT": {
+      "home_page": {
+        "onboarding": {
+          "no_content": "Esta sección actualmente no incluye ningún contenido. Añade un contenido a esta sección utilizando la barra lateral."
+        }
+      },
+      "sections": {
+        "slideshow": {
+          "play_slideshow": "Reproduzir de slides",
+          "pause_slideshow": "slideshow pausa"
+        }
+      }
+    }
+  }
+}
+{% endschema %}

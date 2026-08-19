@@ -1,0 +1,482 @@
+{% doc %}
+  @prompt
+    In the section called "Split (optional slides)", which contains a collection header and collection description text, add a "Read More" toggle feature. When clicked, it expands to reveal additional hidden text and the accompanying image enlarges smoothly to accommodate the expanded content. Clicking again collapses it back. The toggle link should be styled to match the existing section design and the expand/collapse animation should be smooth., image on right, add background colour swatch and text padding inside section using an css example here 
+    
+    padding: 1vw 2.5vw;
+    
+    also provide a section split eg 50/50 70/30 etc , the image should be from a dynamic source and can we have padding control with the description thanks, can the dynamic fields come from a dynamic metaobject reference, need to use Metaobject definition not 1 object, can we use metaobject hero banners image from the collection id, can you use meta object reference list to load multiple slides, can we select a dynamic source for the image and description, go back to dynamic entry fields for image and description, add a height control in layout, add full page width toggle
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% liquid
+  if block.settings.split_ratio == '50-50'
+    assign content_width = '1fr'
+    assign image_width = '1fr'
+  elsif block.settings.split_ratio == '60-40'
+    assign content_width = '1.5fr'
+    assign image_width = '1fr'
+  elsif block.settings.split_ratio == '70-30'
+    assign content_width = '2.33fr'
+    assign image_width = '1fr'
+  elsif block.settings.split_ratio == '40-60'
+    assign content_width = '1fr'
+    assign image_width = '1.5fr'
+  elsif block.settings.split_ratio == '30-70'
+    assign content_width = '1fr'
+    assign image_width = '2.33fr'
+  endif
+%}
+
+{% style %}
+  .ai-collection-split-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: 0;
+    position: relative;
+  }
+
+  .ai-collection-split__inner-{{ ai_gen_id }} {
+    {% if block.settings.full_width %}
+      max-width: 100%;
+    {% else %}
+      max-width: {{ block.settings.desktop_width_percent }}%;
+      margin: 0 auto;
+    {% endif %}
+  }
+
+  .ai-collection-split__container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: {{ content_width }} {{ image_width }};
+    gap: 40px;
+    align-items: start;
+    min-height: {{ block.settings.min_height }}px;
+    max-height: 275px;
+  }
+
+  .ai-collection-split__image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    order: 2;
+  }
+
+  .ai-collection-split__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .ai-collection-split__image-placeholder-{{ ai_gen_id }} {
+    background-color: #f4f4f4;
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-collection-split__image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 300px;
+    max-height: 300px;
+  }
+
+  .ai-collection-split__content-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    order: 1;
+    padding: {{ block.settings.content_padding_top }}px {{ block.settings.content_padding_right }}px {{ block.settings.content_padding_bottom }}px {{ block.settings.content_padding_left }}px;
+  }
+
+  .ai-collection-split__title-{{ ai_gen_id }} {
+    margin: 0;
+    font-size: {{ block.settings.title_size }}px;
+    color: {{ block.settings.text_color }};
+    font-family: {{ block.settings.title_font.family }}, {{ block.settings.title_font.fallback_families }};
+    font-weight: {{ block.settings.title_font.weight }};
+    line-height: 1.2;
+  }
+
+  .ai-collection-split__description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.text_color }};
+    line-height: 1.6;
+  }
+
+  .ai-collection-split__description-content-{{ ai_gen_id }} {
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .ai-collection-split__description-content-{{ ai_gen_id }}.collapsed {
+    max-height: {{ block.settings.collapsed_height }}px;
+  }
+
+  .ai-collection-split__description-content-{{ ai_gen_id }}.expanded {
+    max-height: 2000px;
+  }
+
+  .ai-collection-split__toggle-{{ ai_gen_id }} {
+    background: none;
+    border: none;
+    padding: 0;
+    color: {{ block.settings.link_color }};
+    font-size: {{ block.settings.description_size }}px;
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: inherit;
+    margin-top: 8px;
+    display: inline-block;
+  }
+
+  .ai-collection-split__toggle-{{ ai_gen_id }}:hover {
+    opacity: 0.7;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-collection-split-{{ ai_gen_id }} {
+      padding: 4vw 5vw;
+    }
+
+    .ai-collection-split__container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      min-height: auto;
+    }
+
+    .ai-collection-split__image-wrapper-{{ ai_gen_id }} {
+      order: 1;
+    }
+
+    .ai-collection-split__content-{{ ai_gen_id }} {
+      order: 2;
+    }
+
+    .ai-collection-split__title-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.title_size }}px * 0.8);
+    }
+
+    .ai-collection-split__description-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.description_size }}px * 0.9);
+    }
+  }
+{% endstyle %}
+
+<collection-split-{{ ai_gen_id }}
+  class="ai-collection-split-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-collection-split__inner-{{ ai_gen_id }}">
+    <div class="ai-collection-split__container-{{ ai_gen_id }}">
+      <div class="ai-collection-split__image-wrapper-{{ ai_gen_id }}">
+        {% if block.settings.image %}
+          <img
+            src="{{ block.settings.image | image_url: width: 1000 }}"
+            alt="{{ block.settings.image.alt | escape }}"
+            loading="lazy"
+            width="{{ block.settings.image.width }}"
+            height="{{ block.settings.image.height }}"
+            class="ai-collection-split__image-{{ ai_gen_id }}"
+          >
+        {% else %}
+          <div class="ai-collection-split__image-placeholder-{{ ai_gen_id }}">
+            {{ 'collection-1' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="ai-collection-split__content-{{ ai_gen_id }}">
+        {% if block.settings.show_title and block.settings.title != blank %}
+          <h2 class="ai-collection-split__title-{{ ai_gen_id }}">
+            {{ block.settings.title }}
+          </h2>
+        {% endif %}
+
+        {% if block.settings.description != blank %}
+          <div class="ai-collection-split__description-{{ ai_gen_id }}">
+            <div
+              class="ai-collection-split__description-content-{{ ai_gen_id }} collapsed"
+              data-description-content
+            >
+              {{ block.settings.description }}
+            </div>
+            <button
+              class="ai-collection-split__toggle-{{ ai_gen_id }}"
+              data-toggle-button
+              aria-expanded="false"
+            >
+              {{ block.settings.read_more_text }}
+            </button>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</collection-split-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CollectionSplit{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.toggleButton = this.querySelector('[data-toggle-button]');
+        this.descriptionContent = this.querySelector('[data-description-content]');
+        this.readMoreText = '{{ block.settings.read_more_text }}';
+        this.readLessText = '{{ block.settings.read_less_text }}';
+      }
+
+      connectedCallback() {
+        if (this.toggleButton && this.descriptionContent) {
+          this.toggleButton.addEventListener('click', () => this.toggleDescription());
+        }
+      }
+
+      toggleDescription() {
+        const isExpanded = this.descriptionContent.classList.contains('expanded');
+
+        if (isExpanded) {
+          this.descriptionContent.classList.remove('expanded');
+          this.descriptionContent.classList.add('collapsed');
+          this.toggleButton.textContent = this.readMoreText;
+          this.toggleButton.setAttribute('aria-expanded', 'false');
+        } else {
+          this.descriptionContent.classList.remove('collapsed');
+          this.descriptionContent.classList.add('expanded');
+          this.toggleButton.textContent = this.readLessText;
+          this.toggleButton.setAttribute('aria-expanded', 'true');
+        }
+      }
+    }
+
+    customElements.define('collection-split-{{ ai_gen_id }}', CollectionSplit{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Collection split",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full page width",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "min_height",
+      "label": "Minimum height",
+      "min": 200,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "default": 400
+    },
+    {
+      "type": "select",
+      "id": "split_ratio",
+      "label": "Content/image split",
+      "options": [
+        {
+          "value": "50-50",
+          "label": "50/50"
+        },
+        {
+          "value": "60-40",
+          "label": "60/40"
+        },
+        {
+          "value": "70-30",
+          "label": "70/30"
+        },
+        {
+          "value": "40-60",
+          "label": "40/60"
+        },
+        {
+          "value": "30-70",
+          "label": "30/70"
+        }
+      ],
+      "default": "50-50"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Content padding"
+    },
+    {
+      "type": "range",
+      "id": "content_padding_top",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "content_padding_right",
+      "label": "Right",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "content_padding_bottom",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "content_padding_left",
+      "label": "Left",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show title",
+      "default": true
+    },
+    {
+      "type": "font_picker",
+      "id": "title_font",
+      "label": "Title font",
+      "default": "figtree_n5"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "collapsed_height",
+      "label": "Collapsed height",
+      "min": 60,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Toggle button"
+    },
+    {
+      "type": "text",
+      "id": "read_more_text",
+      "label": "Read more text",
+      "default": "Read more"
+    },
+    {
+      "type": "text",
+      "id": "read_less_text",
+      "label": "Read less text",
+      "default": "Read less"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#585b56"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link color",
+      "default": "#809b6f"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection split"
+    }
+  ]
+}
+{% endschema %}

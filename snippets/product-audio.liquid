@@ -1,0 +1,12 @@
+{%- liquid
+  assign audio_available = false
+  if product.metafields.custom.audio_sample != blank
+    assign audio_available = true
+    assign audio_link = product.metafields.custom.audio_sample
+  endif
+-%}
+{%- if audio_available %}
+  <audio controls>
+    <source src="{{ audio_link }}" type="audio/mpeg">
+  </audio>
+{%- endif %}

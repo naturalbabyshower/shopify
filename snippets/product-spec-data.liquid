@@ -1,0 +1,12 @@
+<ul>
+  {%- unless product.tags contains 'noean' -%}
+    {%- unless product.selected_or_first_available_variant.barcode == '' -%}
+      <li><b>EAN | Barcode:</b>&nbsp;{{ product.selected_or_first_available_variant.barcode -}}</li>
+    {%- endunless -%}
+  {%- endunless -%}
+  {%- unless product.selected_or_first_available_variant.barcode == '' -%}
+    <li><b>MPN:</b>&nbsp;{{ product.selected_or_first_available_variant.metafields['mm-google-shopping'].mpn -}}</li>
+  {%- endunless -%}
+  <li><b>Boxed weight:</b>&nbsp;{{ product.selected_or_first_available_variant.weight | weight_with_unit -}}</li>
+</ul>
+{%- render 'product-spec-filter-links', product: product -%}

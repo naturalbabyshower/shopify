@@ -1,0 +1,13 @@
+{% if product.available %}
+  {%- if save_code20 -%}
+    <div id="google-promo" style="display:none">{{ save_code20 }}</div>
+  {%- elsif save_code15 -%}
+    <div id="google-promo" style="display:none">{{ save_code15 }}</div>
+  {%- elsif save_code10 -%}
+    <div id="google-promo" style="display:none">{{ save_code10 }}</div>
+  {%- elsif save_code5 -%}
+    <div id="google-promo" style="display:none">{{ save_code5 }}</div>
+  {%- else -%}
+    <div id="google-promo" style="display:none">none</div>
+  {%- endif -%}
+{%- endif -%}

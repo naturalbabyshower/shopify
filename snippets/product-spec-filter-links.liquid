@@ -1,0 +1,89 @@
+{%- liquid
+  assign filter_colour = product.metafields.custom.filter_colour.value
+  assign mid_collection = product.metafields.custom.mid_category.value
+-%}
+{% if mid_collection contains 'Pushchairs' %}
+  <ul>
+    {% if filter_colour contains 'Black' %}
+      {% assign filter_collection = collections['pushchairs-strollers-black'] %}
+      <li>
+        {{
+          filter_collection.title
+          | link_to: filter_collection.url, title: filter_collection.title, class: 'filter-colour'
+        }}
+      </li>
+    {%- endif %}
+    {% if filter_colour contains 'Blue' %}
+      {% assign filter_collection = collections['pushchairs-strollers-blue'] %}
+      <li>
+        {{
+          filter_collection.title
+          | link_to: filter_collection.url, title: filter_collection.title, class: 'filter-colour'
+        }}
+      </li>
+    {%- endif %}
+    {% if filter_colour contains 'Cream' %}
+      {% assign filter_collection = collections['pushchairs-strollers-cream'] %}
+      <li>
+        {{
+          filter_collection.title
+          | link_to: filter_collection.url, title: filter_collection.title, class: 'filter-colour'
+        }}
+      </li>
+    {%- endif %}
+    {% if filter_colour contains 'Grey' %}
+      {% assign filter_collection = collections['pushchairs-strollers-grey'] %}
+      <li>
+        {{
+          filter_collection.title
+          | link_to: filter_collection.url, title: filter_collection.title, class: 'filter-colour'
+        }}
+      </li>
+    {%- endif %}
+    {% if filter_colour contains 'Pink' %}
+      {% assign filter_collection = collections['pushchairs-strollers-pink'] %}
+      <li>
+        {{
+          filter_collection.title
+          | link_to: filter_collection.url, title: filter_collection.title, class: 'filter-colour'
+        }}
+      </li>
+    {%- endif %}
+    {% if filter_colour contains 'White' %}
+      {% assign filter_collection = collections['pushchairs-strollers-white'] %}
+      <li>
+        {{
+          filter_collection.title
+          | link_to: filter_collection.url, title: filter_collection.title, class: 'filter-colour'
+        }}
+      </li>
+    {%- endif %}
+    {% if filter_colour contains 'Yellow' %}
+      {% assign filter_collection = collections['pushchairs-strollers-yellow'] %}
+      <li>
+        {{
+          filter_collection.title
+          | link_to: filter_collection.url, title: filter_collection.title, class: 'filter-colour'
+        }}
+      </li>
+    {%- endif %}
+    {% if filter_colour contains 'Green' %}
+      {% assign filter_collection = collections['pushchairs-strollers-green'] %}
+      <li>
+        {{
+          filter_collection.title
+          | link_to: filter_collection.url, title: filter_collection.title, class: 'filter-colour'
+        }}
+      </li>
+    {%- endif %}
+    {% if filter_colour contains 'Beige' %}
+      {% assign filter_collection = collections['pushchairs-strollers-beige'] %}
+      <li>
+        {{
+          filter_collection.title
+          | link_to: filter_collection.url, title: filter_collection.title, class: 'filter-colour'
+        }}
+      </li>
+    {%- endif %}
+  </ul>
+{%- endif %}

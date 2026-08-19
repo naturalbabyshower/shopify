@@ -1,0 +1,91 @@
+{%- liquid
+  assign clearance = '<b>Clearance</b> | last few remaining'
+  assign limited_offer = '<b>Limited time offer</b>'
+  assign bundle_saving = '<b>Bundle price saving</b>'
+  assign multibuy = '<b>Multibuy offer</b>'
+  assign freebie = '<b>Freebie offer</b>'
+  assign cs_text = '<b>Get an exclusive saving</b>'
+  assign excluded = '<span> | ending soon</span>'
+  assign outlet_details = 'see outlet details below'
+-%}
+
+{%- if offer_product_text != blank -%}
+  <span class="{{ discount_color }}">{{ offer_product_text }}</span>
+{%- elsif cs_offer -%}
+  <span class="{{ discount_color }}">
+    {{- cs_text }} |
+    <a class="under light75" href="javascript:;" onclick="FrontChat('show');">Chat now</a>
+  </span>
+{%- elsif product_discount == 'Outlet' -%}
+  {%- if product_discount_reason == 'Like New' -%}
+    <span class="{{ discount_color }}">{{ product_discount }} | {{ product_discount_reason }} - {{ outlet_details }}</span>
+  {%- elsif product_discount_reason == 'Very Good' -%}
+    <span class="{{ discount_color }}">{{ product_discount }} | {{ product_discount_reason }} - {{ outlet_details }}</span>
+  {%- elsif product_discount_reason == 'Good' -%}
+    <span class="{{ discount_color }}">{{ product_discount }} | {{ product_discount_reason }} - {{ outlet_details }}</span>
+  {%- else -%}
+    <span class="{{ discount_color }}">{{ product_discount }} | {{ 'products.general.like_new' | t }} - {{ outlet_details }}</span>
+  {%- endif -%}
+{%- elsif product_discount == 'Clearance' -%}
+  <span class="{{ discount_color }}">{{ clearance }}</span>
+{%- elsif product_discount == 'Offer' -%}
+  {%- if product_discount_type == 'Bundle' -%}
+    {%- if product_discount_reason == 'Brand' -%}
+      <span class="{{ discount_color }}"
+        ><b>{{- product.vendor }}</b>
+        {{ bundle_saving -}}
+      </span>
+    {%- elsif product_discount_reason == 'Strategy' -%}
+      <span class="{{ discount_color }}">{{- bundle_saving }}</span>
+    {%- elsif product_discount_reason == 'Price match' -%}
+      <span class="{{ discount_color }}">
+        {{- limited_offer }}
+        {{ excluded -}}
+      </span>
+    {%- elsif product_discount_reason == 'Cheeky drop' -%}
+      <span class="{{ discount_color }}">
+        {{- limited_offer }}
+        {{ excluded -}}
+      </span>
+    {%- endif -%}
+  {%- elsif product_discount_type == 'Standard' -%}
+      <span class="{{ discount_color }}">
+        {{- limited_offer }}
+        {{ excluded -}}
+      </span>
+  {%- elsif product_discount_type == 'Multibuy' -%}
+    <span class="{{ discount_color }}">
+      {{- multibuy }}
+      {{ excluded -}}
+    </span>
+  {%- elsif product_discount_type == 'Freebie' -%}
+    <span class="{{ discount_color }}">
+      {{- freebie }}
+      {{ excluded -}}
+    </span>
+  {%- endif -%}
+{%- elsif save_code20 -%}
+    <span class="{{ discount_color }}">
+      <b
+        >Save 20% with code: <span class="upper">{{ save_code20 }}</span></b
+      >
+    </span>
+{%- elsif save_code15 -%}
+    <span class="{{ discount_color }}">
+      <b
+        >Save 15% with code: <span class="upper">{{ save_code15 }}</span></b
+      >
+    </span>
+{%- elsif save_code10 -%}
+    <span class="{{ discount_color }}">
+      <b
+        >Save 10% with code: <span class="upper">{{ save_code10 }}</span></b
+      >
+    </span>
+{%- elsif save_code5 -%}
+    <span class="{{ discount_color }}">
+      <b
+        >Save 5% with code: <span class="upper">{{ save_code5 }}</span></b
+      >
+    </span>
+{%- endif -%}

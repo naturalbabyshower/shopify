@@ -1,0 +1,25 @@
+{%- if save_code20 and nogoogle == false -%}
+    <div class="product-reward-points t-forest-green">
+      <b
+        >Save 20% code: <span class="upper">{{ save_code20 }}</span></b
+      >
+    </div>
+{%- elsif save_code15 and nogoogle == false -%}
+    <div class="product-reward-points t-forest-green">
+      <b
+        >Save 15% code: <span class="upper">{{ save_code15 }}</span></b
+      >
+    </div>
+{%- elsif save_code10 and nogoogle == false -%}
+    <div class="product-reward-points t-forest-green">
+      <b
+        >Save 10% code: <span class="upper">{{ save_code10 }}</span></b
+      >
+    </div>
+{%- elsif save_code5 and nogoogle == false -%}
+    <div class="product-reward-points t-forest-green">
+      <b
+        >Save 5% code: <span class="upper">{{ save_code5 }}</span></b
+      >
+    </div>
+{%- endif -%}

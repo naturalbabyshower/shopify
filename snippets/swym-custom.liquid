@@ -1,0 +1,12 @@
+<script defer>
+   function swymCallbackFn(swat){
+       document.addEventListener("swym:collections-loaded", function(){
+           swat.collectionsApi.removeCollectionsButtons(); //Only necessary if product contents are changed
+           swat.collectionsApi.initializeCollections(swat, true, window.Shopify.theme.schema_name);
+       })
+   }
+   if(!window.SwymCallbacks){
+       window.SwymCallbacks = [];
+   }
+   window.SwymCallbacks.push(swymCallbackFn);
+</script>

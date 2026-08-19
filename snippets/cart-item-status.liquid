@@ -1,0 +1,83 @@
+{%- liquid
+  assign nostockstatus = false
+  if product_tags contains 'nostockstatus'
+    assign nostockstatus = true
+  endif
+
+  assign today = 'today' | date: '%s'
+  assign due = false
+  assign lead_days = false
+
+  case lead
+    when '5-7 days'
+      assign lead_date = lead
+      assign lead_days = true
+    when '7-10 days'
+      assign lead_date = lead
+      assign lead_days = true
+    when '10-14 days'
+      assign lead_date = lead
+      assign lead_days = true
+    when '2 weeks'
+      assign seconds = 14 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '3 weeks'
+      assign seconds = 21 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '4 weeks'
+      assign seconds = 28 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '5 weeks'
+      assign seconds = 35 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '6 weeks'
+      assign seconds = 42 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '7 weeks'
+      assign seconds = 49 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '8 weeks'
+      assign seconds = 56 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '9 weeks'
+      assign seconds = 63 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '10 weeks'
+      assign seconds = 70 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    else
+      assign seconds = 30 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+  endcase
+  if due_date != blank
+    assign due = true
+  endif
+-%}
+{%- unless nostockstatus -%}
+  <div class="availability">
+    {%- if live_variant_qty > 2 or product_type == 'Promo' or product_type == 'Gift Cards' -%}
+      <!-- <span class="instock">{{ 'products.product.in_stock' | t }}</span> -->
+    {%- elsif live_variant_qty > 0 -%}
+      <span class="instock-low">{{ 'products.product.in_stock' | t }} (Low)</span>
+    {%- elsif oversell_reason == 'Dropship' and live_variant_qty < 1 -%}
+      <span class="dropship">
+        {{ 'products.product.direct' | t -}}
+        &nbsp;in&nbsp;
+        {{- lead }}
+      </span>
+    {%- else -%}
+      <span class="continue">
+        {%- if due -%}
+          Ship by&nbsp;
+          {{- due_date | date: '%b %e' -}}
+        {%- elsif lead_days -%}
+          Ship in&nbsp;
+          {{- lead_date -}}
+        {%- else -%}
+          Ship by&nbsp;
+          {{- lead_date -}}
+        {%- endif -%}
+      </span>
+    {%- endif -%}
+  </div>
+{%- endunless -%}

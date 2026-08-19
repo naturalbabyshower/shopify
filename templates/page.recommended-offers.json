@@ -1,0 +1,660 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "custom_css": [
+        "h1,header {display: none;}"
+      ],
+      "settings": {}
+    },
+    "2f1c880d-4bdd-47eb-9247-c4d324ca78c9": {
+      "type": "slideshow",
+      "blocks": {
+        "template--14888100626510__2f1c880d-4bdd-47eb-9247-c4d324ca78c9-hero-1": {
+          "type": "hero",
+          "repeater": "{{ page.metafields.custom._page_hero_banners.value }}",
+          "settings": {
+            "top_subheading": "",
+            "title": "",
+            "title_size": 70,
+            "subheading": "",
+            "link": "",
+            "link_text": "",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "{{ block.repeater.buttons.value }}",
+            "text_align": "vertical-bottom horizontal-left",
+            "image": "{{ block.repeater.image.value }}",
+            "image_mobile": "{{ block.repeater.mobile_image.value }}",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "template--14888100626510__2f1c880d-4bdd-47eb-9247-c4d324ca78c9-hero-1"
+      ],
+      "settings": {
+        "full_width": true,
+        "desktop_size": -15,
+        "mobile_size": -10,
+        "style": "bars",
+        "autoplay": false,
+        "autoplay_speed": 6,
+        "lazyload_images": false
+      }
+    },
+    "rich_text_qnEQn4": {
+      "type": "rich-text",
+      "blocks": {
+        "text_zaXnD6": {
+          "type": "text",
+          "settings": {
+            "enlarge_text": true,
+            "text": "<p><a href=\"https://www.naturalbabyshower.co.uk/pages/recommended-baby-offers/#recommended-pushchairs\" title=\"https://www.naturalbabyshower.co.uk/pages/recommended-baby-offers/#recommended-pushchairs\">Pushchairs</a> <a href=\"https://www.naturalbabyshower.co.uk/pages/recommended-baby-offers/#newborn-car-seats\" title=\"https://www.naturalbabyshower.co.uk/pages/recommended-baby-offers/#newborn-car-seats\">Car Seats</a> <a href=\"https://www.naturalbabyshower.co.uk/pages/recommended-baby-offers/#bouncers-rockers\" title=\"https://www.naturalbabyshower.co.uk/pages/recommended-baby-offers/#bouncers-rockers\">Sleep</a> <a href=\"https://www.naturalbabyshower.co.uk/pages/recommended-baby-offers/#nursery\" title=\"https://www.naturalbabyshower.co.uk/pages/recommended-baby-offers/#nursery\">Nursery + Home</a> <a href=\"https://www.naturalbabyshower.co.uk/pages/recommended-baby-offers/#travel-out\" title=\"https://www.naturalbabyshower.co.uk/pages/recommended-baby-offers/#travel-out\">Travel + Out</a> </p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_zaXnD6"
+      ],
+      "custom_css": [
+        "div {display: flex; gap: 10px; overflow-x: auto; white-space: nowrap; scroll-snap-type: x mandatory; padding-bottom: 0px;}",
+        "a {display: inline-block; /* Ensures they stay inline */ padding: 0.5em 1em; background-color: #809b6f; color: white; text-decoration: none; border-radius: 5px; /* Optional: Adds rounded corners */ scroll-snap-align: start; /* Ensures buttons align neatly when swiped */}"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": false,
+        "color_scheme": "none",
+        "divider": false
+      }
+    },
+    "advanced_content_WXaQLw": {
+      "type": "advanced-content",
+      "blocks": {
+        "liquid_CFe3GC": {
+          "type": "liquid",
+          "settings": {
+            "code": "<h2 id=\"recommended-pushchairs\">Recommended Pushchairs</h2>",
+            "width": "100%",
+            "alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "liquid_CFe3GC"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": false,
+        "lazyload_images": true
+      }
+    },
+    "text-columns": {
+      "type": "text-columns",
+      "blocks": {
+        "b344dc12-8d75-4fd4-87d2-ab216e5a8199": {
+          "type": "text_block",
+          "repeater": "{{ page.metafields.custom.page_hero_columns.value }}",
+          "settings": {
+            "enable_image": true,
+            "image": "{{ block.repeater.image.value }}",
+            "image_mask": "square",
+            "image_width": 270,
+            "title": "{{ block.repeater.title.value }}",
+            "text": "{{ block.repeater.text | metafield_tag }}",
+            "button_label": "{{ block.repeater.button_label.value }}",
+            "button_link": "{{ block.repeater.link.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "b344dc12-8d75-4fd4-87d2-ab216e5a8199"
+      ],
+      "custom_css": [
+        ".grid--flush-bottom > .grid__item {margin-bottom: 20px;}",
+        ".btn {background-color: #809b6f; color: #ffffff; border-color: #809b6f;}",
+        ".color-scheme-3 {background-color: #ffffff; padding-top: 0;}",
+        ".metafield-rich_text_field {padding: 0 10px;}",
+        ".h3 {font-weight: bold;}"
+      ],
+      "settings": {
+        "title": "",
+        "align_text": "center",
+        "divider": false,
+        "color_scheme": "3"
+      }
+    },
+    "featured_collection_NUd9aC": {
+      "type": "featured-collection",
+      "custom_css": [
+        ".index-section {margin: 0px; padding: 0px;"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "heading_position": "left",
+        "home_featured_products": "sale-pushchairs-strollers",
+        "count": 5,
+        "products_per_row": 5,
+        "color_accent": "#e9d9e0",
+        "color_text": "#4c4c4c",
+        "title_size": 20,
+        "mobile_scrollable": true,
+        "view_all": false,
+        "divider": false
+      }
+    },
+    "rich_text_tHQYQj": {
+      "type": "rich-text",
+      "blocks": {
+        "button_MAyGP8": {
+          "type": "button",
+          "settings": {
+            "link": "shopify://collections/sale-pushchairs-strollers",
+            "link_text": "Shop all  Sale pushchairs"
+          }
+        }
+      },
+      "block_order": [
+        "button_MAyGP8"
+      ],
+      "custom_css": [
+        ".btn {font-size: calc(var(--typeBaseSize)); background: #0a4047; color: #e9d9e0; text-transform: uppercase;}",
+        ".color-scheme-3 {background-color: #e9d9e0; color: #e9d9e0;}",
+        ".index-section {margin: 0 0 px 0; padding: 0 0 20px 0;}"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "color_scheme": "3",
+        "divider": false
+      }
+    },
+    "advanced_content_zJEcPa": {
+      "type": "advanced-content",
+      "blocks": {
+        "liquid_mkKGRD": {
+          "type": "liquid",
+          "settings": {
+            "code": "<h2 id=\"newborn-car-seats\">Recommended Newborn Car Seats</h2>",
+            "width": "100%",
+            "alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "liquid_mkKGRD"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": true,
+        "lazyload_images": true
+      }
+    },
+    "text_columns_fCKPbj": {
+      "type": "text-columns",
+      "blocks": {
+        "text_block_ikGKDq": {
+          "type": "text_block",
+          "repeater": "{{ page.metafields.custom.page_hero_columns_2.value }}",
+          "settings": {
+            "enable_image": true,
+            "image": "{{ block.repeater.image.value }}",
+            "image_mask": "none",
+            "image_width": 250,
+            "title": "{{ block.repeater.heading.value }}",
+            "text": "{{ block.repeater.text | metafield_tag }}",
+            "button_label": "{{ block.repeater.button_label.value }}",
+            "button_link": "{{ block.repeater.link.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "text_block_ikGKDq"
+      ],
+      "custom_css": [
+        ".grid--flush-bottom > .grid__item {margin-bottom: 20px;}",
+        ".btn {background-color: #809b6f; color: #ffffff; border-color: #809b6f;}",
+        ".color-scheme-3 {background-color: #ffffff; padding-top: 0;}",
+        ".metafield-rich_text_field {padding: 0 10px;}",
+        ".h3 {font-weight: bold;}"
+      ],
+      "settings": {
+        "title": "",
+        "align_text": "center",
+        "divider": false,
+        "color_scheme": "3"
+      }
+    },
+    "featured_collection_3aecNf": {
+      "type": "featured-collection",
+      "custom_css": [
+        ".index-section {margin: 0px; padding: 0px;}",
+        ".grid-item__content {background-color: #ffffff; color: #ffffff;}"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "heading_position": "left",
+        "home_featured_products": "sale-car-seats",
+        "count": 5,
+        "products_per_row": 5,
+        "color_accent": "#e9d9e0",
+        "color_text": "#4c4c4c",
+        "title_size": 20,
+        "mobile_scrollable": true,
+        "view_all": false,
+        "divider": false
+      }
+    },
+    "rich_text_qeALcJ": {
+      "type": "rich-text",
+      "blocks": {
+        "button_jaj3Ym": {
+          "type": "button",
+          "settings": {
+            "link": "shopify://collections/sale-car-seats",
+            "link_text": "SHOP ALL SALE CAR SEATS"
+          }
+        }
+      },
+      "block_order": [
+        "button_jaj3Ym"
+      ],
+      "custom_css": [
+        ".btn {font-size: calc(var(--typeBaseSize)); background: #0a4047; color: #e9d9e0; text-transform: uppercase;}",
+        ".color-scheme-3 {background-color: #e9d9e0; color: #e9d9e0;}",
+        ".index-section {margin: 0 0 px 0; padding: 0 0 20px 0;}"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "color_scheme": "3",
+        "divider": false
+      }
+    },
+    "advanced_content_NdnnXn": {
+      "type": "advanced-content",
+      "blocks": {
+        "liquid_tC6tKR": {
+          "type": "liquid",
+          "settings": {
+            "code": "<h2 id=\"bouncers-rockers\">Recommended Sleep Essentials</h2>",
+            "width": "100%",
+            "alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "liquid_tC6tKR"
+      ],
+      "custom_css": [],
+      "settings": {
+        "full_width": false,
+        "space_around": true,
+        "lazyload_images": true
+      }
+    },
+    "text_columns_XcKJVm": {
+      "type": "text-columns",
+      "blocks": {
+        "text_block_X6B9zt": {
+          "type": "text_block",
+          "repeater": "{{ page.metafields.custom.page_hero_columns_3.value }}",
+          "settings": {
+            "enable_image": true,
+            "image": "{{ block.repeater.image.value }}",
+            "image_mask": "none",
+            "image_width": 250,
+            "title": "{{ block.repeater.heading.value }}",
+            "text": "{{ block.repeater.text | metafield_tag }}",
+            "button_label": "{{ block.repeater.button_label.value }}",
+            "button_link": "{{ block.repeater.link.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "text_block_X6B9zt"
+      ],
+      "custom_css": [
+        ".grid--flush-bottom > .grid__item {margin-bottom: 20px;}",
+        ".btn {background-color: #809b6f; color: #ffffff; border-color: #809b6f;}",
+        ".color-scheme-3 {background-color: #ffffff; padding-top: 0;}",
+        ".metafield-rich_text_field {padding: 0 10px;}",
+        ".h3 {font-weight: bold;}"
+      ],
+      "settings": {
+        "title": "",
+        "align_text": "center",
+        "divider": false,
+        "color_scheme": "3"
+      }
+    },
+    "featured_collection_Nr9BcM": {
+      "type": "featured-collection",
+      "custom_css": [
+        ".index-section {margin: 0px; padding: 0px;"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "heading_position": "center",
+        "home_featured_products": "sale-offers-sleep",
+        "count": 5,
+        "products_per_row": 5,
+        "color_accent": "#e9d9e0",
+        "color_text": "#3a5144",
+        "title_size": 20,
+        "mobile_scrollable": true,
+        "view_all": false,
+        "divider": false
+      }
+    },
+    "rich_text_4HaafD": {
+      "type": "rich-text",
+      "blocks": {
+        "button_bTnNFE": {
+          "type": "button",
+          "settings": {
+            "link": "shopify://collections/sale-offers-sleep",
+            "link_text": "SHOP ALL SALE SLEEP"
+          }
+        }
+      },
+      "block_order": [
+        "button_bTnNFE"
+      ],
+      "custom_css": [
+        ".btn {font-size: calc(var(--typeBaseSize)); background: #0a4047; color: #e9d9e0; text-transform: uppercase;}",
+        ".color-scheme-3 {background-color: #e9d9e0; color: #e9d9e0;}",
+        ".index-section {margin: 0 0 px 0; padding: 0 0 20px 0;}"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "color_scheme": "3",
+        "divider": false
+      }
+    },
+    "advanced_content_33Yn4y": {
+      "type": "advanced-content",
+      "blocks": {
+        "liquid_YKEMEJ": {
+          "type": "liquid",
+          "settings": {
+            "code": "<h2 id=\"nursery\">Recommended Nursery</h2>",
+            "width": "100%",
+            "alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "liquid_YKEMEJ"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": true,
+        "lazyload_images": true
+      }
+    },
+    "text_columns_fHzkxc": {
+      "type": "text-columns",
+      "blocks": {
+        "text_block_7AnW6g": {
+          "type": "text_block",
+          "repeater": "{{ page.metafields.custom.page_hero_columns_4.value }}",
+          "settings": {
+            "enable_image": true,
+            "image": "{{ block.repeater.image.value }}",
+            "image_mask": "none",
+            "image_width": 250,
+            "title": "{{ block.repeater.title.value }}",
+            "text": "{{ block.repeater.text | metafield_tag }}",
+            "button_label": "{{ block.repeater.button_label.value }}",
+            "button_link": "{{ block.repeater.link.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "text_block_7AnW6g"
+      ],
+      "custom_css": [
+        ".grid--flush-bottom > .grid__item {margin-bottom: 20px;}",
+        ".btn {background-color: #809b6f; color: #ffffff; border-color: #809b6f;}",
+        ".color-scheme-3 {background-color: #ffffff; padding-top: 0;}",
+        ".metafield-rich_text_field {padding: 0 10px;}",
+        ".h3 {font-weight: bold;}"
+      ],
+      "settings": {
+        "title": "",
+        "align_text": "center",
+        "divider": false,
+        "color_scheme": "3"
+      }
+    },
+    "featured_collection_UCDDpz": {
+      "type": "featured-collection",
+      "custom_css": [
+        ".index-section {margin: 0px; padding: 0px;"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "heading_position": "left",
+        "home_featured_products": "sale-in-the-home",
+        "count": 5,
+        "products_per_row": 5,
+        "color_accent": "#e9d9e0",
+        "color_text": "#4c4c4c",
+        "title_size": 20,
+        "mobile_scrollable": true,
+        "view_all": false,
+        "divider": false
+      }
+    },
+    "rich_text_UKxakk": {
+      "type": "rich-text",
+      "blocks": {
+        "button_aRdpqH": {
+          "type": "button",
+          "settings": {
+            "link": "shopify://collections/sale-in-the-home",
+            "link_text": "SHOP ALL SALE  NURSERY"
+          }
+        }
+      },
+      "block_order": [
+        "button_aRdpqH"
+      ],
+      "custom_css": [
+        ".btn {font-size: calc(var(--typeBaseSize)); background: #0a4047; color: #e9d9e0; text-transform: uppercase;}",
+        ".color-scheme-3 {background-color: #e9d9e0; color: #e9d9e0;}",
+        ".index-section {margin: 0 0 px 0; padding: 0 0 20px 0;}"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "color_scheme": "3",
+        "divider": false
+      }
+    },
+    "advanced_content_xaCLJM": {
+      "type": "advanced-content",
+      "blocks": {
+        "liquid_qiRzxi": {
+          "type": "liquid",
+          "settings": {
+            "code": "<h2 id=\"travel-out\">Recommended Travel + Out</h2>",
+            "width": "100%",
+            "alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "liquid_qiRzxi"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": true,
+        "lazyload_images": true
+      }
+    },
+    "text_columns_DxiFGf": {
+      "type": "text-columns",
+      "blocks": {
+        "text_block_4kUyQR": {
+          "type": "text_block",
+          "repeater": "{{ page.metafields.custom.page_hero_columns_5.value }}",
+          "settings": {
+            "enable_image": true,
+            "image": "{{ block.repeater.image.value }}",
+            "image_mask": "none",
+            "image_width": 250,
+            "title": "{{ block.repeater.title.value }}",
+            "text": "{{ block.repeater.text | metafield_tag }}",
+            "button_label": "{{ block.repeater.button_label.value }}",
+            "button_link": "{{ block.repeater.link.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "text_block_4kUyQR"
+      ],
+      "custom_css": [
+        ".grid--flush-bottom > .grid__item {margin-bottom: 20px;}",
+        ".btn {background-color: #809b6f; color: #ffffff; border-color: #809b6f;}",
+        ".color-scheme-3 {background-color: #ffffff; padding-top: 0;}",
+        ".metafield-rich_text_field {padding: 0 10px;}",
+        ".h3 {font-weight: bold;}"
+      ],
+      "settings": {
+        "title": "",
+        "align_text": "center",
+        "divider": false,
+        "color_scheme": "3"
+      }
+    },
+    "featured_collection_GfaLpq": {
+      "type": "featured-collection",
+      "custom_css": [
+        ".index-section {margin: 0px; padding: 0px;"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "heading_position": "left",
+        "home_featured_products": "sale-on-the-move",
+        "count": 5,
+        "products_per_row": 5,
+        "color_accent": "#e9d9e0",
+        "color_text": "#4c4c4c",
+        "title_size": 20,
+        "mobile_scrollable": true,
+        "view_all": false,
+        "divider": false
+      }
+    },
+    "rich_text_LMAEQ4": {
+      "type": "rich-text",
+      "blocks": {
+        "button_XkJBWr": {
+          "type": "button",
+          "settings": {
+            "link": "shopify://collections/sale-on-the-move",
+            "link_text": "SHOP ALL SALE TRAVEL"
+          }
+        }
+      },
+      "block_order": [
+        "button_XkJBWr"
+      ],
+      "custom_css": [
+        ".btn {font-size: calc(var(--typeBaseSize)); background: #0a4047; color: #e9d9e0; text-transform: uppercase;}",
+        ".color-scheme-3 {background-color: #e9d9e0; color: #e9d9e0;}",
+        ".index-section {margin: 0 0 px 0; padding: 0 0 20px 0;}"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": false,
+        "color_scheme": "3",
+        "divider": false
+      }
+    },
+    "advanced_content_qn3UDm": {
+      "type": "advanced-content",
+      "blocks": {
+        "liquid_pggF66": {
+          "type": "liquid",
+          "settings": {
+            "code": "<h2>Custom content</h2><p>Use this advanced section to build your own layouts or to add custom HTML, Liquid, or scripts.</p>",
+            "width": "50%",
+            "alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "liquid_pggF66"
+      ],
+      "disabled": true,
+      "settings": {
+        "full_width": false,
+        "space_around": true,
+        "lazyload_images": true
+      }
+    },
+    "featured_collection_WY8zEF": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured collection",
+        "heading_size": "h2",
+        "heading_position": "left",
+        "home_featured_products": "",
+        "count": 6,
+        "products_per_row": 3,
+        "color_accent": "#ffffff",
+        "color_text": "#4c4c4c",
+        "title_size": 0,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "2f1c880d-4bdd-47eb-9247-c4d324ca78c9",
+    "rich_text_qnEQn4",
+    "advanced_content_WXaQLw",
+    "text-columns",
+    "featured_collection_NUd9aC",
+    "rich_text_tHQYQj",
+    "advanced_content_zJEcPa",
+    "text_columns_fCKPbj",
+    "featured_collection_3aecNf",
+    "rich_text_qeALcJ",
+    "advanced_content_NdnnXn",
+    "text_columns_XcKJVm",
+    "featured_collection_Nr9BcM",
+    "rich_text_4HaafD",
+    "advanced_content_33Yn4y",
+    "text_columns_fHzkxc",
+    "featured_collection_UCDDpz",
+    "rich_text_UKxakk",
+    "advanced_content_xaCLJM",
+    "text_columns_DxiFGf",
+    "featured_collection_GfaLpq",
+    "rich_text_LMAEQ4",
+    "advanced_content_qn3UDm",
+    "featured_collection_WY8zEF"
+  ]
+}

@@ -1,0 +1,46 @@
+{%- liquid
+  assign today = 'today' | date: '%s'
+  assign due = false
+
+  case lead
+    when '5-7 days'
+      assign lead_date = lead
+    when '7-10 days'
+      assign lead_date = lead
+    when '10-14 days'
+      assign lead_date = lead
+    when '2 weeks'
+      assign seconds = 14 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '3 weeks'
+      assign seconds = 21 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '4 weeks'
+      assign seconds = 28 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '5 weeks'
+      assign seconds = 35 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '6 weeks'
+      assign seconds = 42 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '7 weeks'
+      assign seconds = 49 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '8 weeks'
+      assign seconds = 56 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '9 weeks'
+      assign seconds = 63 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    when '10 weeks'
+      assign seconds = 70 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+    else
+      assign seconds = 30 | times: 24 | times: 60 | times: 60
+      assign lead_date = today | date: '%s' | plus: seconds | date: '%b %e'
+  endcase
+  if due_date != blank
+    assign due = true
+  endif
+-%}
