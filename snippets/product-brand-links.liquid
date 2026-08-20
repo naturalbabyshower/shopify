@@ -84,13 +84,13 @@
         {%- if brand_logo != blank -%}
           {{
             brand_logo
-            | image_url: width: 268
+            | image_url: width: 400
             | image_tag:
               class: 'product-brand-logo__img',
               alt: vendor_collection.title,
               loading: 'lazy',
-              widths: '134, 200, 268',
-              sizes: '134px'
+              widths: '160, 240, 320, 400',
+              sizes: '160px'
           }}
         {%- else -%}
           <span class="product-brand-logo__name">{{ vendor_collection.title }}</span>

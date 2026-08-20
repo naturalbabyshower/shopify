@@ -1116,35 +1116,21 @@ color: #585B56;
 }
 
 .product-header-nav {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-areas:
-    "crumbs crumbs"
-    "tags brand"
-    "sku brand"
-    "heading heading";
-  align-items: start;
-  column-gap: 16px;
-  row-gap: 14px;
+  display: block;
+}
+
+.product-header-nav::after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .product-header-nav__crumbs {
-  grid-area: crumbs;
   min-width: 0;
-  max-width: 100%;
-}
-
-.product-header-nav__crumbs:empty {
-  display: none;
 }
 
 .product-header-nav .breadcrumb {
-  margin-bottom: 0;
-}
-
-.product-header-nav__tags {
-  grid-area: tags;
-  min-width: 0;
+  margin-bottom: 8px;
 }
 
 .product-header-nav__tags:not(:has(.grid-product__tag)) {
@@ -1156,7 +1142,7 @@ color: #585B56;
   flex-wrap: wrap;
   align-items: center;
   gap: 4px;
-  margin: 0;
+  margin: 0 0 12px;
 }
 
 .product-header-nav__tags .grid-product__tag {
@@ -1172,40 +1158,24 @@ color: #585B56;
   padding: 4px 6px 3px 6px;
 }
 
-.product-header-nav > .product-single__vendor-sku {
-  grid-area: sku;
-  margin: 0;
-}
-
-.product-header-nav__heading {
-  grid-area: heading;
-  min-width: 0;
-}
-
-.product-header-nav__heading .listing-extra-details {
-  margin: 0 0 2px;
-}
-
 .product-header-nav .product-single__title {
-  margin: 0 0 5px;
+  margin-top: 0;
 }
 
 .product-brand-links {
-  grid-area: brand;
+  float: right;
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 0;
+  margin: 0 0 8px 16px;
 }
 
 .product-brand-logo {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 75px;
-  max-height: 75px;
+  width: 160px;
   aspect-ratio: 16 / 9;
-  width: auto;
   overflow: hidden;
 }
 
@@ -1241,16 +1211,8 @@ color: #585B56;
 }
 
 @media only screen and (max-width: 768px) {
-  .product-header-nav__crumbs {
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-  }
-
-  .product-header-nav__crumbs .breadcrumb {
-    margin-bottom: 0;
-    white-space: nowrap;
+  .product-brand-logo {
+    width: 128px;
   }
 
   .product-brand-logo__name {
