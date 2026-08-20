@@ -147,9 +147,28 @@
     assign crumb_urls = type_urls
     assign crumb_count = type_count
   endif
+
+  assign model_mf = product.metafields.custom.model_collection
+  assign model_collection = model_mf.value
+
+  if model_mf.type == 'list.collection_reference'
+    assign model_collection = ''
+    for list_col in model_mf.value
+      if list_col.handle != blank and list_col.title != blank and list_col.url != blank
+        assign model_collection = list_col
+        break
+      endif
+    endfor
+  elsif model_collection != blank and model_collection.handle == blank
+    assign model_collection = collections[model_collection]
+  endif
+
+  if model_collection.handle == blank or model_collection.title == blank or model_collection.url == blank
+    assign model_collection = ''
+  endif
 -%}
 
-{%- if crumb_count > 0 -%}
+{%- if crumb_count > 0 or model_collection != blank -%}
   {%- assign origin = request.origin | default: shop.url -%}
   {%- assign title_array = crumb_titles | split: '|||' -%}
   {%- assign url_array = crumb_urls | split: '|||' -%}
@@ -166,40 +185,50 @@
         {%- endif -%}
       {%- endif -%}
     {%- endfor -%}
+    {%- if model_collection != blank -%}
+      <span class="breadcrumb__model{% unless show_sep %} breadcrumb__model--solo{% endunless %}">
+        {%- if show_sep -%}
+          <span class="breadcrumb__model-sep" aria-hidden="true">|</span>
+        {%- endif -%}
+        <a href="{{ model_collection.url }}">View {{ model_collection.title }}</a>
+      </span>
+    {%- endif -%}
   </nav>
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": {{ origin | append: routes.root_url | json }}
-        }
-        {%- assign position = 2 -%}
-        {%- for title in title_array -%}
-          {%- if title != blank -%}
-            {%- assign parent_url = url_array[forloop.index0] -%}
-            {%- if parent_url != blank -%}
-              ,{
-                "@type": "ListItem",
-                "position": {{ position }},
-                "name": {{ title | json }},
-                "item": {{ origin | append: parent_url | json }}
-              }
-              {%- assign position = position | plus: 1 -%}
+  {%- if crumb_count > 0 -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": {{ origin | append: routes.root_url | json }}
+          }
+          {%- assign position = 2 -%}
+          {%- for title in title_array -%}
+            {%- if title != blank -%}
+              {%- assign parent_url = url_array[forloop.index0] -%}
+              {%- if parent_url != blank -%}
+                ,{
+                  "@type": "ListItem",
+                  "position": {{ position }},
+                  "name": {{ title | json }},
+                  "item": {{ origin | append: parent_url | json }}
+                }
+                {%- assign position = position | plus: 1 -%}
+              {%- endif -%}
             {%- endif -%}
-          {%- endif -%}
-        {%- endfor -%}
-        ,{
-          "@type": "ListItem",
-          "position": {{ position }},
-          "name": {{ product.title | json }},
-          "item": {{ origin | append: product.url | json }}
-        }
-      ]
-    }
-  </script>
+          {%- endfor -%}
+          ,{
+            "@type": "ListItem",
+            "position": {{ position }},
+            "name": {{ product.title | json }},
+            "item": {{ origin | append: product.url | json }}
+          }
+        ]
+      }
+    </script>
+  {%- endif -%}
 {%- endif -%}
