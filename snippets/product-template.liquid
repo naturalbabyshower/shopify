@@ -118,11 +118,27 @@
   {%- render 'product-template-codes', save_code20: save_code20, save_code15: save_code15, save_code10: save_code10, save_code5: save_code5 -%}
   {%- capture product_header -%}
   <div class="product-header-nav">
-    <div class="product-header-nav__crumbs">{%- render 'product-breadcrumbs' -%}</div>
+    <div class="product-header-nav__crumbs">
+      {%- render 'product-breadcrumbs' -%}
+    </div>
     {%- render 'product-brand-links', product: product -%}
     <div class="product-header-nav__tags">
       {%- render 'product-grid-item-tags', product: product -%}
     </div>
+    {%- if isModal -%}
+      <p class="h2 product-single__title">
+        {{ product.title }}
+      </p>
+    {%- else -%}
+      <h1 class="h2 product-single__title">
+        {%- unless product.empty? -%}
+          {{ product.title }}
+        {%- else -%}
+          {{ 'home_page.onboarding.product_title' | t }}
+        {%- endunless -%}
+      </h1>
+    {%- endif -%}
+    {%- render 'collection-product-extra-details', product: product -%}
     {%- if settings.vendor_enable or sku_enable -%}
       <div class="product-single__vendor-sku">
         {%- if settings.vendor_enable -%}
@@ -144,24 +160,6 @@
         {%- endif -%}
       </div>
     {%- endif -%}
-    <div class="product-header-nav__heading">
-      {%- render 'collection-product-extra-details', product: product -%}
-      <div class="product-header-nav__title">
-        {%- if isModal -%}
-          <p class="h2 product-single__title">
-            {{ product.title }}
-          </p>
-        {%- else -%}
-          <h1 class="h2 product-single__title">
-            {%- unless product.empty? -%}
-              {{ product.title }}
-            {%- else -%}
-              {{ 'home_page.onboarding.product_title' | t }}
-            {%- endunless -%}
-          </h1>
-        {%- endif -%}
-      </div>
-    </div>
   </div>
   {%- render 'product-schema', product: product, current_variant: current_variant -%}
 
