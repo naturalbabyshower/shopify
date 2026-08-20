@@ -118,10 +118,10 @@
   {%- render 'product-template-codes', save_code20: save_code20, save_code15: save_code15, save_code10: save_code10, save_code5: save_code5 -%}
   {%- capture product_header -%}
   <div class="product-header-nav">
-    {%- render 'product-brand-links', product: product -%}
     <div class="product-header-nav__crumbs">
       {%- render 'product-breadcrumbs' -%}
     </div>
+    {%- render 'product-brand-links', product: product -%}
     <div class="product-header-nav__tags">
       {%- render 'product-grid-item-tags', product: product -%}
     </div>

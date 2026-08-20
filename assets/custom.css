@@ -1127,10 +1127,17 @@ color: #585B56;
 
 .product-header-nav__crumbs {
   min-width: 0;
+  width: 100%;
+  clear: both;
+  margin: 0 0 16px;
+}
+
+.product-header-nav__crumbs:not(:has(.breadcrumb)) {
+  display: none;
 }
 
 .product-header-nav .breadcrumb {
-  margin-bottom: 8px;
+  margin-bottom: 0;
 }
 
 .product-header-nav__tags:not(:has(.grid-product__tag)) {
