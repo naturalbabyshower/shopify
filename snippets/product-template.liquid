@@ -119,7 +119,7 @@
   {%- capture product_header -%}
   <div class="product-header-nav">
     <div class="product-header-nav__crumbs">
-      {%- render 'product-breadcrumbs' -%}
+      {%- render 'product-breadcrumbs', product: product -%}
     </div>
     {%- render 'product-brand-links', product: product -%}
     <div class="product-header-nav__tags">
