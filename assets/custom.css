@@ -1116,24 +1116,42 @@ color: #585B56;
 }
 
 .product-header-nav {
-  display: block;
-}
-
-.product-header-nav::after {
-  content: "";
-  display: table;
-  clear: both;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "crumbs crumbs"
+    "tags brand"
+    "mode brand"
+    "title title";
+  align-items: start;
+  column-gap: 16px;
 }
 
 .product-header-nav__crumbs {
+  grid-area: crumbs;
   min-width: 0;
+  max-width: 100%;
+}
+
+.product-header-nav__crumbs:empty {
+  display: none;
 }
 
 .product-header-nav .breadcrumb {
   margin-bottom: 8px;
 }
 
-.product-header-nav__tags:not(:has(.grid-product__tag)) {
+.product-header-nav__tags {
+  grid-area: tags;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  min-width: 0;
+  margin: 0 0 8px;
+}
+
+.product-header-nav__tags:not(:has(.grid-product__tag)):not(:has(.product-single__vendor-sku)) {
   display: none;
 }
 
@@ -1142,7 +1160,7 @@ color: #585B56;
   flex-wrap: wrap;
   align-items: center;
   gap: 4px;
-  margin: 0 0 12px;
+  margin: 0;
 }
 
 .product-header-nav__tags .grid-product__tag {
@@ -1158,24 +1176,40 @@ color: #585B56;
   padding: 4px 6px 3px 6px;
 }
 
+.product-header-nav__tags .product-single__vendor-sku {
+  margin: 0;
+}
+
+.product-header-nav > .listing-extra-details {
+  grid-area: mode;
+  margin: 0 0 4px;
+}
+
+.product-header-nav__title {
+  grid-area: title;
+  min-width: 0;
+}
+
 .product-header-nav .product-single__title {
   margin-top: 0;
 }
 
 .product-brand-links {
-  float: right;
+  grid-area: brand;
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 0 0 8px 16px;
+  margin: 0 0 8px;
 }
 
 .product-brand-logo {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 160px;
+  height: 75px;
+  max-height: 75px;
   aspect-ratio: 16 / 9;
+  width: auto;
   overflow: hidden;
 }
 
@@ -1211,8 +1245,16 @@ color: #585B56;
 }
 
 @media only screen and (max-width: 768px) {
-  .product-brand-logo {
-    width: 128px;
+  .product-header-nav__crumbs {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .product-header-nav__crumbs .breadcrumb {
+    margin-bottom: 8px;
+    white-space: nowrap;
   }
 
   .product-brand-logo__name {
