@@ -41,44 +41,44 @@
     if current_variant.inventory_quantity > 4 and template_suffix != 'bundle-infinite'
       assign instock = true
       assign stock_text = 'products.product.in_stock' | t
-      assign ship_text = '&nbsp;|&nbsp;Get it by&nbsp;'
+      assign ship_text = ' | Get it by '
     elsif current_variant.inventory_quantity > 0 and template_suffix != 'bundle-infinite'
       assign instock = true
       assign stock_text = 'products.product.stock_label' | t: count: current_variant.inventory_quantity
-      assign ship_text = '&nbsp;|&nbsp;Get it by&nbsp;'
+      assign ship_text = ' | Get it by '
     elsif current_variant.inventory_quantity <= 0 and inventory_policy == 'continue' and template_suffix != 'bundle-infinite'
       assign oos_and_continue_selling = true
       if oversell_reason == 'Standard'
         assign oversell_standard = true
         assign stock_text = 'products.product.stock_incoming' | t
-        assign ship_text = '&nbsp;|&nbsp;Ship by&nbsp;'
+        assign ship_text = ' | Ship by '
       elsif oversell_reason == 'Bundle Only'
         assign oversell_bundle = true
         assign stock_text = 'Available in Bundles'
-        assign ship_text = '&nbsp;|&nbsp;Back soon&nbsp;'
+        assign ship_text = ' | Back soon '
       elsif oversell_reason == 'Dropship'
         assign oversell_dropship = true
         assign stock_text = 'products.product.direct' | t
-        assign ship_text = '&nbsp;|&nbsp;Ship in&nbsp;'
+        assign ship_text = ' | Ship in '
       endif
     elsif current_variant.inventory_quantity > 0 and template_suffix == 'bundle-infinite' and inventory_policy == 'deny'
       assign instock = true
       assign stock_text = 'products.product.in_stock' | t
-      assign ship_text = '&nbsp;|&nbsp;Get it by&nbsp;'
+      assign ship_text = ' | Get it by '
     elsif current_variant.inventory_quantity > 0 and template_suffix == 'bundle-infinite' and inventory_policy == 'continue'
       assign oos_and_continue_selling = true
       assign oversell_standard = true
       assign stock_text = 'products.product.stock_incoming' | t
-      assign ship_text = '&nbsp;|&nbsp;Ship by&nbsp;'
+      assign ship_text = ' | Ship by '
     elsif current_variant.inventory_quantity <= 0 and inventory_policy == 'deny'
       if product_state == 'Discontinued'
         assign oos = true
         assign stock_text = 'products.product.sold_out' | t
-        assign ship_text = '&nbsp;|&nbsp;Product discontinued&nbsp;'
+        assign ship_text = ' | Product discontinued '
       else
         assign oos = true
         assign stock_text = 'products.product.out_of_stock' | t
-        assign ship_text = '&nbsp;|&nbsp;Back soon&nbsp;'
+        assign ship_text = ' | Back soon '
       endif
     endif
   endif
@@ -230,16 +230,14 @@
       class="sales-point"
     >
       <span class="icon-and-text {% if show_low_inventory_message == true %}inventory--low{% elsif oversell_dropship %}inventory--dropship{% elsif oversell_standard %}inventory--oversell{% elsif oos or oversell_bundle %}inventory--sold-out{% endif %}">
-        <span class="icon icon--inventory"></span>
-        <b
-          ><span id="stock_text">{{ stock_text }}</span></b
-        >
-        <span id="ship_text">{{ ship_text }}</span>
-        <b
-          ><span id="shipping_date">
-            {{- shipping_date -}}
-            {{- ordinal -}}
-          </span></b
+        <span class="icon icon--inventory"></span><span class="sales-point__text"
+          ><b><span id="stock_text">{{ stock_text }}</span></b
+          ><span id="ship_text">{{ ship_text }}</span
+          ><b
+            ><span id="shipping_date"
+              >{{- shipping_date -}}{{- ordinal -}}</span
+            ></b
+          ></span
         >
       </span>
     </li>
@@ -303,14 +301,14 @@
               if due_date != blank
                 assign lead_date = due_date
                 assign delivery_number = due_date | date: '%e'
-                assign ship_text = '&nbsp;|&nbsp;Ship by&nbsp;'
+                assign ship_text = ' | Ship by '
               elsif lead_date != blank
                 assign delivery_number = lead_date | date: '%e'
-                assign ship_text = '&nbsp;|&nbsp;Ship by&nbsp;'
+                assign ship_text = ' | Ship by '
               elsif lead_date == false
                 assign lead_date = lead
                 assign delivery_number = ''
-                assign ship_text = '&nbsp;|&nbsp;Ship in&nbsp;'
+                assign ship_text = ' | Ship in '
               endif
 
               if delivery_number == ' 1' or delivery_number == '21' or delivery_number == '31'
@@ -332,12 +330,12 @@
     {%- if variant.inventory_quantity > 4 %}
       icon[{{- variant.id -}}] = '';
       stock_text[{{- variant.id -}}] = '{{ 'products.product.in_stock' | t }}';
-      ship_text[{{- variant.id -}}] = '&nbsp;|&nbsp;Get it by&nbsp;';
+      ship_text[{{- variant.id -}}] = ' | Get it by ';
       shipping_date[{{- variant.id -}}] = "{{ next_delivery_date }}{{- ordinal -}}";
     {%- elsif variant.inventory_quantity > 0 %}
       icon[{{- variant.id -}}] = ' inventory--low';
       stock_text[{{- variant.id -}}] = '{{ 'products.product.low_stock' | t }}';
-      ship_text[{{- variant.id -}}] = '&nbsp;|&nbsp;Get it by&nbsp;';
+      ship_text[{{- variant.id -}}] = ' | Get it by ';
       shipping_date[{{- variant.id -}}] = "{{ next_delivery_date }}{{- ordinal -}}";
     {%- elsif variant.inventory_quantity < 1 and variant.inventory_policy == 'continue' and variant.metafields.custom.oversell_reason.value == 'Standard' %}
       icon[{{- variant.id -}}] = ' inventory--oversell';
@@ -347,22 +345,22 @@
     {%- elsif variant.inventory_quantity < 1 and variant.inventory_policy == 'continue' and variant.metafields.custom.oversell_reason.value == 'Bundle Only' %}
       icon[{{- variant.id -}}] = ' inventory--sold-out';
       stock_text[{{- variant.id -}}] = 'Available in Bundles';
-      ship_text[{{- variant.id -}}] = '&nbsp;|&nbsp;Back soon&nbsp;';
+      ship_text[{{- variant.id -}}] = ' | Back soon ';
       shipping_date[{{- variant.id -}}] = '';
     {%- elsif variant.inventory_quantity < 1 and variant.inventory_policy == 'continue' and variant.metafields.custom.oversell_reason.value == 'Dropship' %}
       icon[{{- variant.id -}}] = ' inventory--dropship';
       stock_text[{{- variant.id -}}] = '{{ 'products.product.direct' | t }}';
-      ship_text[{{- variant.id -}}] = '&nbsp;|&nbsp;Ship in&nbsp;';
+      ship_text[{{- variant.id -}}] = ' | Ship in ';
       shipping_date[{{- variant.id -}}] = "{{ lead }}";
     {%- elsif variant.inventory_quantity < 1 and variant.inventory_policy == 'deny' and product.metafields.custom.product_state.value == 'Discontinued' %}
       icon[{{- variant.id -}}] = ' inventory--sold-out';
       stock_text[{{- variant.id -}}] = '{{ 'products.product.sold_out' | t }}';
-      ship_text[{{- variant.id -}}] = '&nbsp;|&nbsp;Product discontinued&nbsp;';
+      ship_text[{{- variant.id -}}] = ' | Product discontinued ';
       shipping_date[{{- variant.id -}}] = '';
     {%- elsif variant.inventory_quantity < 1 and variant.inventory_policy == 'deny' %}
       icon[{{- variant.id -}}] = ' inventory--sold-out';
       stock_text[{{- variant.id -}}] = '{{ 'products.product.out_of_stock' | t }}';
-      ship_text[{{- variant.id -}}] = '&nbsp;|&nbsp;Back soon&nbsp;';
+      ship_text[{{- variant.id -}}] = ' | Back soon ';
       shipping_date[{{- variant.id -}}] = '';
     {%- endif -%}
   {% endfor %}
