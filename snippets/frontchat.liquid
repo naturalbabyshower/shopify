@@ -1,8 +1,38 @@
 {% # theme-check-disable RemoteAsset %}
-<script src="https://chat-assets.frontapp.com/v1/chat.bundle.js" defer></script>
+{%- if request.page_type == 'collection' or request.page_type == 'search' or request.page_type == 'list-collections' -%}
+  <script defer>
+    (function () {
+      var loaded = false;
+      function loadFrontChat() {
+        if (loaded) return;
+        loaded = true;
+        var script = document.createElement('script');
+        script.src = 'https://chat-assets.frontapp.com/v1/chat.bundle.js';
+        script.onload = function () {
+          if (window.FrontChat) {
+            window.FrontChat('init', { chatId: '17e66d191c37209d84cb119db29ac5a0', useDefaultLauncher: true });
+          }
+        };
+        document.body.appendChild(script);
+      }
+      ['pointerdown', 'keydown', 'scroll'].forEach(function (eventName) {
+        window.addEventListener(eventName, loadFrontChat, { once: true, passive: true });
+      });
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadFrontChat, { timeout: 6000 });
+      } else {
+        window.addEventListener('load', function () {
+          setTimeout(loadFrontChat, 4000);
+        });
+      }
+    })();
+  </script>
+{%- else -%}
+  <script src="https://chat-assets.frontapp.com/v1/chat.bundle.js" defer></script>
+  <script defer>
+    window.addEventListener('DOMContentLoaded', function () {
+      window.FrontChat('init', { chatId: '17e66d191c37209d84cb119db29ac5a0', useDefaultLauncher: true });
+    });
+  </script>
+{%- endif -%}
 {% # theme-check-enable RemoteAsset %}
-<script defer>
-  window.addEventListener('DOMContentLoaded', function () {
-    window.FrontChat('init', { chatId: '17e66d191c37209d84cb119db29ac5a0', useDefaultLauncher: true });
-  });
-</script>

@@ -1,8 +1,4 @@
 {%- liquid
-  assign product_state = product.metafields.custom.product_state
-  assign product_discount = product.metafields.custom.product_discount
-  assign product_discount_type = product.metafields.custom.product_discount_type
-  assign product_discount_reason = product.metafields.custom.product_discount_reason
   assign availabilty_color = 'bg-matcha-green t-white'
   assign offer_color = 'bg-forest-green t-white'
   assign clearance_color = 'bg-coral-blush light75 t-white'
@@ -10,6 +6,7 @@
   assign tag_color = 'bg-light-sage t-forest-green'
 -%}
 {%- if product.available -%}
+  {%- assign product_discount_reason = product.metafields.custom.product_discount_reason -%}
   <div class="grid-product__tags">
   {%- if product_state == 'Coming Soon' -%}
     <div class="grid-product__tag {{ availabilty_color }}">
