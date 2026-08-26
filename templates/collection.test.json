@@ -190,7 +190,7 @@
           "type": "text",
           "settings": {
             "enlarge_text": false,
-            "text": "{{ collection.description }}"
+            "text": "{{ collection.metafields.custom.description_enhanced | metafield_tag }}"
           }
         }
       },
