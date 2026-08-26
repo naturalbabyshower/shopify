@@ -1,0 +1,55 @@
+{% comment %}
+  Quantity selector block for product-template.
+{% endcomment %}
+<div class="product-block" {{ block.shopify_attributes }}>
+  <div class="product__quantity">
+    <label for="Quantity-{{ section_id }}-{{ product.id }}">
+      {{- 'products.product.quantity' | t -}}
+    </label>
+    <div class="js-qty__wrapper">
+      <input
+        type="text"
+        id="Quantity-{{ section_id }}-{{ product.id }}"
+        class="js-qty__num"
+        value="1"
+        min="1"
+        aria-label="quantity"
+        pattern="[0-9]*"
+        form="{{ form_id }}"
+        name="quantity"
+      >
+      <button
+        type="button"
+        class="js-qty__adjust js-qty__adjust--minus"
+        aria-label="{{ 'cart.general.reduce_quantity' | t }}"
+      >
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          role="presentation"
+          class="icon icon-minus"
+          viewBox="0 0 64 64"
+        >
+          <path class="cls-1" d="M55 32H9"/>
+        </svg>
+        <span class="icon__fallback-text" aria-hidden="true">&minus;</span>
+      </button>
+      <button
+        type="button"
+        class="js-qty__adjust js-qty__adjust--plus"
+        aria-label="{{ 'cart.general.increase_quantity' | t }}"
+      >
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          role="presentation"
+          class="icon icon-plus"
+          viewBox="0 0 64 64"
+        >
+          <path class="cls-1" d="M32 9v46m23-23H9"/>
+        </svg>
+        <span class="icon__fallback-text" aria-hidden="true">+</span>
+      </button>
+    </div>
+  </div>
+</div>
