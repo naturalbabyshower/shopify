@@ -1,0 +1,53 @@
+{% comment %}
+  Delivery line for the purchase-info box.
+  In stock: Free delivery | order by 4pm for next day
+  Backorder: Free delivery | Ship by {due date}, or converted lead weeks
+  Dropship: Free delivery | Ship in {lead}
+{% endcomment %}
+{%- liquid
+  assign reason = variant.metafields.custom.oversell_reason.value | default: variant.metafields.custom.oversell_reason
+  assign due_raw = variant.metafields.custom.due_date.value | default: variant.metafields.custom.due_date
+  assign lead = variant.metafields.custom.oversell_lead.value | default: variant.metafields.custom.oversell_lead
+  assign qty = variant.inventory_quantity | plus: 0
+  assign suffix = 'order by 4pm for next day'
+
+  if variant.inventory_management != blank and qty < 1
+    if reason == 'Dropship'
+      if lead != blank
+        assign suffix = 'Ship in ' | append: lead
+      else
+        assign suffix = 'Shipped direct'
+      endif
+    elsif variant.inventory_policy == 'continue'
+      if due_raw != blank
+        assign due_formatted = due_raw | date: '%b %e'
+        assign suffix = 'Ship by ' | append: due_formatted
+      elsif lead != blank
+        assign day_leads = '|3-5 days|5-7 days|7-10 days|10-14 days|'
+        assign lead_token = '|' | append: lead | append: '|'
+        if day_leads contains lead_token
+          assign suffix = 'Ship in ' | append: lead
+        elsif lead contains 'weeks'
+          assign weeks = lead | split: ' ' | first | plus: 0
+          assign seconds = weeks | times: 7 | times: 86400
+          assign today = 'today' | date: '%s' | plus: 0
+          assign ship_on = today | plus: seconds | date: '%b %e'
+          assign suffix = 'Ship by ' | append: ship_on
+        else
+          assign suffix = 'Ship in ' | append: lead
+        endif
+      else
+        assign suffix = 'On backorder'
+      endif
+    else
+      assign suffix = 'Currently unavailable'
+    endif
+  endif
+
+  if variant.price > 7499
+    assign prefix = 'Free delivery'
+  else
+    assign prefix = 'Free delivery over £75'
+  endif
+-%}
+{{- prefix }} | {{ suffix -}}

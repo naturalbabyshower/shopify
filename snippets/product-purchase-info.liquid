@@ -52,19 +52,13 @@
 {% endstyle %}
 
 {%- liquid
-  assign oversell_reason = current_variant.metafields.custom.oversell_reason
+  assign oversell_reason = current_variant.metafields.custom.oversell_reason.value | default: current_variant.metafields.custom.oversell_reason
   if oversell_reason == 'Dropship'
     assign returns_text = 'Return policy below'
   elsif product_discount == 'Outlet'
     assign returns_text = 'Easy returns within 14 days'
   else
     assign returns_text = 'Easy returns within 60 days'
-  endif
-
-  if current_variant.price > 7499
-    assign delivery_text = 'Free delivery | order by 4pm for next day'
-  else
-    assign delivery_text = 'Free delivery over £75 | order by 4pm for next day'
   endif
 -%}
 
@@ -78,7 +72,7 @@
           <path d="M7 18.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM17 18.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
         </svg>
       </span>
-      <span>{{ delivery_text }}</span>
+      <span id="PurchaseInfoDelivery-{{ product.id }}">{%- render 'product-purchase-delivery-line', variant: current_variant -%}</span>
     </li>
     <li class="product-purchase-info__row">
       <span class="product-purchase-info__icon" aria-hidden="true">
@@ -87,7 +81,7 @@
           <path d="M3 4v5h5"/>
         </svg>
       </span>
-      <span>{{ returns_text }}</span>
+      <span id="PurchaseInfoReturns-{{ product.id }}">{{ returns_text }}</span>
     </li>
     <li class="product-purchase-info__row">
       <span class="product-purchase-info__icon" aria-hidden="true">
@@ -112,3 +106,4 @@
     </li>
   </ul>
 </div>
+{%- render 'product-purchase-info-data', product: product, product_discount: product_discount -%}
