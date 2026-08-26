@@ -6536,12 +6536,14 @@ if (console && console.log) {
         }
   
         if (this.isCollectionTemplate) {
-          this.cloneFiltersOnMobile();
+          if (theme.config.bpSmall) {
+            this.cloneFiltersOnMobile();
+          }
           this.initSort();
           this.initFilters();
           this.initPriceRange();
           this.initGridOptions();
-  
+
           // Has to init after the Collection JS because cloneFiltersOnMobile
           this.sidebar = new theme.CollectionSidebar();
         }

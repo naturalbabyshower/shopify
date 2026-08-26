@@ -2180,7 +2180,7 @@ input#Search::placeholder {
   }
 
   .footer__menu .icon-and-text {
-    display: flex
+    display: flex;
     align-items: center;
     gap: 8px;
   }

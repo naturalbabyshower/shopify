@@ -8,14 +8,25 @@
   assign product_discount = product.metafields.custom.product_discount
   assign product_discount_type = product.metafields.custom.product_discount_type
   assign offer_collection = product.metafields.custom.offer_collection
-  assign oversell_reason = product.selected_or_first_available_variant.metafields.custom.oversell_reason
-  assign inventory_quantity = product.selected_or_first_available_variant.inventory_quantity
-  if oversell_reason == 'Bundle Only' and inventory_quantity < 1
-    assign bundle_only = true
+  if settings.quick_add_enable and product.available
+    assign inventory_quantity = product.selected_or_first_available_variant.inventory_quantity
+    if inventory_quantity < 1
+      assign oversell_reason = product.selected_or_first_available_variant.metafields.custom.oversell_reason
+      if oversell_reason == 'Bundle Only'
+        assign bundle_only = true
+      endif
+    endif
   endif
   assign offer_color = 't-forest-green'
   assign sale_color = 't-midseason'
   assign outlet_color = 't-coral-blush'
+  assign has_color_swatches = false
+  if settings.enable_swatches and product.tags contains 'colorswatch'
+    assign has_color_swatches = true
+  endif
+  if widths == blank
+    assign widths = '160, 200, 280, 360, 540, 720'
+  endif
 -%}
 
 <div
@@ -127,7 +138,8 @@
                 sizes: sizes,
                 sizeVariable: sizeVariable,
                 fallback: fallback,
-                widths: '160, 200, 280, 360, 540, 720, 900'
+                widths: widths,
+                loading: loading
               -%}
             {%- else -%}
               {%- capture placeholder -%}product-{% cycle 1, 2, 3, 4, 5, 6 %}{%- endcapture -%}
@@ -153,7 +165,8 @@
                 sizes: sizes,
                 sizeVariable: sizeVariable,
                 fallback: fallback,
-                widths: '360, 540, 720, 900, 1080'
+                widths: widths,
+                loading: loading
               -%}
             {%- else -%}
               {%- capture placeholder -%}product-{% cycle 1, 2, 3, 4, 5, 6 %}{%- endcapture -%}
@@ -176,12 +189,12 @@
               sizes: sizes,
               sizeVariable: sizeVariable,
               fallback: fallback,
-              widths: '360, 540, 720, 1000'
+              widths: '360, 540, 720'
             -%}
           </div>
         {%- endif -%}
 
-        {%- if settings.enable_swatches -%}
+        {%- if has_color_swatches -%}
           {%- assign swatch_trigger = 'products.general.color_swatch_trigger' | t | downcase -%}
           {%- for option in product.options_with_values -%}
             {%- liquid
@@ -213,11 +226,16 @@
         {%- endif -%}
       </div>
         <!-- Start NBS -->
-          {%- render 'product-grid-item-tags', product: product -%}
+          {%- render 'product-grid-item-tags',
+            product: product,
+            product_state: product_state,
+            product_discount: product_discount,
+            product_discount_type: product_discount_type
+          -%}
         <!-- End NBS -->
       <div class="grid-item__meta">
         <div class="grid-item__meta-main">
-          {%- if settings.enable_swatches and type == blank and product.tags contains 'colorswatch' -%}
+          {%- if has_color_swatches and type == blank -%}
             {%- liquid
               assign swatch_trigger = 'products.general.color_swatch_trigger' | t | downcase
               assign swatch_file_extension = 'png'
@@ -357,7 +375,7 @@
           {%- endif -%}
         </div>
 
-        {%- if settings.enable_swatches and type == 'horizontal' and product.tags contains 'colorswatch' -%}
+        {%- if has_color_swatches and type == 'horizontal' -%}
           {%- liquid
             assign swatch_trigger = 'products.general.color_swatch_trigger' | t | downcase
             assign swatch_file_extension = 'png'

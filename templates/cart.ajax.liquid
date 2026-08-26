@@ -14,7 +14,16 @@
   data-count="{{ cart.item_count }}"
   data-cart-subtotal="{{ cart.total_price }}">
   {% for item in cart.items %}
-    {%- render 'cart-item', product: item, sizes: '100px', -%}
+    {%- assign oversell_reason = item.variant.metafields.custom.oversell_reason.value -%}
+    {%- assign due_date = item.variant.metafields.custom.due_date | date: '%d-%m-%Y' -%}
+    {%- assign lead = item.variant.metafields.custom.oversell_lead -%}
+    {%- render 'cart-item',
+      product: item,
+      sizes: '100px',
+      oversell_reason: oversell_reason,
+      due_date: due_date,
+      lead: lead
+    -%}
   {% endfor %}
 </div>
 <div class="cart__discounts text-right{% if cart.cart_level_discount_applications == blank %} hide{% endif %}">

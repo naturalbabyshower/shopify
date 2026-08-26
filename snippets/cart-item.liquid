@@ -48,11 +48,19 @@
           {% endunless %}
         {% endfor %}
       {% endif %}
+      {%- liquid
+        # Always read metafields from the line item. Cart AJAX rebuilds omit
+        # these parameters, which previously fell through to a 30-day default.
+        assign status_oversell_reason = product.variant.metafields.custom.oversell_reason.value
+        assign status_due_date = product.variant.metafields.custom.due_date | date: '%d-%m-%Y'
+        assign status_lead = product.variant.metafields.custom.oversell_lead
+      -%}
       {%- render 'cart-item-status',
         live_variant_qty: product.variant.inventory_quantity,
-        lead: lead,
-        oversell_reason: oversell_reason,
-        due_date: due_date
+        lead: status_lead,
+        oversell_reason: status_oversell_reason,
+        due_date: status_due_date,
+        product_type: product.product.type
       -%}
     </div>
     <div class="cart__item-sub">
