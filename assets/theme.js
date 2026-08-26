@@ -6729,16 +6729,39 @@ if (console && console.log) {
           return;
         }
         var filters = sidebarWrapper.querySelector(selectors.filters).cloneNode(true);
-  
+        this.collapseMobileFilterGroups(filters);
+
         var inlineWrapper = document.querySelector(selectors.inlineWrapper);
-  
+
         inlineWrapper.innerHTML = '';
         inlineWrapper.append(filters);
-  
+
         // Update collapsible JS
         theme.collapsibles.init(inlineWrapper);
-  
+
         config.mobileFiltersInPlace = true;
+      },
+
+      collapseMobileFilterGroups: function(filters) {
+        if (!filters) {
+          return;
+        }
+
+        filters.querySelectorAll('.collection-sidebar__group').forEach(function(group) {
+          if (group.querySelector('.tag--active')) {
+            return;
+          }
+
+          group.querySelectorAll('.collapsible-trigger').forEach(function(trigger) {
+            trigger.classList.remove(classes.isOpen);
+            trigger.setAttribute('aria-expanded', 'false');
+          });
+
+          group.querySelectorAll('.collapsible-content').forEach(function(content) {
+            content.classList.remove(classes.isOpen);
+            content.style.height = '';
+          });
+        });
       },
   
       renderActiveTag: function(parent, el) {
