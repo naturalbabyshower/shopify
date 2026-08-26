@@ -59,7 +59,8 @@
                       collection: collection,
                       items: collection.products,
                       grid_style: block.settings.grid_style,
-                      quick_shop_enable: settings.quick_shop_enable
+                      quick_shop_enable: settings.quick_shop_enable,
+                      fallback: '50vw'
                     -%}
                   </div>
 
@@ -90,146 +91,28 @@
     }
   {%- endstyle -%}
 {%- endif -%}
-{% paginate collection.products by 10 %}
-{% assign collection_description = collection.metafields.global.description_tag.value %}
+{%- liquid
+  assign collection_description = collection.metafields.global.description_tag.value | default: collection.description
+-%}
 <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      "@id": "{{ collection.url | prepend: shop.url }}#collection",
-      "name": {{ collection.title | json }},
-      {% if collection_description != blank -%}
-      "description": {{ collection_description | strip_html | replace: '&nbsp;', ' ' | json }},
-      {% endif -%}
-      {% if collection.image -%}
-      "image": [{{ collection.image | image_url | prepend: "https:" | json }}],
-      {% endif -%}   
-      "url": "{{ shop.url }}{{ collection.url }}",
-      "isPartOf": {
-        "@type": "WebSite",
-        "@id": "{{ shop.url }}#website"
-      },
-      "mainEntityOfPage": {
-        "@id": "{{ collection.url | prepend: shop.url }}#collection"
-      },
-      "mainEntity": {
-        "@type": "ItemList",
-        "numberOfItems": {{ collection.products.size }},
-        "itemListOrder": "https://schema.org/ItemListUnordered",
-        "itemListElement": [
-        {% for product in collection.products -%}
-          {% assign variant = product.selected_or_first_available_variant -%}
-          {% assign meta_product_description = product.metafields.global.description_tag.value -%}
-          {% assign color_metaobject = product.metafields.custom.filter_colour.value -%}
-          {% assign mpn = variant.metafields.mm-google-shopping.mpn.value -%}
-          {% assign rating_value = product.metafields.yotpo.reviews_average -%}
-          {% assign review_count = product.metafields.yotpo.reviews_count -%}
-          {% assign review_count_num = review_count | times: 1.0 -%}
-        {
-            "@type": "ListItem",
-            "position": {{ forloop.index }},
-            "item": {
-              "@type": "Product",
-              "@id": "{{ product.url | prepend: shop.url }}#product",
-              "url": "{{ product.url | prepend: shop.url }}",
-              "name": {{ product.title | replace: '\t', '' | json }},
-              "description": {{ meta_product_description | default: product.description | strip_html | replace: '&nbsp;', ' '| truncate: 180 | json }},
-              "sku": {{ variant.sku | json }}, 
-              {% if variant.barcode != blank -%}
-              "gtin13": {{ variant.barcode | json }},
-              {% endif -%}
-              {% if mpn != blank -%}
-              "mpn": {{ mpn | json }},
-              {% endif -%}
-              {% if color_metaobject -%}
-              "color": {{ color_metaobject | json }},
-              {% endif -%}
-              "image": [{{ product.featured_image | image_url | prepend: "https:" | json }}],
-              "brand": {
-                "@type": "Brand",
-                "name": {{ product.vendor | json }}
-              },
-              "manufacturer": {
-                "@type": "Organization",
-                "name": {{ product.vendor | json }}
-              },
-              {% if review_count_num > 0 -%}
-              "aggregateRating": {
-                "@type": "AggregateRating",
-                "ratingValue": "{{ rating_value }}",
-                "reviewCount": "{{ review_count }}"
-              },
-              {% endif -%}
-              
-              "offers": {
-                "@type": "Offer",
-                "itemCondition": "https://schema.org/NewCondition",
-                "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
-                "priceCurrency": {{ cart.currency.iso_code | json }},
-                {% if product.compare_at_price > product.price -%}
-                "price": {{ product.price | divided_by: 100.0 }},
-                "priceSpecification": {
-                  "@type": "UnitPriceSpecification",
-                  "price": {{ product.compare_at_price | divided_by: 100.0 }},
-                  "priceCurrency": {{ cart.currency.iso_code | json }},
-                  "priceType": "https://schema.org/ListPrice"
-                },
-                {% else -%}
-                "price":{{ product.price | divided_by: 100.0 }},
-                {% endif -%}
-                "priceValidUntil": "{{ 'now' | date: '%Y' | plus: 1 }}-12-31",
-                {% if shop.refund_policy.body != blank -%}
-                "hasMerchantReturnPolicy": {
-                  "@type": "MerchantReturnPolicy",
-                  "applicableCountry": "GB",
-                  "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-                  "merchantReturnDays": {{ shop.metafields.custom.merchantreturndays.value }},
-                  "merchantReturnLink": {{ shop.refund_policy.url | prepend: request.origin | json }},
-                  "returnMethod": "https://schema.org/ReturnByMail",
-                  "returnFees": "https://schema.org/ReturnShippingFees",
-                  "returnShippingFeesAmount": {
-                    "@type": "MonetaryAmount",
-                    "value": {{ shop.metafields.custom.returnshippingfeesamount }},
-                    "currency": {{ cart.currency.iso_code | json }}
-                  }
-                },
-                "shippingDetails": {
-                  "@type": "OfferShippingDetails",
-                  "shippingDestination": {
-                    "@type": "DefinedRegion",
-                    "addressCountry": "GB"
-                  },
-                  "shippingRate": {
-                    "@type": "MonetaryAmount",
-                    "value": {{ shop.metafields.custom.shippingratenextday }},
-                    "currency": {{ cart.currency.iso_code | json }}
-                  },
-                  "deliveryTime": {
-                    "@type": "ShippingDeliveryTime",
-                    "handlingTime": {
-                      "@type": "QuantitativeValue",
-                      "minValue": 0,
-                      "maxValue": 1,
-                      "unitCode": "DAY"
-                    },
-                    "transitTime": {
-                      "@type": "QuantitativeValue",
-                      "minValue": 0,
-                      "maxValue": 2,
-                      "unitCode": "DAY"
-                    }
-                  }
-                }
-                {%- endif -%}
-              }
-            }
-          }{% unless forloop.last -%},{% endunless -%}
-          {% endfor -%}
-        ]
-      }
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": {{ canonical_url | append: '#collection' | json }},
+    "name": {{ collection.title | json }},
+    "url": {{ canonical_url | json }}
+    {%- if collection_description != blank -%}
+    ,"description": {{ collection_description | strip_html | replace: '&nbsp;', ' ' | truncate: 300 | json }}
+    {%- endif -%}
+    {%- if collection.image -%}
+    ,"image": {{ collection.image | image_url: width: 1200 | json }}
+    {%- endif -%}
+    ,"isPartOf": {
+      "@type": "WebSite",
+      "@id": {{ shop.url | append: '#website' | json }}
     }
+  }
 </script>
-{% endpaginate %}
 
 {% schema %}
 {

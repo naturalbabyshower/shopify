@@ -125,7 +125,6 @@
           async></script>
   {% # theme-check-enable RemoteAsset %}
 
-  {%- render 'clerk' -%}
   {%- render 'trustpilot' -%}
 
 </head>
@@ -172,7 +171,9 @@
   </div>
 
   {%- render 'video-modal' -%}
-  {%- render 'photoswipe-template' -%}
+  {%- unless request.page_type == 'collection' or request.page_type == 'search' or request.page_type == 'list-collections' -%}
+    {%- render 'photoswipe-template' -%}
+  {%- endunless -%}
 
   {% if settings.quick_add_enable %}
     {%- render 'quick-add-modal' -%}
@@ -223,6 +224,7 @@
   </script>
 
   {%- render 'frontchat' -%}
+  {%- render 'clerk' -%}
 
   <!-- Clerk live search (non-blocking) -->
   <span
