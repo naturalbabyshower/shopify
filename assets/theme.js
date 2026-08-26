@@ -4654,8 +4654,18 @@ if (console && console.log) {
             list.classList.remove(classes.isActive);
           });
         }
-  
+
         this.wrapper.dataset.level = this.config.menuLevel;
+        this.scrollMenuToTop();
+      },
+
+      scrollMenuToTop: function() {
+        if (this.container) {
+          this.container.scrollTop = 0;
+        }
+        if (this.wrapper) {
+          this.wrapper.scrollTop = 0;
+        }
       },
   
       setWrapperHeight: function(h) {
