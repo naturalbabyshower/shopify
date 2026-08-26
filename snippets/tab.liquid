@@ -47,7 +47,10 @@
         {% elsif delivery %}
           {%- render 'product-tab-delivery', product: product, delivery_meta: delivery_meta -%}
         {% else %}
-          {{ content }}
+          {%- liquid
+            assign tab_content = content | replace: '<p>&nbsp;</p>', '' | replace: '<p> </p>', '' | replace: '<p></p>', '' | replace: '<p> </p>', '' | replace: '<p><br></p>', '' | replace: '<p><br/></p>', '' | replace: '<p><br /></p>', ''
+          -%}
+          {{ tab_content }}
         {% endif %}
       </div>
     </div>
