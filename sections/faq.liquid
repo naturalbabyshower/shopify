@@ -1,8 +1,12 @@
 {%- liquid
   assign section_nbs = false
+  assign faq_questions = 0
   for block in section.blocks
     if block.settings.title != blank
       assign section_nbs = true
+    endif
+    if block.type == 'question' and block.settings.title != blank
+      assign faq_questions = faq_questions | plus: 1
     endif
   endfor
 -%}
@@ -20,120 +24,125 @@
       </header>
     {%- endif -%}
 
-    {%- if section.blocks.size > 0 -%}
+    {%- if faq_questions > 0 -%}
       <script type="application/ld+json">
         {
           "@context": "https://schema.org",
           "@type": "FAQPage",
           {% if collection.url != blank -%}
-          "@id": "{{ collection.url | prepend: shop.url }}#faq",
+          "@id": {{ collection.url | prepend: shop.url | append: '#faq' | json }},
           "hasPart": {
-            "@id": "{{ collection.url | prepend: shop.url }}#collection"
+            "@id": {{ collection.url | prepend: shop.url | append: '#collection' | json }}
           },
           {% elsif product.url != blank -%}
-          "@id": "{{ product.url | prepend: shop.url }}#faq",
+          "@id": {{ product.url | prepend: shop.url | append: '#faq' | json }},
           "hasPart": {
-            "@id": "{{ product.url | prepend: shop.url }}#product"
+            "@id": {{ product.url | prepend: shop.url | append: '#product' | json }}
           },
           {% endif -%}
           "name": {{ section.settings.title | json }},
           "inLanguage": "en-GB",
           "mainEntity": [
-          {% for block in section.blocks -%}
-          {% case block.type -%}
-          {% when 'question' -%}
-            {
-            "@type": "Question",
-                "name": {{ block.settings.title |  json }},
+          {%- assign faq_schema_comma = false -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'question' and block.settings.title != blank -%}
+              {%- if faq_schema_comma -%},{%- endif -%}
+              {
+                "@type": "Question",
+                "name": {{ block.settings.title | json }},
                 "acceptedAnswer": {
-                "@type": "Answer",
-                "text": {{ block.settings.text
-                              | replace: '</h1>', '\n\n'
-                              | replace: '</h2>', '\n\n'
-                              | replace: '</h3>', '\n\n'
-                              | replace: '</h4>', '\n\n'
-                              | replace: '</p>', '\n\n'
-                              | replace: '</li>', '. '
-                              | replace: '<br>', '\n'
-                              | strip_html
-                              | strip_newlines
-                              | replace: '\n\n', '. '
-                              | replace: '\n', '. '
-                              | replace: '🌱', ''
-                              | replace: '..', '.'
-                              | json }}
+                  "@type": "Answer",
+                  "text": {{ block.settings.text
+                    | replace: '</h1>', ' '
+                    | replace: '</h2>', ' '
+                    | replace: '</h3>', ' '
+                    | replace: '</h4>', ' '
+                    | replace: '</p>', ' '
+                    | replace: '</li>', '. '
+                    | replace: '<br>', ' '
+                    | strip_html
+                    | strip_newlines
+                    | replace: '🌱', ''
+                    | strip
+                    | json }}
                 }
-            }{% unless forloop.last -%},{% endunless -%}
-          {% endcase -%}
-          {% endfor -%}
+              }
+              {%- assign faq_schema_comma = true -%}
+            {%- endif -%}
+          {%- endfor -%}
           ]
         }
       </script>
+    {%- endif -%}
 
-      {%- for block in section.blocks -%}
-        <div {{ block.shopify_attributes }}>
-          {% case block.type %}
-            {% when 'rich-text' %}
-              <div class="index-section index-section--faq">
-                <div class="text-{{ block.settings.align_text }}">
-                  {%- if block.settings.title != blank -%}
-                    <h4 class="h2">
-                      {{ block.settings.title | escape }}
-                    </h4>
-                  {%- endif -%}
-                  {%- if block.settings.text != blank -%}
-                    <div class="rte">
-                      {%- if block.settings.enlarge_text %}<div class="enlarge-text">{% endif -%}
-                      {{ block.settings.text }}
-                      {%- if block.settings.enlarge_text %}</div>{% endif -%}
-                    </div>
-                  {%- endif -%}
+    {%- for block in section.blocks -%}
+      <div {{ block.shopify_attributes }}>
+        {% case block.type %}
+          {% when 'rich-text' %}
+            <div class="index-section index-section--faq">
+              <div class="text-{{ block.settings.align_text }}">
+                {%- if block.settings.title != blank -%}
+                  <h4 class="h2">
+                    {{ block.settings.title | escape }}
+                  </h4>
+                {%- endif -%}
+                {%- if block.settings.text != blank -%}
+                  <div class="rte">
+                    {%- if block.settings.enlarge_text %}<div class="enlarge-text">{% endif -%}
+                    {{ block.settings.text }}
+                    {%- if block.settings.enlarge_text %}</div>{% endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+
+          {% when 'question' %}
+            <collapsible-elements>
+              <h4 class="faq-question__heading">
+                <button
+                  type="button"
+                  class="label collapsible-trigger collapsible-trigger-btn collapsible-trigger-btn--borders collapsible--auto-height"
+                  aria-controls="FAQ-content-{{ block.id }}"
+                  aria-expanded="false"
+                >
+                  <span class="collapsible-trigger__layout">
+                    <span>{{ block.settings.title | escape }}</span>
+                    <span class="collapsible-trigger__icon collapsible-trigger__icon--open" role="presentation">
+                      <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        role="presentation"
+                        class="icon icon--wide icon-chevron-down"
+                        viewBox="0 0 28 16"
+                      >
+                        <path d="m1.57 1.59 12.76 12.77L27.1 1.59" stroke-width="2" stroke="#000" fill="none"/>
+                      </svg>
+                    </span>
+                  </span>
+                </button>
+              </h4>
+              <div id="FAQ-content-{{ block.id }}" class="collapsible-content collapsible-content--all">
+                <div class="collapsible-content__inner rte">
+                  {{ block.settings.text }}
                 </div>
               </div>
-
-            {% when 'question' %}
-              <collapsible-elements>
-                <div>
-                  <button
-                    type="button"
-                    class="label collapsible-trigger collapsible-trigger-btn collapsible-trigger-btn--borders collapsible--auto-height"
-                    aria-controls="FAQ-content-{{ block.id }}"
-                    aria-expanded="false"
-                  >
-                    <span class="collapsible-trigger__layout">
-                      <span>
-                        <span>{{ block.settings.title }}</span>
-                      </span>
-                      <span class="collapsible-trigger__icon collapsible-trigger__icon--open" role="presentation">
-                        <svg
-                          aria-hidden="true"
-                          focusable="false"
-                          role="presentation"
-                          class="icon icon--wide icon-chevron-down"
-                          viewBox="0 0 28 16"
-                        >
-                          <path d="m1.57 1.59 12.76 12.77L27.1 1.59" stroke-width="2" stroke="#000" fill="none"/>
-                        </svg>
-                      </span>
-                    </span>
-                  </button>
-                  <div id="FAQ-content-{{ block.id }}" class="collapsible-content collapsible-content--all">
-                    <div class="collapsible-content__inner rte">
-                      {{ block.settings.text }}
-                    </div>
-                  </div>
-                </div>
-              </collapsible-elements>
-          {% endcase %}
-        </div>
-      {%- endfor -%}
-    {%- endif -%}
-    {%- if section.blocks.size == 0 -%}
-      <div class="placeholder-noblocks">
-        {{ 'home_page.onboarding.no_content' | t }}
+            </collapsible-elements>
+        {% endcase %}
       </div>
-    {%- endif -%}
+    {%- endfor -%}
   </div>
+  {%- style -%}
+    #shopify-section-{{ section.id }} .faq-question__heading {
+      margin: 0;
+      font-size: inherit;
+      font-weight: inherit;
+      letter-spacing: inherit;
+      line-height: inherit;
+    }
+    #shopify-section-{{ section.id }} .faq-question__heading + .collapsible-content--expanded {
+      margin-bottom: 30px;
+    }
+  {%- endstyle -%}
 
   {%- if section.settings.divider -%}</div>{%- endif -%}
 {%- endif -%}
