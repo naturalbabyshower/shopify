@@ -1,0 +1,53 @@
+{% comment %}
+  Delivery, returns, and price-match info shown under Add to Cart.
+{% endcomment %}
+
+{%- liquid
+  assign oversell_reason = current_variant.metafields.custom.oversell_reason
+  if oversell_reason == 'Dropship'
+    assign returns_text = 'Return policy below'
+  elsif product_discount == 'Outlet'
+    assign returns_text = 'Easy returns within 14 days'
+  else
+    assign returns_text = 'Easy returns within 60 days'
+  endif
+
+  if current_variant.price > 7499
+    assign delivery_text = 'Free delivery | order by 4pm for next day'
+  else
+    assign delivery_text = 'Free delivery over £75 | order by 4pm for next day'
+  endif
+-%}
+
+<div class="product-purchase-info">
+  <ul class="product-purchase-info__list">
+    <li class="product-purchase-info__row">
+      <span class="product-purchase-info__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7h11v9H3z"/>
+          <path d="M14 10h4.2L21 13.2V16h-7v-6z"/>
+          <path d="M7 18.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM17 18.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+        </svg>
+      </span>
+      <span>{{ delivery_text }}</span>
+    </li>
+    <li class="product-purchase-info__row">
+      <span class="product-purchase-info__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12a9 9 0 1 0 3-6.7"/>
+          <path d="M3 4v5h5"/>
+        </svg>
+      </span>
+      <span>{{ returns_text }}</span>
+    </li>
+    <li class="product-purchase-info__row">
+      <span class="product-purchase-info__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3 20 6v6.2c0 4.7-3.2 8.1-8 9.8-4.8-1.7-8-5.1-8-9.8V6l8-3z"/>
+          <path d="m8.7 12.2 2.3 2.3 4.4-4.8"/>
+        </svg>
+      </span>
+      <span>{%- render 'product-price-match', current_variant: current_variant -%}</span>
+    </li>
+  </ul>
+</div>

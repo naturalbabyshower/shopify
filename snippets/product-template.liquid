@@ -232,6 +232,10 @@
                             block: block
                           -%}
                         </div>
+                        {%- render 'product-purchase-info',
+                          current_variant: current_variant,
+                          product_discount: product_discount
+                        -%}
                       {%- endunless -%}
 
                       {%- if block.settings.surface_pickup_enable -%}
