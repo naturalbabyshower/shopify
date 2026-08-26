@@ -7,7 +7,13 @@
   </div>
   {%- render 'product-brand-links', product: product -%}
   <div class="product-header-nav__tags">
-    {%- render 'product-grid-item-tags', product: product -%}
+    {%- render 'product-grid-item-tags',
+      product: product,
+      product_state: product.metafields.custom.product_state,
+      product_discount: product.metafields.custom.product_discount,
+      product_discount_type: product.metafields.custom.product_discount_type,
+      product_discount_reason: product.metafields.custom.product_discount_reason
+    -%}
   </div>
   {%- if isModal -%}
     <p class="h2 product-single__title">
