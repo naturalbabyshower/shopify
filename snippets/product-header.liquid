@@ -1,0 +1,49 @@
+{% comment %}
+  Product title, vendor, SKU, and header nav for product-template.
+{% endcomment %}
+<div class="product-header-nav">
+  <div class="product-header-nav__crumbs">
+    {%- render 'product-breadcrumbs', product: product -%}
+  </div>
+  {%- render 'product-brand-links', product: product -%}
+  <div class="product-header-nav__tags">
+    {%- render 'product-grid-item-tags', product: product -%}
+  </div>
+  {%- if isModal -%}
+    <p class="h2 product-single__title">
+      {{ product.title }}
+    </p>
+  {%- else -%}
+    <h1 class="h2 product-single__title">
+      {%- unless product.empty? -%}
+        {{ product.title }}
+      {%- else -%}
+        {{ 'home_page.onboarding.product_title' | t }}
+      {%- endunless -%}
+    </h1>
+  {%- endif -%}
+  {%- render 'collection-product-extra-details', product: product -%}
+  {%- if settings.vendor_enable or sku_enable -%}
+    <div class="product-single__vendor-sku">
+      {%- if settings.vendor_enable -%}
+        <span class="product-single__vendor">
+          {%- assign vendor_handle = product.vendor | handleize -%}
+          {%- if collections[vendor_handle] != empty -%}
+            <a href="{{ routes.collections_url }}/{{ collections[vendor_handle].handle }}">
+              {{ collections[vendor_handle].title }}
+            </a>
+          {%- else -%}
+            {{ product.vendor | link_to_vendor }}
+          {%- endif -%}
+        </span>
+      {%- endif -%}
+      {%- if sku_enable -%}
+        <span data-sku class="product-single__sku t-lightgrey{% if current_variant.sku == blank %} hide{% endif %}">
+          SKU: <span data-sku-id>{{ current_variant.sku }}</span>
+        </span>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+  {%- render 'product-model-link', product: product -%}
+</div>
+{%- render 'product-schema', product: product, current_variant: current_variant -%}

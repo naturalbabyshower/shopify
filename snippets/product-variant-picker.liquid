@@ -1,0 +1,54 @@
+{% comment %}
+  Variant picker block for product-template.
+{% endcomment %}
+<div
+  class="product-block product-block--variant"
+  {% if block.settings.product_dynamic_variants_enable %}
+    data-dynamic-variants-enabled
+  {% endif %}
+  {{ block.shopify_attributes }}
+>
+  {%- unless product.has_only_default_variant -%}
+    {%- for option in product.options_with_values -%}
+      {%- liquid
+        assign is_color = false
+        assign color_option_index = forloop.index0
+        if block.settings.color_swatches and product.tags contains 'colorswatch'
+          assign swatch_trigger = 'products.general.color_swatch_trigger' | t | downcase
+          assign downcased_option = option.name | downcase
+          if downcased_option contains swatch_trigger
+            assign is_color = true
+          elsif swatch_trigger == 'color' and downcased_option contains 'colour'
+            assign is_color = true
+          endif
+        endif
+      -%}
+
+      {%- if block.settings.picker_type == 'button' -%}
+        {%- render 'variant-button',
+          block: block,
+          product: product,
+          form_id: form_id,
+          section_id: section_id,
+          option: option,
+          forloop: forloop,
+          variant_labels: block.settings.variant_labels,
+          is_color: is_color,
+          color_option_index: color_option_index,
+          connect_to_sizechart: connect_to_sizechart,
+          sizechart_index: sizechart_index
+        -%}
+      {%- else -%}
+        {%- render 'variant-dropdown',
+          product: product,
+          form_id: form_id,
+          section_id: section_id,
+          option: option,
+          forloop: forloop,
+          variant_labels: block.settings.variant_labels
+        -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endunless -%}
+  {% render 'product-audio' %}
+</div>
