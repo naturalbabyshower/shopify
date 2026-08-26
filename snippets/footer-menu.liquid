@@ -1,16 +1,41 @@
-<h2 class="footer__title">
-  {%- if block.settings.title == blank -%}
-    {{ linklists[block.settings.menu].title }}
-  {%- else -%}
-    {{ block.settings.title }}
-  {%- endif -%}
-</h2>
+{%- liquid
+  if block.settings.title == blank
+    assign menu_title = linklists[block.settings.menu].title
+  else
+    assign menu_title = block.settings.title
+  endif
+  assign menu_id = 'FooterMenu-' | append: block.id
+-%}
 
-<ul class="footer__menu">
-  {%- for link in linklists[block.settings.menu].links -%}
-    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-  {%- endfor -%}
-  {%- if block.settings.enable_account_link -%}
-    <li><a href="{{ routes.account_url }}">{{ 'customer.account.title' | t }}</a></li>
-  {%- endif -%}
-</ul>
+<div class="footer__menu-block">
+  <h2 class="footer__title footer__title--desktop small--hide">
+    {{ menu_title }}
+  </h2>
+
+  <button
+    type="button"
+    class="footer__menu-trigger collapsible-trigger collapsible-trigger-btn collapsible-trigger-btn--borders collapsible--auto-height medium-up--hide"
+    data-controls="{{ menu_id }}"
+  >
+    <span class="collapsible-trigger__layout">
+      <span>{{ menu_title }}</span>
+      {%- render 'collapsible-icons' -%}
+    </span>
+  </button>
+
+  <div
+    data-id="{{ menu_id }}"
+    class="collapsible-content collapsible-content--all collapsible--auto-height footer__menu-accordion"
+  >
+    <div class="collapsible-content__inner">
+      <ul class="footer__menu">
+        {%- for link in linklists[block.settings.menu].links -%}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {%- endfor -%}
+        {%- if block.settings.enable_account_link -%}
+          <li><a href="{{ routes.account_url }}">{{ 'customer.account.title' | t }}</a></li>
+        {%- endif -%}
+      </ul>
+    </div>
+  </div>
+</div>
