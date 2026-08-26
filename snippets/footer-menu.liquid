@@ -8,13 +8,14 @@
 -%}
 
 <div class="footer__menu-block">
-  <h2 class="footer__title footer__title--desktop small--hide">
+  <h2 class="footer__title footer__title--static">
     {{ menu_title }}
   </h2>
 
   <button
     type="button"
-    class="footer__menu-trigger collapsible-trigger collapsible-trigger-btn collapsible-trigger-btn--borders collapsible--auto-height medium-up--hide"
+    class="footer__menu-trigger collapsible-trigger collapsible-trigger-btn collapsible-trigger-btn--borders collapsible--auto-height"
+    aria-expanded="false"
     data-controls="{{ menu_id }}"
   >
     <span class="collapsible-trigger__layout">
@@ -23,10 +24,7 @@
     </span>
   </button>
 
-  <div
-    data-id="{{ menu_id }}"
-    class="collapsible-content collapsible-content--all collapsible--auto-height footer__menu-accordion"
-  >
+  <div data-id="{{ menu_id }}" class="collapsible-content footer__menu-accordion">
     <div class="collapsible-content__inner">
       <ul class="footer__menu">
         {%- for link in linklists[block.settings.menu].links -%}
