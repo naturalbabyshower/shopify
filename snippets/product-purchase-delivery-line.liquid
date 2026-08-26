@@ -1,6 +1,6 @@
 {% comment %}
   Delivery line for the purchase-info box.
-  In stock: Free delivery | In stock
+  In stock: Free delivery | order by 4pm for next day
   Backorder: Free delivery | Ship by {due date}, or converted lead weeks
   Dropship: Free delivery | Ship in {lead}
 {% endcomment %}
@@ -9,7 +9,7 @@
   assign due_raw = variant.metafields.custom.due_date.value | default: variant.metafields.custom.due_date
   assign lead = variant.metafields.custom.oversell_lead.value | default: variant.metafields.custom.oversell_lead
   assign qty = variant.inventory_quantity | plus: 0
-  assign suffix = 'In stock'
+  assign suffix = 'order by 4pm for next day'
 
   if variant.inventory_management != blank and qty < 1
     if reason == 'Dropship'
