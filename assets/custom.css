@@ -2641,7 +2641,7 @@ input#Search::placeholder {
   display: flex;
   font-size: calc(var(--typeBaseSize) + 1px);
   gap: 12px;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 @media only screen and (min-width: 769px) {
@@ -2655,20 +2655,24 @@ input#Search::placeholder {
 }
 
 .product-purchase-info__icon {
-  align-items: center;
   color: var(--color-charcoal-grey);
   display: flex;
-  flex: 0 0 1.15em;
-  height: 1.15em;
-  justify-content: center;
-  transform: translateY(1px);
-  width: 1.15em;
+  flex: none;
+  height: 22px;
+  width: 22px;
 }
 
 .product-purchase-info__icon svg {
   display: block;
-  height: 100%;
-  width: 100%;
+  flex: none;
+  height: 22px;
+  width: 22px;
+}
+
+.product-purchase-info__row > span:not(.product-purchase-info__icon) {
+  align-items: center;
+  display: flex;
+  min-height: 22px;
 }
 
 .product-purchase-info a {
