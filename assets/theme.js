@@ -7155,9 +7155,20 @@ if (console && console.log) {
   
         var clone = footerMenus.cloneNode(true);
         clone.id = '';
+        clone.classList.add('mobile-nav-footer-menus');
   
         // Append cloned footer menus to mobile nav
         headerFooter.appendChild(clone);
+
+        // Collapse is CSS-scoped to this clone. Never keep FAQ --all on the
+        // panel (it hides lists everywhere) or auto-height on the content
+        // (that prevents the panel from closing).
+        headerFooter.querySelectorAll('.footer__menu-accordion').forEach(function(panel) {
+          panel.classList.remove('collapsible-content--all');
+          panel.classList.remove('collapsible--auto-height');
+        });
+
+        theme.collapsibles.init(headerFooter);
   
         // If localization form, update IDs so they don't match footer
         var localizationForm = headerFooter.querySelector('.multi-selectors');
