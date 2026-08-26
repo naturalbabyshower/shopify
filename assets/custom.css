@@ -2628,7 +2628,7 @@ input#Search::placeholder {
 .product-purchase-info__row {
   align-items: center;
   display: flex;
-  font-size: calc(var(--typeBaseSize) - 1px);
+  font-size: calc(var(--typeBaseSize) + 1px);
   gap: 12px;
   line-height: 1.35;
 }
