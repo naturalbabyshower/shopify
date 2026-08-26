@@ -15,9 +15,9 @@
   <div id="section-faqs" class="page-width page-width--narrow section-faqs">
     {%- if section.settings.title != blank -%}
       <header class="section-header text-{{ section.settings.heading_position }}">
-        <h3 class="section-header__title {{ section.settings.heading_size }}">
+        <h2 class="section-header__title {{ section.settings.heading_size }}">
           {{ section.settings.title | escape }}
-        </h3>
+        </h2>
         {% unless template.name == 'page' %}
           {%- render 'scroll-up' -%}
         {% endunless %}
@@ -98,7 +98,7 @@
 
           {% when 'question' %}
             <collapsible-elements>
-              <h4 class="faq-question__heading">
+              <h3 class="faq-question__heading">
                 <button
                   type="button"
                   class="label collapsible-trigger collapsible-trigger-btn collapsible-trigger-btn--borders collapsible--auto-height"
@@ -120,7 +120,7 @@
                     </span>
                   </span>
                 </button>
-              </h4>
+              </h3>
               <div id="FAQ-content-{{ block.id }}" class="collapsible-content collapsible-content--all">
                 <div class="collapsible-content__inner rte">
                   {{ block.settings.text }}
