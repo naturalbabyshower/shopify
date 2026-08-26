@@ -1164,6 +1164,8 @@ color: #585B56;
 
 .product-brand-links {
   float: right;
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1600,7 +1602,11 @@ margin: 10px 0 5px;
 }
 
 .product-single__vendor-sku {
-opacity:.85
+  opacity: 1;
+}
+
+.product-single__vendor-sku > span {
+  opacity: .85;
 }
 
 .product__policies {
