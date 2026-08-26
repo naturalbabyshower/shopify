@@ -147,69 +147,9 @@
     assign crumb_urls = type_urls
     assign crumb_count = type_count
   endif
-
-  assign model_title = ''
-  assign model_url = ''
-  assign model_handle = ''
-  assign model_mf = product.metafields.custom.model_collection
-  assign model_value = model_mf.value
-
-  if model_mf.type contains 'list'
-    for list_col in model_value
-      if list_col.title != blank
-        assign model_title = list_col.title
-        assign model_url = list_col.url
-        assign model_handle = list_col.handle
-        break
-      endif
-    endfor
-  elsif model_value.collection.value != blank
-    assign model_title = model_value.collection.value.title
-    assign model_url = model_value.collection.value.url
-    assign model_handle = model_value.collection.value.handle
-  elsif model_value.title != blank
-    assign model_title = model_value.title
-    assign model_url = model_value.url
-    assign model_handle = model_value.handle
-  elsif model_value contains 'gid://shopify/Collection/'
-    assign gid_id = model_value | split: '/' | last | plus: 0
-    for col in product.collections
-      if col.id == gid_id
-        assign model_title = col.title
-        assign model_url = col.url
-        assign model_handle = col.handle
-        break
-      endif
-    endfor
-  elsif model_value != blank
-    assign model_handle = model_value | handleize
-  endif
-
-  if model_handle != blank
-    if model_title == blank
-      assign model_title = collections[model_handle].title
-    endif
-    if model_url == blank
-      assign model_url = collections[model_handle].url
-    endif
-    if model_url == blank
-      assign model_url = routes.collections_url | append: '/' | append: model_handle
-    endif
-  endif
-
-  if model_title == blank or model_url == blank
-    for col in product.collections
-      assign col_level = col.metafields.custom.collection_level.value | default: col.metafields.custom.collection_level | downcase
-      if col_level == 'model' or col_level == 'range'
-        assign model_title = col.title
-        assign model_url = col.url
-        break
-      endif
-    endfor
-  endif
 -%}
 
-{%- if crumb_count > 0 or model_title != blank -%}
+{%- if crumb_count > 0 -%}
   {%- assign origin = request.origin | default: shop.url -%}
   {%- assign title_array = crumb_titles | split: '|||' -%}
   {%- assign url_array = crumb_urls | split: '|||' -%}
@@ -226,50 +166,40 @@
         {%- endif -%}
       {%- endif -%}
     {%- endfor -%}
-    {%- if model_title != blank and model_url != blank -%}
-      <span class="breadcrumb__model{% unless show_sep %} breadcrumb__model--solo{% endunless %}">
-        {%- if show_sep -%}
-          <span class="breadcrumb__model-sep" aria-hidden="true">|</span>
-        {%- endif -%}
-        <a href="{{ model_url }}">View {{ model_title }}</a>
-      </span>
-    {%- endif -%}
   </nav>
-  {%- if crumb_count > 0 -%}
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": {{ origin | append: routes.root_url | json }}
-          }
-          {%- assign position = 2 -%}
-          {%- for title in title_array -%}
-            {%- if title != blank -%}
-              {%- assign parent_url = url_array[forloop.index0] -%}
-              {%- if parent_url != blank -%}
-                ,{
-                  "@type": "ListItem",
-                  "position": {{ position }},
-                  "name": {{ title | json }},
-                  "item": {{ origin | append: parent_url | json }}
-                }
-                {%- assign position = position | plus: 1 -%}
-              {%- endif -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": {{ origin | append: routes.root_url | json }}
+        }
+        {%- assign position = 2 -%}
+        {%- for title in title_array -%}
+          {%- if title != blank -%}
+            {%- assign parent_url = url_array[forloop.index0] -%}
+            {%- if parent_url != blank -%}
+              ,{
+                "@type": "ListItem",
+                "position": {{ position }},
+                "name": {{ title | json }},
+                "item": {{ origin | append: parent_url | json }}
+              }
+              {%- assign position = position | plus: 1 -%}
             {%- endif -%}
-          {%- endfor -%}
-          ,{
-            "@type": "ListItem",
-            "position": {{ position }},
-            "name": {{ product.title | json }},
-            "item": {{ origin | append: product.url | json }}
-          }
-        ]
-      }
-    </script>
-  {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+        ,{
+          "@type": "ListItem",
+          "position": {{ position }},
+          "name": {{ product.title | json }},
+          "item": {{ origin | append: product.url | json }}
+        }
+      ]
+    }
+  </script>
 {%- endif -%}

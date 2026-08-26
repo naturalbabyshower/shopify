@@ -1099,20 +1099,17 @@ text-decoration: underline;
 color: #585B56;
 }
 
-.breadcrumb__model {
-  display: inline-flex;
-  align-items: center;
-  margin-left: 10px;
-  gap: 10px;
-  white-space: nowrap;
-}
-
-.breadcrumb__model--solo {
-  margin-left: 0;
-}
-
-.breadcrumb__model-sep {
+.product-model-link {
+  display: inline-block;
+  margin: 6px 0 0;
+  font-size: calc(var(--typeBaseSize) * 0.9);
   color: #767973;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.product-model-link:hover {
+  color: #585B56;
 }
 
 .product-header-nav {
