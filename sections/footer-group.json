@@ -1,1 +1,270 @@
-{"type":"footer","name":"t:sections.footer-group.name","sections":{"slideshow_adwCnH":{"type":"slideshow","blocks":{"hero_BqFNBT":{"type":"hero","disabled":true,"settings":{"top_subheading":"","title":"","title_size":70,"subheading":"","link":"shopify:\/\/collections\/sale","link_text":"","link_2":"","link_text_2":"","color_accent":"#ffffff","text_align":"vertical-bottom horizontal-left","image":"shopify:\/\/shop_images\/footer-banner-web-V2.jpg","image_mobile":"shopify:\/\/shop_images\/Footer-banner-mob-V2_1.jpg","overlay_opacity":0}},"hero_UKRPA8":{"type":"hero","settings":{"top_subheading":"","title":"","title_size":40,"subheading":"","link":"shopify:\/\/collections\/sale","link_text":"","link_2":"","link_text_2":"","color_accent":"#ffffff","text_align":"vertical-bottom horizontal-left","image":"shopify:\/\/shop_images\/footer-banner-web-1_2.jpg","image_mobile":"shopify:\/\/shop_images\/footer-banner-mobile-1_3.jpg","overlay_opacity":0}},"hero_9TQEqK":{"type":"hero","settings":{"top_subheading":"","title":"","title_size":70,"subheading":"","link":"shopify:\/\/collections\/most-loved","link_text":"","link_2":"","link_text_2":"","color_accent":"#ffffff","text_align":"vertical-center horizontal-center","image":"shopify:\/\/shop_images\/expecting-in-2026-footer-banner-web.png","image_mobile":"shopify:\/\/shop_images\/expecting-in-2026-footer-banner-mobile.png","overlay_opacity":0}}},"block_order":["hero_BqFNBT","hero_UKRPA8","hero_9TQEqK"],"custom_css":[".hero--padded {margin-top: 15px; margin-bottom: 20px;}"],"settings":{"full_width":false,"desktop_size":0,"mobile_size":0,"style":"bars","autoplay":true,"autoplay_speed":6,"lazyload_images":true}},"f66ec86b-8def-489c-b389-1226a5e2e644":{"type":"slideshow","blocks":{"hero_qen4f9":{"type":"hero","disabled":true,"settings":{"top_subheading":"","title":"","title_size":70,"subheading":"","link":"https:\/\/www.naturalbabyshower.co.uk\/pages\/black-friday?utm_source=website&utm_medium=organic &utm_campaign=footer&utm_content=black-friday-24","link_text":"","link_2":"","link_text_2":"","color_accent":"#ffffff","text_align":"vertical-bottom horizontal-left","image":"shopify:\/\/shop_images\/early-access-4000x692px_1.jpg","image_mobile":"shopify:\/\/shop_images\/early-access-sign-up_2_a1ced973-3179-4fa9-beaf-0c8204056023.jpg","overlay_opacity":0}},"sections--14836576780366__f66ec86b-8def-489c-b389-1226a5e2e644-hero-1":{"type":"hero","settings":{"top_subheading":"","title":"","title_size":70,"subheading":"","link":"","link_text":"","link_2":"","link_text_2":"","color_accent":"rgba(0,0,0,0)","text_align":"vertical-bottom horizontal-left","image":"shopify:\/\/shop_images\/Awards-Website-Footer-2026-web.jpg","image_mobile":"shopify:\/\/shop_images\/Awards-Website-Footer-2026-mob.jpg","overlay_opacity":0}}},"block_order":["hero_qen4f9","sections--14836576780366__f66ec86b-8def-489c-b389-1226a5e2e644-hero-1"],"custom_css":[".hero--padded {margin-top: 15px; margin-bottom: 25px;}"],"settings":{"full_width":false,"desktop_size":0,"mobile_size":0,"style":"minimal","autoplay":false,"autoplay_speed":5,"lazyload_images":true}},"17389307928f8376b2":{"type":"apps","blocks":{"klaviyo_email_marketing_sms_form_embed_block_4ak7Pn":{"type":"shopify:\/\/apps\/klaviyo-email-marketing-sms\/blocks\/form-embed-block\/2632fe16-c075-4321-a88b-50b567f42507","settings":{"formId":"RCRca7"}}},"block_order":["klaviyo_email_marketing_sms_form_embed_block_4ak7Pn"],"custom_css":[".klaviyo-form-RCRca7 {background-color: #f9f8f5;}",".index-section {margin: 0; padding: 15px 0 0;}"],"settings":{"full_width":true,"space_around":true}},"footer-promotions":{"type":"footer-promotions","disabled":true,"custom_css":[],"settings":{"hide_homepage":false,"image_size":"square"}},"footer":{"type":"footer","blocks":{"footer-0":{"type":"menu","settings":{"title":"","menu":"about-natural-baby-shower","enable_account_link":false}},"ce3382e5-b15c-458f-b4dd-5a6c876cbcc5":{"type":"menu","settings":{"title":"","menu":"help-customer-care","enable_account_link":false}},"6f16ac42-aad6-411a-bd31-6f40d5ef59a2":{"type":"menu","settings":{"title":"","menu":"offers-benefits","enable_account_link":false}},"menu_DFzLiM":{"type":"menu","settings":{"title":"","menu":"buying-advice","enable_account_link":false}},"menu_ady6t9":{"type":"menu","settings":{"title":"","menu":"services-shopping","enable_account_link":false}},"footer-1":{"type":"contact","settings":{"phone":"01276 408494","contact":"contact-us","chat":"","enable_social":true}},"footer-2":{"type":"payment","settings":{"show_payment_icons":true,"show_locale_selector":true,"show_currency_selector":true,"show_currency_flags":false}}},"block_order":["footer-0","ce3382e5-b15c-458f-b4dd-5a6c876cbcc5","6f16ac42-aad6-411a-bd31-6f40d5ef59a2","menu_DFzLiM","menu_ady6t9","footer-1","footer-2"],"settings":{"show_newsletter":false,"newsletter_richtext":"","footer_main_menu":false,"show_copyright":true,"copyright_text":"all rights reserved","policies_menu":"policies"}}},"order":["slideshow_adwCnH","f66ec86b-8def-489c-b389-1226a5e2e644","17389307928f8376b2","footer-promotions","footer"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "t:sections.footer-group.name",
+  "sections": {
+    "slideshow_adwCnH": {
+      "type": "slideshow",
+      "blocks": {
+        "hero_BqFNBT": {
+          "type": "hero",
+          "disabled": true,
+          "settings": {
+            "top_subheading": "",
+            "title": "",
+            "title_size": 70,
+            "subheading": "",
+            "link": "shopify://collections/sale",
+            "link_text": "",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "#ffffff",
+            "text_align": "vertical-bottom horizontal-left",
+            "image": "shopify://shop_images/footer-banner-web-V2.jpg",
+            "image_mobile": "shopify://shop_images/Footer-banner-mob-V2_1.jpg",
+            "overlay_opacity": 0
+          }
+        },
+        "hero_UKRPA8": {
+          "type": "hero",
+          "settings": {
+            "top_subheading": "",
+            "title": "",
+            "title_size": 40,
+            "subheading": "",
+            "link": "shopify://pages/store",
+            "link_text": "",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "#ffffff",
+            "text_align": "vertical-bottom horizontal-left",
+            "image": "shopify://shop_images/footer-banner-web_49.jpg",
+            "image_mobile": "shopify://shop_images/footer-banner-mobile_11_1.jpg",
+            "overlay_opacity": 0
+          }
+        },
+        "hero_9TQEqK": {
+          "type": "hero",
+          "disabled": true,
+          "settings": {
+            "top_subheading": "",
+            "title": "",
+            "title_size": 70,
+            "subheading": "",
+            "link": "shopify://collections/most-loved",
+            "link_text": "",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "#ffffff",
+            "text_align": "vertical-center horizontal-center",
+            "image": "shopify://shop_images/expecting-in-2026-footer-banner-web.png",
+            "image_mobile": "shopify://shop_images/expecting-in-2026-footer-banner-mobile.png",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "hero_BqFNBT",
+        "hero_UKRPA8",
+        "hero_9TQEqK"
+      ],
+      "custom_css": [
+        ".hero--padded {margin-top: 15px; margin-bottom: 20px;}"
+      ],
+      "settings": {
+        "full_width": false,
+        "desktop_size": 0,
+        "mobile_size": 0,
+        "style": "bars",
+        "autoplay": true,
+        "autoplay_speed": 6,
+        "lazyload_images": true
+      }
+    },
+    "f66ec86b-8def-489c-b389-1226a5e2e644": {
+      "type": "slideshow",
+      "blocks": {
+        "hero_qen4f9": {
+          "type": "hero",
+          "disabled": true,
+          "settings": {
+            "top_subheading": "",
+            "title": "",
+            "title_size": 70,
+            "subheading": "",
+            "link": "https://www.naturalbabyshower.co.uk/pages/black-friday?utm_source=website&utm_medium=organic &utm_campaign=footer&utm_content=black-friday-24",
+            "link_text": "",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "#ffffff",
+            "text_align": "vertical-bottom horizontal-left",
+            "image": "shopify://shop_images/early-access-4000x692px_1.jpg",
+            "image_mobile": "shopify://shop_images/early-access-sign-up_2_a1ced973-3179-4fa9-beaf-0c8204056023.jpg",
+            "overlay_opacity": 0
+          }
+        },
+        "sections--14836576780366__f66ec86b-8def-489c-b389-1226a5e2e644-hero-1": {
+          "type": "hero",
+          "settings": {
+            "top_subheading": "",
+            "title": "",
+            "title_size": 70,
+            "subheading": "",
+            "link": "",
+            "link_text": "",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "rgba(0,0,0,0)",
+            "text_align": "vertical-bottom horizontal-left",
+            "image": "shopify://shop_images/Awards-Website-Footer-2026-web.jpg",
+            "image_mobile": "shopify://shop_images/Awards-Website-Footer-2026-mob.jpg",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "hero_qen4f9",
+        "sections--14836576780366__f66ec86b-8def-489c-b389-1226a5e2e644-hero-1"
+      ],
+      "custom_css": [
+        ".hero--padded {margin-top: 15px; margin-bottom: 25px;}"
+      ],
+      "settings": {
+        "full_width": false,
+        "desktop_size": 0,
+        "mobile_size": 0,
+        "style": "minimal",
+        "autoplay": false,
+        "autoplay_speed": 5,
+        "lazyload_images": true
+      }
+    },
+    "17389307928f8376b2": {
+      "type": "apps",
+      "blocks": {
+        "klaviyo_email_marketing_sms_form_embed_block_4ak7Pn": {
+          "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/form-embed-block/2632fe16-c075-4321-a88b-50b567f42507",
+          "settings": {
+            "formId": "RCRca7"
+          }
+        }
+      },
+      "block_order": [
+        "klaviyo_email_marketing_sms_form_embed_block_4ak7Pn"
+      ],
+      "custom_css": [
+        ".klaviyo-form-RCRca7 {background-color: #f9f8f5;}",
+        ".index-section {margin: 0; padding: 15px 0 0;}"
+      ],
+      "settings": {
+        "full_width": true,
+        "space_around": true
+      }
+    },
+    "footer-promotions": {
+      "type": "footer-promotions",
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "hide_homepage": false,
+        "image_size": "square"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "footer-0": {
+          "type": "menu",
+          "settings": {
+            "title": "",
+            "menu": "about-natural-baby-shower",
+            "enable_account_link": false
+          }
+        },
+        "ce3382e5-b15c-458f-b4dd-5a6c876cbcc5": {
+          "type": "menu",
+          "settings": {
+            "title": "",
+            "menu": "help-customer-care",
+            "enable_account_link": false
+          }
+        },
+        "6f16ac42-aad6-411a-bd31-6f40d5ef59a2": {
+          "type": "menu",
+          "settings": {
+            "title": "",
+            "menu": "offers-benefits",
+            "enable_account_link": false
+          }
+        },
+        "menu_DFzLiM": {
+          "type": "menu",
+          "settings": {
+            "title": "",
+            "menu": "buying-advice",
+            "enable_account_link": false
+          }
+        },
+        "menu_ady6t9": {
+          "type": "menu",
+          "settings": {
+            "title": "",
+            "menu": "services-shopping",
+            "enable_account_link": false
+          }
+        },
+        "footer-1": {
+          "type": "contact",
+          "settings": {
+            "phone": "01276 408494",
+            "contact": "contact-us",
+            "chat": "",
+            "enable_social": true
+          }
+        },
+        "footer-2": {
+          "type": "payment",
+          "settings": {
+            "show_payment_icons": true,
+            "show_locale_selector": true,
+            "show_currency_selector": true,
+            "show_currency_flags": false
+          }
+        }
+      },
+      "block_order": [
+        "footer-0",
+        "ce3382e5-b15c-458f-b4dd-5a6c876cbcc5",
+        "6f16ac42-aad6-411a-bd31-6f40d5ef59a2",
+        "menu_DFzLiM",
+        "menu_ady6t9",
+        "footer-1",
+        "footer-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "show_newsletter": false,
+        "newsletter_richtext": "",
+        "footer_main_menu": false,
+        "show_copyright": true,
+        "copyright_text": "all rights reserved",
+        "policies_menu": "policies"
+      }
+    }
+  },
+  "order": [
+    "slideshow_adwCnH",
+    "f66ec86b-8def-489c-b389-1226a5e2e644",
+    "17389307928f8376b2",
+    "footer-promotions",
+    "footer"
+  ]
+}
