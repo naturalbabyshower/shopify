@@ -2745,3 +2745,119 @@ klarna-placement {
   display: block;
   overflow: hidden;
 }
+
+.brand-tabs {
+  display: flex;
+  width: 100%;
+}
+
+.brand-tabs__tab {
+  align-items: center;
+  display: flex;
+  flex: 1 1 0;
+  height: 28px;
+  justify-content: center;
+  min-width: 0;
+  padding: 4px 8px;
+  text-decoration: none;
+}
+
+.brand-tabs__tab--nbs {
+  background-color: #f9f8f5;
+  border-radius: 8px 8px 0 0;
+}
+
+.brand-tabs__tab--merino {
+  background-color: #dcd4c9;
+  border-radius: 8px 8px 0 0;
+}
+
+.brand-tabs__tab--babiators {
+  background-color: #2e61ae;
+  border-radius: 8px 8px 0 0;
+}
+
+.brand-tabs__logo {
+  display: block;
+  height: 14px;
+  max-width: 92%;
+  object-fit: contain;
+  object-position: center;
+  width: auto;
+}
+
+.brand-tabs__tab:hover {
+  opacity: 0.92;
+}
+
+.brand-tabs__tab:focus-visible {
+  outline: 2px solid var(--color-charcoal-grey, #585b56);
+  outline-offset: -2px;
+}
+
+@media only screen and (min-width: 769px) {
+  .brand-tabs {
+    width: 33.333%;
+  }
+
+  .brand-tabs__tab {
+    height: 32px;
+    padding: 4px 12px;
+  }
+
+  .brand-tabs__logo {
+    height: 16px;
+  }
+}
+
+.collection-sidebar .tag__checkbox,
+.collection-mobile-filters .tag__checkbox {
+  padding-left: 32px;
+}
+
+.collection-sidebar .tag__checkbox:before,
+.collection-mobile-filters .tag__checkbox:before {
+  background-color: #fff;
+  border: 2px solid var(--color-charcoal-grey, #585B56);
+  border-radius: 3px;
+  height: 20px;
+  width: 20px;
+}
+
+.collection-sidebar .tag__checkbox:after,
+.collection-mobile-filters .tag__checkbox:after {
+  height: 12px;
+  left: 4px;
+  width: 12px;
+}
+
+.collection-sidebar .tag--active .tag__checkbox:after,
+.collection-sidebar input:checked ~ .tag__checkbox:after,
+.collection-mobile-filters .tag--active .tag__checkbox:after,
+.collection-mobile-filters input:checked ~ .tag__checkbox:after {
+  background-color: var(--color-charcoal-grey, #585B56);
+}
+
+@media only screen and (max-width: 768px) {
+  .collection-mobile-filters .tag-list a,
+  .collection-mobile-filters .tag-list button,
+  .collection-mobile-filters .tag-list label,
+  .collection-mobile-filters .filter-sort {
+    font-size: var(--typeBaseSize);
+    line-height: 1.45;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  .collection-mobile-filters .tag__text {
+    font-size: 1em;
+  }
+
+  .collection-mobile-filters .filter-wrapper {
+    padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .collection-mobile-filters .collection-sidebar__group .collapsible-content__inner {
+    padding-bottom: 48px !important;
+  }
+}
