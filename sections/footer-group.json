@@ -249,7 +249,6 @@
         "footer-1",
         "footer-2"
       ],
-      "disabled": true,
       "settings": {
         "show_newsletter": false,
         "newsletter_richtext": "",
