@@ -7155,9 +7155,11 @@ if (console && console.log) {
   
         var clone = footerMenus.cloneNode(true);
         clone.id = '';
+        clone.classList.add('mobile-nav-footer-menus');
   
         // Append cloned footer menus to mobile nav
         headerFooter.appendChild(clone);
+        theme.collapsibles.init(headerFooter);
   
         // If localization form, update IDs so they don't match footer
         var localizationForm = headerFooter.querySelector('.multi-selectors');
