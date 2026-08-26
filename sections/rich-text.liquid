@@ -1,16 +1,52 @@
+{%- comment -%}
+  Hide heading-plus-empty-body sections on the live storefront, including the
+  collection/product intro whose text comes from custom.description_enhanced.
+  Keep the section visible in the theme editor so merchants can still edit it.
+{%- endcomment -%}
 {%- liquid
   assign section_nbs = false
+  assign has_body_block = false
+  assign has_body_content = false
+  assign description_enhanced = collection.metafields.custom.description_enhanced
+  if description_enhanced == blank
+    assign description_enhanced = product.metafields.custom.description_enhanced
+  endif
+  assign description_enhanced_text = ''
+  if description_enhanced != blank
+    assign description_enhanced_text = description_enhanced | metafield_tag | strip_html | strip
+  endif
+
   for block in section.blocks
     if block.settings.title != blank
       assign section_nbs = true
-    elsif block.settings.page_text != blank
-      assign section_nbs = true
-    elsif block.settings.text != blank
-      assign section_nbs = true
+    endif
+    if block.type == 'text'
+      assign has_body_block = true
+      assign block_text = block.settings.text | strip_html | strip
+      if block_text != blank
+        assign has_body_content = true
+        assign section_nbs = true
+      endif
+    elsif block.type == 'page'
+      assign has_body_block = true
+      if block.settings.page_text != blank
+        assign has_body_content = true
+        assign section_nbs = true
+      endif
     elsif block.settings.link_text != blank
+      assign has_body_content = true
       assign section_nbs = true
     endif
   endfor
+
+  unless request.design_mode
+    if has_body_block and has_body_content == false
+      assign section_nbs = false
+    endif
+    if description_enhanced_text == blank and has_body_block and has_body_content == false
+      assign section_nbs = false
+    endif
+  endunless
 -%}
 {%- if section_nbs -%}
   {%- if section.settings.divider -%}<div class="section--divider">{%- endif -%}
@@ -62,23 +98,28 @@
             {%- when 'heading' -%}
               <h2 class="{{ block.settings.heading_size }}">{{ block.settings.title | escape }}</h2>
             {%- when 'page' -%}
-              <div class="rte">
-                {%- if block.settings.page_text != blank -%}
+              {%- if block.settings.page_text != blank -%}
+                <div class="rte">
                   {{ pages[block.settings.page_text].content }}
-                {%- else -%}
+                </div>
+              {%- elsif request.design_mode -%}
+                <div class="rte">
                   {{ 'home_page.onboarding.no_content' | t }}
-                {%- endif -%}
-              </div>
+                </div>
+              {%- endif -%}
             {%- when 'text' -%}
-              <div class="rte">
-                {%- if block.settings.text != blank -%}
+              {%- assign block_text = block.settings.text | strip_html | strip -%}
+              {%- if block_text != blank -%}
+                <div class="rte">
                   {%- if block.settings.enlarge_text %}<div class="enlarge-text">{% endif -%}
                   {{ block.settings.text }}
                   {%- if block.settings.enlarge_text %}</div>{% endif -%}
-                {%- else -%}
+                </div>
+              {%- elsif request.design_mode -%}
+                <div class="rte">
                   {{ 'home_page.onboarding.no_content' | t }}
-                {%- endif -%}
-              </div>
+                </div>
+              {%- endif -%}
             {%- when 'button' -%}
               <div class="rte">
                 {%- if block.settings.link_text != blank -%}
