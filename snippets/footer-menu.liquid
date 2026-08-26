@@ -8,13 +8,13 @@
 -%}
 
 <div class="footer__menu-block">
-  <h2 class="footer__title footer__title--static">
+  <h2 class="footer__title footer__title--desktop small--hide">
     {{ menu_title }}
   </h2>
 
   <button
     type="button"
-    class="footer__menu-trigger collapsible-trigger collapsible-trigger-btn collapsible-trigger-btn--borders collapsible--auto-height"
+    class="footer__menu-trigger collapsible-trigger collapsible-trigger-btn collapsible-trigger-btn--borders collapsible--auto-height medium-up--hide"
     aria-expanded="false"
     data-controls="{{ menu_id }}"
   >
@@ -24,6 +24,12 @@
     </span>
   </button>
 
+  {%- comment -%}
+    Do not use collapsible-content--all: theme.css and next.css set height:0
+    at every breakpoint, which hid page-footer links. Collapse only via CSS
+    inside the mobile nav clone. Match FAQ: auto-height on the trigger only.
+    Use data-id (not HTML id) because the footer is cloned into the drawer.
+  {%- endcomment -%}
   <div data-id="{{ menu_id }}" class="collapsible-content footer__menu-accordion">
     <div class="collapsible-content__inner">
       <ul class="footer__menu">

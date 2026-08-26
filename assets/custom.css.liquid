@@ -2107,12 +2107,12 @@ input#Search::placeholder {
     grid-column: 1 / -1;
   }
 
-  /* Phone hamburger: menus + contact/social/payments each on their own row */
+  /* Beat the 2-col page-footer grid inside the hamburger clone */
   #MobileNavFooter .footer__blocks,
   .site-header__mobile-nav .footer__blocks,
   .mobile-nav-footer-menus .footer__blocks {
     display: grid !important;
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     gap: 8px 10px !important;
   }
 
@@ -2126,28 +2126,15 @@ input#Search::placeholder {
   }
 
   #MobileNavFooter .footer__block[data-type="contact"],
-  #MobileNavFooter .footer__block[data-type="payment"],
   .site-header__mobile-nav .footer__block[data-type="contact"],
+  .mobile-nav-footer-menus .footer__block[data-type="contact"] {
+    grid-column: 1 / 3 !important;
+  }
+
+  #MobileNavFooter .footer__block[data-type="payment"],
   .site-header__mobile-nav .footer__block[data-type="payment"],
-  .mobile-nav-footer-menus .footer__block[data-type="contact"],
   .mobile-nav-footer-menus .footer__block[data-type="payment"] {
-    grid-column: 1 / -1 !important;
-  }
-
-  /* Page footer on phones: Get in touch, Follow us, We accept stacked */
-  .footer__block[data-type="contact"] .footer__blocks--mobile {
-    display: flex !important;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    gap: 16px;
-    justify-content: flex-start;
-  }
-
-  .footer__block[data-type="contact"] .footer__block--mobile,
-  .footer__block[data-type="payment"] .footer__block--mobile {
-    flex: 1 1 100% !important;
-    width: 100% !important;
-    max-width: none !important;
+    grid-column: 3 / 4 !important;
   }
 }
 /* ==========================================
@@ -2405,7 +2392,7 @@ input#Search::placeholder {
 .site-header__mobile-nav .footer__blocks,
 .mobile-nav-footer-menus .footer__blocks {
   display: grid !important;
-  grid-template-columns: 1fr !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   gap: 8px 10px !important;
   justify-content: stretch !important;
   align-items: start !important;
@@ -2502,9 +2489,9 @@ input#Search::placeholder {
 #MobileNavFooter .footer__block[data-type="contact"],
 .site-header__mobile-nav .footer__block[data-type="contact"],
 .mobile-nav-footer-menus .footer__block[data-type="contact"] {
-  grid-column: 1 / -1 !important;
-  flex: 1 1 100% !important;
-  width: 100% !important;
+  grid-column: 1 / 3 !important;
+  flex: none !important;
+  width: auto !important;
   max-width: none !important;
   margin-top: 8px;
   min-width: 0;
@@ -2513,9 +2500,9 @@ input#Search::placeholder {
 #MobileNavFooter .footer__block[data-type="payment"],
 .site-header__mobile-nav .footer__block[data-type="payment"],
 .mobile-nav-footer-menus .footer__block[data-type="payment"] {
-  grid-column: 1 / -1 !important;
-  flex: 1 1 100% !important;
-  width: 100% !important;
+  grid-column: 3 / 4 !important;
+  flex: none !important;
+  width: auto !important;
   max-width: none !important;
   margin-top: 8px;
   min-width: 0;
@@ -2525,20 +2512,19 @@ input#Search::placeholder {
 #MobileNavFooter .footer__mobile-section,
 .site-header__mobile-nav .footer__mobile-section,
 .mobile-nav-footer-menus .footer__mobile-section {
-  border-top: 1px solid var(--colorFooterBorder, var(--colorBorder));
+  border-top: 0;
   margin: 0;
-  padding: 12px 0 0;
+  padding: 4px 0 0;
 }
 
 #MobileNavFooter .footer__block[data-type="contact"] .footer__blocks--mobile,
 .site-header__mobile-nav .footer__block[data-type="contact"] .footer__blocks--mobile,
 .mobile-nav-footer-menus .footer__block[data-type="contact"] .footer__blocks--mobile {
-  display: flex !important;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  gap: 16px;
-  justify-content: flex-start;
-  align-items: stretch;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  gap: 8px 10px;
+  justify-content: start;
+  align-items: start;
 }
 
 #MobileNavFooter .footer__block--mobile,
