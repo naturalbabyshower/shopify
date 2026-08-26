@@ -2745,3 +2745,70 @@ klarna-placement {
   display: block;
   overflow: hidden;
 }
+
+.brand-tabs {
+  display: flex;
+  width: 100%;
+}
+
+.brand-tabs__tab {
+  align-items: center;
+  display: flex;
+  flex: 1 1 0;
+  height: 40px;
+  justify-content: center;
+  min-width: 0;
+  padding: 6px 12px;
+  text-decoration: none;
+}
+
+.brand-tabs__tab--nbs {
+  background-color: #f9f8f5;
+  border-radius: 10px 10px 0 0;
+}
+
+.brand-tabs__tab--merino {
+  background-color: #dcd4c9;
+  border-radius: 10px 10px 0 0;
+}
+
+.brand-tabs__tab--babiators {
+  background-color: #2e61ae;
+  border-radius: 10px 10px 0 0;
+}
+
+.brand-tabs__logo {
+  display: block;
+  height: 18px;
+  max-width: 100%;
+  object-fit: contain;
+  width: auto;
+}
+
+.brand-tabs__tab--nbs .brand-tabs__logo {
+  height: 22px;
+}
+
+.brand-tabs__tab:hover {
+  opacity: 0.92;
+}
+
+.brand-tabs__tab:focus-visible {
+  outline: 2px solid var(--color-charcoal-grey, #585b56);
+  outline-offset: -2px;
+}
+
+@media only screen and (min-width: 769px) {
+  .brand-tabs__tab {
+    height: 46px;
+    padding: 8px 20px;
+  }
+
+  .brand-tabs__logo {
+    height: 22px;
+  }
+
+  .brand-tabs__tab--nbs .brand-tabs__logo {
+    height: 26px;
+  }
+}
