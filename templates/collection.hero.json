@@ -172,6 +172,36 @@
         "space_around": true
       }
     },
+    "rich_text_ViQyq7": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_FFLEm4": {
+          "type": "heading",
+          "settings": {
+            "title": "{{ collection.title }}",
+            "heading_size": "h2"
+          }
+        },
+        "text_xjatxm": {
+          "type": "text",
+          "settings": {
+            "enlarge_text": true,
+            "text": "{{ collection.metafields.custom.description_enhanced | metafield_tag }}"
+          }
+        }
+      },
+      "block_order": [
+        "heading_FFLEm4",
+        "text_xjatxm"
+      ],
+      "name": "t:sections.rich-text.presets.rich_text.name",
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "color_scheme": "none",
+        "divider": false
+      }
+    },
     "197bd871-a8a5-4d9f-8a5e-79a57410052e": {
       "type": "faq",
       "blocks": {
@@ -351,6 +381,7 @@
     "236baa81-acdc-4e3a-a5b0-3294c0016bcf",
     "main-collection",
     "178032561903d1847d",
+    "rich_text_ViQyq7",
     "197bd871-a8a5-4d9f-8a5e-79a57410052e",
     "logo_list_Eix6NK",
     "text_columns_rAVcxA",

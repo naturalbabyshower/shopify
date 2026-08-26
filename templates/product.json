@@ -93,27 +93,6 @@
             "color_swatches": true
           }
         },
-        "sales_point": {
-          "type": "sales_point",
-          "settings": {
-            "icon": "truck",
-            "text": "UK delivery from £4.50 | Free over £75"
-          }
-        },
-        "sales_point4": {
-          "type": "sales_point",
-          "settings": {
-            "icon": "tag",
-            "text": "Dynamic Price Match"
-          }
-        },
-        "sales_point2": {
-          "type": "sales_point",
-          "settings": {
-            "icon": "package",
-            "text": "Dynamic Returns Gift Wrap"
-          }
-        },
         "ee35f443-7bc9-430b-9725-fd63f62c877e": {
           "type": "sales_point",
           "settings": {
@@ -142,6 +121,27 @@
             "show_dynamic_checkout": false,
             "surface_pickup_enable": false,
             "show_gift_card_recipient": false
+          }
+        },
+        "sales_point": {
+          "type": "sales_point",
+          "settings": {
+            "icon": "truck",
+            "text": "UK delivery from £4.50 | Free over £75"
+          }
+        },
+        "sales_point2": {
+          "type": "sales_point",
+          "settings": {
+            "icon": "package",
+            "text": "Dynamic Returns"
+          }
+        },
+        "sales_point4": {
+          "type": "sales_point",
+          "settings": {
+            "icon": "tag",
+            "text": "Dynamic Price Match"
           }
         },
         "9d08a8ff-3533-4333-8c01-df30be116a51": {
@@ -282,11 +282,13 @@
         "price",
         "groupmate_product_detail_page_PaMfxr",
         "variant_picker",
-        "sales_point2",
         "ee35f443-7bc9-430b-9725-fd63f62c877e",
         "trust_badge_prqLxb",
         "inventory_status",
         "buy_buttons",
+        "sales_point",
+        "sales_point2",
+        "sales_point4",
         "9d08a8ff-3533-4333-8c01-df30be116a51",
         "clearpay_on_site_messaging_payments_messaging_4PpXEA",
         "complementary_products_6JUmqc",
