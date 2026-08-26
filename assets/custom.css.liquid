@@ -2645,3 +2645,60 @@ input#Search::placeholder {
 .quick-add-modal .product-purchase-info {
   display: none;
 }
+
+.product-block--price [data-product-price-wrap] {
+  display: block;
+  line-height: 1.2;
+}
+
+.product-block--price .product__price--compare {
+  color: var(--color-charcoal-grey);
+  display: block;
+  font-size: calc(var(--typeBaseSize) - 1px);
+  font-weight: 400;
+  margin: 0 0 2px;
+  opacity: 0.8;
+  padding-right: 0;
+}
+
+.product-price__row {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.product-block--price .product-price__row > .product__price {
+  color: var(--color-charcoal-grey);
+  font-size: calc(var(--typeBaseSize) + 10px);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-right: 0;
+}
+
+@media only screen and (min-width: 769px) {
+  .product-block--price .product-price__row > .product__price {
+    font-size: calc(var(--typeBaseSize) + 12px);
+  }
+}
+
+.product-block--price .product__price-savings {
+  align-items: center;
+  background-color: var(--color-baby-blue);
+  border-radius: 999px;
+  color: var(--color-forest-green);
+  display: inline-flex;
+  font-size: calc(var(--typeBaseSize) - 3px);
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 5px 12px;
+  white-space: nowrap;
+}
+
+.product-block--price .product__price-savings.hide {
+  display: none;
+}
+
+.product-block--price .product__price-savings span {
+  color: inherit;
+}

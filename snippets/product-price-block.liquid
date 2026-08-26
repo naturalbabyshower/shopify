@@ -1,6 +1,58 @@
 {% comment %}
   Price block for product-template, including compare-at, savings, and unit price.
 {% endcomment %}
+
+{% style %}
+  .product-block--price [data-product-price-wrap] {
+    display: block;
+    line-height: 1.2;
+  }
+  .product-block--price .product__price--compare {
+    color: var(--color-charcoal-grey);
+    display: block;
+    font-size: calc(var(--typeBaseSize) - 1px);
+    font-weight: 400;
+    margin: 0 0 2px;
+    opacity: 0.8;
+    padding-right: 0;
+  }
+  .product-price__row {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .product-block--price .product-price__row > .product__price {
+    color: var(--color-charcoal-grey);
+    font-size: calc(var(--typeBaseSize) + 10px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-right: 0;
+  }
+  @media only screen and (min-width: 769px) {
+    .product-block--price .product-price__row > .product__price {
+      font-size: calc(var(--typeBaseSize) + 12px);
+    }
+  }
+  .product-block--price .product__price-savings {
+    align-items: center;
+    background-color: var(--color-baby-blue);
+    border-radius: 999px;
+    color: var(--color-forest-green);
+    display: inline-flex;
+    font-size: calc(var(--typeBaseSize) - 3px);
+    font-weight: 700;
+    line-height: 1.2;
+    padding: 5px 12px;
+    white-space: nowrap;
+  }
+  .product-block--price .product__price-savings.hide {
+    display: none;
+  }
+  .product-block--price .product__price-savings span {
+    color: inherit;
+  }
+{% endstyle %}
 <div class="product-block product-block--price" {{ block.shopify_attributes }}>
   <label class="variant__label hide" for="ProductPrice-{{ section_id }}">
     {{ 'cart.label.price' | t }}
@@ -41,37 +93,39 @@
     </span>
   {%- endif -%}
 
-  <span
-    data-product-price
-    class="product__price{% if on_sale %} on-sale{% endif %}"
-  >
-    {%- unless product.empty? -%}
-      {%- render 'price' with current_variant.price -%}
-    {%- else -%}
-      {%- render 'price' with 1999 -%}
-    {%- endunless -%}
-  </span>
-
-  {%- if settings.product_save_amount -%}
-    {%- if current_variant.price > 10000 -%}
-      {%- capture saved_amount -%}{{ current_variant.compare_at_price | minus: current_variant.price | money_without_trailing_zeros }}{%- endcapture -%}
-    {%- else -%}
-      {%- capture saved_amount -%}{{ current_variant.compare_at_price | minus: current_variant.price | times: 100.0 | divided_by: current_variant.compare_at_price | round }}%{%- endcapture -%}
-    {%- endif -%}
-    <span data-save-price class="product__price-savings{% if hide_sale_price %} hide{% endif %}">
-      {%- unless hide_sale_price -%}
-        {%- if product_discount == 'Bundle' -%}
-          <span class="bundle-price {{ discount_color }}">
-            {{- 'products.general.bundle_price' | t -}}
-          </span>
-        {%- else -%}
-          <span class="{{ discount_color }}">
-            {{- 'products.general.save_html' | t: saved_amount: saved_amount -}}
-          </span>
-        {%- endif -%}
+  <div class="product-price__row">
+    <span
+      data-product-price
+      class="product__price{% if on_sale %} on-sale{% endif %}"
+    >
+      {%- unless product.empty? -%}
+        {%- render 'price' with current_variant.price -%}
+      {%- else -%}
+        {%- render 'price' with 1999 -%}
       {%- endunless -%}
     </span>
-  {%- endif -%}
+
+    {%- if settings.product_save_amount -%}
+      {%- if current_variant.price > 10000 -%}
+        {%- capture saved_amount -%}{{ current_variant.compare_at_price | minus: current_variant.price | money_without_trailing_zeros }}{%- endcapture -%}
+      {%- else -%}
+        {%- capture saved_amount -%}{{ current_variant.compare_at_price | minus: current_variant.price | times: 100.0 | divided_by: current_variant.compare_at_price | round }}%{%- endcapture -%}
+      {%- endif -%}
+      <span data-save-price class="product__price-savings{% if hide_sale_price %} hide{% endif %}">
+        {%- unless hide_sale_price -%}
+          {%- if product_discount == 'Bundle' -%}
+            <span class="bundle-price {{ discount_color }}">
+              {{- 'products.general.bundle_price' | t -}}
+            </span>
+          {%- else -%}
+            <span class="{{ discount_color }}">
+              {{- 'products.general.save_html' | t: saved_amount: saved_amount -}}
+            </span>
+          {%- endif -%}
+        {%- endunless -%}
+      </span>
+    {%- endif -%}
+  </div>
 
   <div
     data-unit-price-wrapper
