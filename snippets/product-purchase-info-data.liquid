@@ -1,0 +1,43 @@
+{% comment %}
+  Per-variant delivery and returns copy so the purchase-info box updates on variant change.
+{% endcomment %}
+<script type="application/json" id="PurchaseInfoCopy-{{ product.id }}">
+{
+{%- for variant in product.variants -%}
+  {%- capture delivery_line -%}
+    {%- render 'product-purchase-delivery-line', variant: variant -%}
+  {%- endcapture -%}
+  {%- liquid
+    assign reason = variant.metafields.custom.oversell_reason.value | default: variant.metafields.custom.oversell_reason
+    if reason == 'Dropship'
+      assign returns = 'Return policy below'
+    elsif product_discount == 'Outlet'
+      assign returns = 'Easy returns within 14 days'
+    else
+      assign returns = 'Easy returns within 60 days'
+    endif
+  -%}
+  "{{ variant.id }}":{"delivery":{{ delivery_line | strip | json }},"returns":{{ returns | json }}}{%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}
+}
+</script>
+<script>
+  (function () {
+    var root = document.getElementById('PurchaseInfoCopy-{{ product.id }}');
+    if (!root) return;
+    var copy;
+    try {
+      copy = JSON.parse(root.textContent);
+    } catch (e) {
+      return;
+    }
+    document.addEventListener('variant:change', function (evt) {
+      var variant = evt.detail && evt.detail.variant;
+      if (!variant || !copy[variant.id]) return;
+      var delivery = document.getElementById('PurchaseInfoDelivery-{{ product.id }}');
+      var returns = document.getElementById('PurchaseInfoReturns-{{ product.id }}');
+      if (delivery) delivery.textContent = copy[variant.id].delivery;
+      if (returns) returns.textContent = copy[variant.id].returns;
+    });
+  })();
+</script>

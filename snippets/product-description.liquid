@@ -1,10 +1,16 @@
-{% capture description %}
-  {%- if product.empty? -%}
-    {{ 'home_page.onboarding.product_description' | t }}
-  {%- else -%}
-    {{ product.description }}
-  {%- endif -%}
-{% endcapture %}
+{% comment %}
+  Product descriptions often end with an empty <p>&nbsp;</p>, which leaves
+  a blank line in the accordion because the real last paragraph is no
+  longer :last-child and keeps its bottom margin.
+{% endcomment %}
+{%- liquid
+  if product.empty?
+    assign description = 'home_page.onboarding.product_description' | t
+  else
+    assign description = product.description
+  endif
+  assign description = description | replace: '<p>&nbsp;</p>', '' | replace: '<p> </p>', '' | replace: '<p></p>', '' | replace: '<p> </p>', '' | replace: '<p><br></p>', '' | replace: '<p><br/></p>', '' | replace: '<p><br /></p>', ''
+-%}
 {%- if is_tab -%}
   {% assign title = 'products.product.description' | t %}
   {%- render 'tab', id: id, title: title, content: description -%}
