@@ -1354,6 +1354,11 @@ margin:8px 9px
 margin: 1px;
 }
 
+.aos-animate[data-aos=image-fade-in] .image-element[loading="eager"] {
+  animation: none;
+  opacity: 1;
+}
+
 .grid-product__title {
 font-size: calc(var(--typeBaseSize) * 0.9);
 }
