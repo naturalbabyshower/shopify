@@ -1,1 +1,743 @@
-{"sections":{"main":{"type":"main-page","disabled":true,"settings":{}},"936343ed-3d6a-4686-8ecb-49c9bde332c6":{"type":"slideshow-split","blocks":{"template--14836576419918__936343ed-3d6a-4686-8ecb-49c9bde332c6-slide-1":{"type":"slide","repeater":"{{ page.metafields.custom._page_hero_banners.value }}","settings":{"top_subheading":"{{ block.repeater.subheading.value }}","title":"{{ block.repeater.heading | metafield_tag }}","title_size":40,"subheading":"{{ block.repeater.text.value }}","link":"{{ block.repeater.slide_link.value }}","link_text":"{{ block.repeater.slide_link_text.value }}","link_2":"{{ block.repeater.slide_link_2.value }}","link_text_2":"{{ block.repeater.slide_link_text_2.value }}","text_position":"right","image":"{{ block.repeater.image.value }}","indent_image":false,"color_scheme":"3"}}},"block_order":["template--14836576419918__936343ed-3d6a-4686-8ecb-49c9bde332c6-slide-1"],"custom_css":[".btn {margin-top: 10px; background-color: transparent; border: 1px solid #727c83; color: #727c83; font-size: calc(var(--typeBaseSize) - 2px); font-weight: 600;}",".hero__sidebyside-content-inner {padding: 4vw;}"],"settings":{"full_width":true,"height":350,"height_mobile":350,"style":"minimal","autoplay":false,"autoplay_speed":6,"lazyload_images":false}},"promo_grid_wfJi3J":{"type":"promo-grid","blocks":{"banner_DyrWFk":{"type":"banner","repeater":"{{ page.metafields.custom.text_banners.value }}","settings":{"heading":"{{ block.repeater.heading.value }}","text":"{{ block.repeater.text.value }}","link":"{{ block.repeater.button_link.value }}","label":"{{ block.repeater.button_text.value }}","color_scheme":"none"}}},"block_order":["banner_DyrWFk"],"custom_css":[".promo-grid {margin: 0; padding: 0 0 0 0;}",".btn {margin: 5px; padding: 5px; background-color: transparent; color: #f6f6f6; border: 1px solid #f6f6f6 !important;}",".color-scheme-2 {background-color: #0a4047; color: #f6f6f6;}",".color-scheme-none {background-color: #0a4047; color: #f6f6f6;}"],"settings":{"full_width":true,"gutter_size":0,"space_above":false,"space_below":false,"lazyload_images":false}},"1723303277132ada2f":{"type":"apps","blocks":{"klarna_on_site_messaging_app_block_XBn6Ak":{"type":"shopify:\/\/apps\/klarna-on-site-messaging\/blocks\/app-block\/b95936a9-74b6-4a95-8103-6a1b6459c25e","settings":{"data_key":"top-strip-promotion-badge","theme":"default","topPadding":"0","bottomPadding":"0","messagePrefix":""}}},"block_order":["klarna_on_site_messaging_app_block_XBn6Ak"],"disabled":true,"settings":{"full_width":true,"space_around":false}},"rich_text_yYfURh":{"type":"rich-text","blocks":{"heading_jAfgnF":{"type":"heading","settings":{"title":"Cyber Week is now on instore!","heading_size":"h0"}},"text_MNKTMP":{"type":"text","settings":{"enlarge_text":true,"text":"<p>Enjoy up to 40% off trusted brands, try products yourself, and get expert advice — all while shopping in a relaxed, friendly environment.\u2028<\/p>"}},"text_TMDVNK":{"type":"text","disabled":true,"settings":{"enlarge_text":true,"text":"<p>Plus, we’re open for late-night shopping this Thursday and Friday!<\/p>"}}},"block_order":["heading_jAfgnF","text_MNKTMP","text_TMDVNK"],"disabled":true,"custom_css":[".btn {font-size: calc(var(--typeBaseSize)); background: #9ea79e; text-transform: uppercase;}",".index-section {margin: 0; padding: 30px 0px 0px 0px; background-color: #FFFFF;}"],"settings":{"align_text":"center","narrow_column":true,"color_scheme":"none","divider":false}},"1ddc14df-d78b-41ae-95ed-60ad38142670":{"type":"text-columns","blocks":{"template--14836576125006__1ddc14df-d78b-41ae-95ed-60ad38142670-text_block-1":{"type":"text_block","repeater":"{{ page.metafields.custom.page_hero_columns.value }}","settings":{"enable_image":true,"image":"{{ block.repeater.image.value }}","image_mask":"landscape","image_width":650,"title":"{{ block.repeater.heading.value }}","text":"{{ block.repeater.text | metafield_tag }}","button_label":"{{ block.repeater.button_label.value }}","button_link":"{{ block.repeater.link.value }}"}}},"block_order":["template--14836576125006__1ddc14df-d78b-41ae-95ed-60ad38142670-text_block-1"],"disabled":true,"custom_css":[".grid__item {padding: 0 0 50px 0; margin: 0 10px 0px 10px; background-color: #beffd4;}",".color-scheme-3 {background-color: #ffff; color: #0a4047;}",".btn {background-color: #0a4047; color: #ffff; border-color: #0a4047;}","@media only screen and (max-width: 769px) {.grid__item {margin: 0 0 30px 0; } .grid {margin-left: 0px; }}","@media only screen and (min-width: 769px) {.medium-up--one-third {width: 31.33333%; }}",".grid {margin-left: 0px;}"],"settings":{"title":"{{ page.metafields.custom.page_info.value.column_title.value }}","align_text":"center","divider":false,"color_scheme":"3"}},"slideshow_image_Nmqxxz":{"type":"slideshow-image","blocks":{"image_7iLB77":{"type":"image","settings":{"link":"shopify:\/\/collections\/cybex","image":"shopify:\/\/shop_images\/Frame_1_1.jpg","image_mobile":"shopify:\/\/shop_images\/Frame_3.jpg"}}},"block_order":["image_7iLB77"],"disabled":true,"custom_css":[],"settings":{"full_width":false,"style":"arrows","autoplay":true,"autoplay_speed":7,"lazyload_images":true}},"c2045c1a-0929-49cc-b38c-27b475f9d399":{"type":"rich-text","blocks":{"heading_mqYBcE":{"type":"heading","disabled":true,"settings":{"title":"Please note: Our store will be closed on Bank Holiday Monday. We’ll reopen as normal on Tuesday.","heading_size":"h3"}},"ca8bc58c-5cfa-44f1-958f-dc312b1587be":{"type":"page","disabled":true,"settings":{"page_text":"{{ page }}"}},"heading_nw73Ue":{"type":"heading","settings":{"title":"Why Visit Us?","heading_size":"h2"}},"text_raPjMi":{"type":"text","settings":{"enlarge_text":true,"text":"<p>Our nursery specialists will guide you through everything you need to know about shopping for your new arrival, as well as offering personalised advice and recommendations that are tailored to you and your family.<\/p>"}},"heading_cgWyg4":{"type":"heading","disabled":true,"settings":{"title":"We're Here to Help – Extended Support During Black Friday","heading_size":"h2"}},"text_8G3eBJ":{"type":"text","disabled":true,"settings":{"enlarge_text":true,"text":"<p>During the busy Black Friday period, our store team is here to assist you more than ever with product questions, comparisons,  car seat fittings, pricing, and much more. We’ve extended our availability to ensure you receive the support you need:<\/p><ul><li><strong>Thursday<\/strong>: 9am – 7pm<\/li><li><strong>Black Friday<\/strong>: 9am – 7pm<\/li><li><strong>Saturday<\/strong>: 9am – 7pm<\/li><li><strong>Sunday<\/strong>: 11am – 5pm<\/li><li><strong>Cyber Monday<\/strong>: 9am – 7pm<\/li><\/ul>"}}},"block_order":["heading_mqYBcE","ca8bc58c-5cfa-44f1-958f-dc312b1587be","heading_nw73Ue","text_raPjMi","heading_cgWyg4","text_8G3eBJ"],"custom_css":[".btn {font-size: calc(var(--typeBaseSize)); background: #9ea79e; text-transform: uppercase;}"],"settings":{"align_text":"center","narrow_column":true,"color_scheme":"none","divider":false}},"faq_3zMtUc":{"type":"faq","blocks":{"question_3iRymj":{"type":"question","settings":{"title":"Extended Opening Hours","text":"<p><strong>Now open every Monday until 2026<\/strong> <\/p><p>Mon to Sat | 9am - 5:30pm<\/p><p>Sun | 11am - 4pm<\/p><p><strong>Late Night Shopping every Thursday until 2026<\/strong><\/p><p>Thurs | 9am - 7pm <\/p><p><strong>Black Friday<\/strong><\/p><p>Fri 28th Nov - 9am - 7pm <\/p><p><br\/><\/p>"}},"question_QyzRCh":{"type":"question","settings":{"title":"Holiday Opening Hours","text":"<p>Mon 22nd Dec - 9am - 5:30pm<\/p><p>Tues 23rd Dec - 9am - 5:30pm<\/p><p>Christmas Eve - CLOSED<\/p><p>Christmas Day - CLOSED<\/p><p>Boxing Day - CLOSED<\/p><p>Sat 27th Dec - 9am - 5:30pm<\/p><p>Sun 28th Dec - 11am - 4pm<\/p><p>Mon 29th Dec - 9am - 5:30pm<\/p><p>Tues 30th Dec - 9am - 5:30pm<\/p><p>New Years Eve - 9am - 4pm<\/p><p>New Years Day - CLOSED<\/p><p>Fri 2nd Jan - 9am - 5:30pm<\/p><p><strong>Christmas Late Night Shopping <\/strong><\/p><p>Thurs 4th dec - 9am-7pm<\/p><p>Thurs 11th dec - 9am-7pm<\/p><p>Thurs 18th dec - 9am-7pm<\/p>"}}},"block_order":["question_3iRymj","question_QyzRCh"],"disabled":true,"name":"t:sections.faq.presets.faq.name","settings":{"title":"","heading_size":"h2","heading_position":"center"}},"text_columns_8jyWjN":{"type":"text-columns","blocks":{"text_block_WwJ3qc":{"type":"text_block","repeater":"{{ page.metafields.custom.page_hero_columns_2.value }}","settings":{"enable_image":true,"image":"{{ block.repeater.image.value }}","image_mask":"none","image_width":650,"title":"{{ block.repeater.heading.value }}","text":"{{ block.repeater.text | metafield_tag }}","button_label":"{{ block.repeater.button_label.value }}","button_link":"{{ block.repeater.link.value }}"}}},"block_order":["text_block_WwJ3qc"],"custom_css":[".grid__item {padding: 0 0 50px 0; margin: 0 10px 0px 10px; background-color: #9ea79e;}",".color-scheme-3 {background-color: #ffff; color: #ffff; padding-top: 0;}",".btn {background-color: #ffff; color: #ffff; border-color: #ffff;}","@media only screen and (max-width: 769px) {.grid__item {margin: 0 0 30px 0; } .grid {margin-left: 0px; }}","@media only screen and (min-width: 769px) {.medium-up--one-third {width: 31.33333%; } .grid {margin-left: 0px; }}"],"settings":{"title":"","align_text":"center","divider":false,"color_scheme":"3"}},"slideshow_image_EpwTwi":{"type":"slideshow-image","blocks":{"image_9W4QVR":{"type":"image","settings":{"link":"shopify:\/\/pages\/videocall","image":"shopify:\/\/shop_images\/Discover_8_1.jpg","image_mobile":"shopify:\/\/shop_images\/Mob_-_Bottom_Banner_5_1.jpg"}}},"block_order":["image_9W4QVR"],"settings":{"full_width":false,"style":"arrows","autoplay":true,"autoplay_speed":7,"lazyload_images":true}},"rich_text_ziBPem":{"type":"rich-text","blocks":{"heading_CqarWp":{"type":"heading","disabled":true,"settings":{"title":"Demo products from over 85 brands in-store and save £100s on newborn essentials","heading_size":"h2"}},"text_hUEgBr":{"type":"text","settings":{"enlarge_text":true,"text":"<p><strong>Demo products from over 85 brands in-store and save £100s on newborn essentials<\/strong><\/p>"}}},"block_order":["heading_CqarWp","text_hUEgBr"],"custom_css":[".btn {font-size: calc(var(--typeBaseSize)); background: #9ea79e; text-transform: uppercase;}",".index-section {margin: 0; padding: 0 0 0px 0; background-color: #FFFFF;}"],"settings":{"align_text":"center","narrow_column":true,"color_scheme":"none","divider":false}},"logo_blog_list_footer_7dQB4a":{"type":"logo-blog-list-footer","blocks":{"logo_image_DdmJEE":{"type":"logo_image","repeater":"{{ page.metafields.custom.brands_logo_block_1.value }}","settings":{"title":"","image":"{{ block.repeater.logo.value }}","link":"{{ block.repeater.link.value }}"}}},"block_order":["logo_image_DdmJEE"],"custom_css":[],"settings":{"title":"","heading_size":"h3","heading_position":"left","divider":false}},"rich_text_wYeLLQ":{"type":"rich-text","blocks":{"heading_wGgUK7":{"type":"heading","settings":{"title":"Earn Points on Every Purchase","heading_size":"h2"}},"text_67FBqJ":{"type":"text","settings":{"enlarge_text":true,"text":"<p>Gain points on all purchases when you shop with us in-store and convert to gift vouchers for your next purchase via our loyalty program.<\/p>"}}},"block_order":["heading_wGgUK7","text_67FBqJ"],"custom_css":[".btn {font-size: calc(var(--typeBaseSize)); background: #9ea79e; text-transform: uppercase;}",".index-section {margin: 0; padding: 0 0 30px 0; background-color: #FFFFF;}"],"settings":{"align_text":"center","narrow_column":true,"color_scheme":"none","divider":false}},"slideshow_image_xrPhax":{"type":"slideshow-image","blocks":{"image_pCLynG":{"type":"image","settings":{"link":"","image":"shopify:\/\/shop_images\/Untitled_design_33.jpg","image_mobile":"shopify:\/\/shop_images\/Facebook_Event_Header_4.jpg"}}},"block_order":["image_pCLynG"],"disabled":true,"settings":{"full_width":false,"style":"arrows","autoplay":true,"autoplay_speed":7,"lazyload_images":true}},"slideshow_image_L7Bc4N":{"type":"slideshow-image","blocks":{"image_PdLdEb":{"type":"image","settings":{"link":"shopify:\/\/pages\/buy-now-pay-later","image":"shopify:\/\/shop_images\/buy_now_pay_later2.jpg"}}},"block_order":["image_PdLdEb"],"name":"t:sections.slideshow-image.presets.image_optional_slides.name","settings":{"full_width":false,"style":"arrows","autoplay":true,"autoplay_speed":7,"lazyload_images":true}},"logo_blog_list_footer_YWk6Pd":{"type":"logo-blog-list-footer","blocks":{"logo_image_VNr8Pe":{"type":"logo_image","disabled":true,"repeater":"{{ page.metafields.custom.brands_logo_block_2.value }}","settings":{"title":"","image":"{{ block.repeater.logo.value }}","link":"{{ block.repeater.link.value }}"}}},"block_order":["logo_image_VNr8Pe"],"settings":{"title":"","heading_size":"h2","heading_position":"left","divider":false}},"hero_video_WckcfE":{"type":"hero-video","settings":{"full_width":false,"title":"","title_size":70,"subheading":"","link_text":"{{ page.metafields.custom.page_info.value.video_button_text.value }}","link":"{{ page.metafields.custom.page_info.value.video_url.value }}","color_accent":"rgba(0,0,0,0)","text_align":"vertical-center horizontal-center","video_url":"{{ page.metafields.custom.page_info.value.background_video_link.value }}","overlay_opacity":0,"height":500,"height_mobile":300}},"rich_text_chmUwi":{"type":"rich-text","blocks":{"heading_RRWzL9":{"type":"heading","settings":{"title":"Our Story: 18 Years of NBS","heading_size":"h2"}},"text_GNKeBT":{"type":"text","settings":{"enlarge_text":true,"text":"<p>We’ve come such a long way together the past 18 years, and it’s a good time to stop and reflect on our many successes, as well as the many challenges we’ve had to overcome to get here.<br\/><\/p>"}},"button_GTpEVd":{"type":"button","settings":{"link":"shopify:\/\/pages\/our-story","link_text":"LEARN MORE"}}},"block_order":["heading_RRWzL9","text_GNKeBT","button_GTpEVd"],"custom_css":[".btn {font-size: calc(var(--typeBaseSize)); background: #9ea79e; text-transform: uppercase;}",".index-section {margin: 0; padding: 0 0 30px 0; background-color: #FFFFF;}"],"settings":{"align_text":"center","narrow_column":true,"color_scheme":"none","divider":false}},"slideshow_image_zi4eLr":{"type":"slideshow-image","blocks":{"image_ceK6zT":{"type":"image","settings":{"link":"","image":"shopify:\/\/shop_images\/Untitled_design_29_bc6801f3-16ff-430e-a522-8cfebe2e89c4.jpg","image_mobile":"shopify:\/\/shop_images\/Facebook_Event_Header_1.jpg"}}},"block_order":["image_ceK6zT"],"settings":{"full_width":false,"style":"arrows","autoplay":true,"autoplay_speed":7,"lazyload_images":true}},"c3001b3d-e9ac-4785-8fff-ddd2af82f4e2":{"type":"contact-form","settings":{"title":"{{ page.metafields.custom.page_info.value.form_title.value }}","heading_size":"h2","heading_position":"center","text":"{{ page.metafields.custom.page_info.value.form_text | metafield_tag }}","show_phone":true,"narrow_column":true,"color_scheme":"2"}},"faq":{"type":"faq","blocks":{"825c5333-4f05-42b2-ac55-b29db2932b89":{"type":"question","repeater":"{{ page.metafields.custom.page_faqs.value }}","settings":{"title":"{{ block.repeater.question.value }}","text":"{{ block.repeater.text | metafield_tag }}"}}},"block_order":["825c5333-4f05-42b2-ac55-b29db2932b89"],"custom_css":[".index-section {margin: 30px 0 60px 0; padding: 0;}",".collapsible-trigger-btn {text-transform: none;}"],"settings":{"title":"{{ page.metafields.custom.page_faqs_heading.value }}","heading_size":"h2","heading_position":"center"}},"1f508328-4681-41bd-98b7-d430a013c29d":{"type":"rich-text","blocks":{"79779cad-ec30-4031-812a-49656a49bff2":{"type":"text","settings":{"enlarge_text":false,"text":"{{ page.metafields.custom.page_info.value.base_text_to_setup | metafield_tag }}"}}},"block_order":["79779cad-ec30-4031-812a-49656a49bff2"],"custom_css":[".index-section {margin: 10px 0; padding: 25px 0 35px 0;}"],"settings":{"align_text":"left","narrow_column":true,"color_scheme":"none","divider":false}},"3639394a-4aa1-4bdf-9fca-b720636f50ab":{"type":"map","custom_css":[".btn {text-transform: uppercase;}"],"settings":{"map_title":"{{ page.metafields.custom.page_info.value.map_heading.value }}","heading_size":"h2","heading_position":"left","address":"<p>{{ page.metafields.custom.page_info.value.map_info | metafield_tag }}<\/p>","map_address":"{{ page.metafields.custom.page_info.value.google_address.value }}","api_key":"{{ page.metafields.custom.page_info.value.google_maps_api_key.value }}","show_button":true,"lazyload_images":true}},"46fd161a-0ad7-41d8-bf0b-4eb1eb058165":{"type":"advanced-content","blocks":{"template--14836576419918__46fd161a-0ad7-41d8-bf0b-4eb1eb058165-liquid-1":{"type":"liquid","settings":{"code":"<div\n  class=\"trustpilot-widget\"\n  data-locale=\"en-GB\"\n  data-template-id=\"54ad5defc6454f065c28af8b\"\n  data-businessunit-id=\"4c62b96400006400050d8c76\"\n  data-style-height=\"240px\"\n  data-style-width=\"100%\"\n  data-theme=\"light\"\n  data-tags=\"aftercare\"\n  data-stars=\"4,5\"\n  data-review-languages=\"en\"\n>\n  <a href=\"https:\/\/uk.trustpilot.com\/review\/naturalbabyshower.co.uk\" target=\"_blank\" rel=\"noopener\">Trustpilot<\/a>\n<\/div>","width":"100%","alignment":"center"}}},"block_order":["template--14836576419918__46fd161a-0ad7-41d8-bf0b-4eb1eb058165-liquid-1"],"custom_css":[".index-section {padding: 0px; margin: 10px 0 0 0;}"],"settings":{"full_width":false,"space_around":true,"lazyload_images":true}}},"order":["main","936343ed-3d6a-4686-8ecb-49c9bde332c6","promo_grid_wfJi3J","1723303277132ada2f","rich_text_yYfURh","1ddc14df-d78b-41ae-95ed-60ad38142670","slideshow_image_Nmqxxz","c2045c1a-0929-49cc-b38c-27b475f9d399","faq_3zMtUc","text_columns_8jyWjN","slideshow_image_EpwTwi","rich_text_ziBPem","logo_blog_list_footer_7dQB4a","rich_text_wYeLLQ","slideshow_image_xrPhax","slideshow_image_L7Bc4N","logo_blog_list_footer_YWk6Pd","hero_video_WckcfE","rich_text_chmUwi","slideshow_image_zi4eLr","c3001b3d-e9ac-4785-8fff-ddd2af82f4e2","faq","1f508328-4681-41bd-98b7-d430a013c29d","3639394a-4aa1-4bdf-9fca-b720636f50ab","46fd161a-0ad7-41d8-bf0b-4eb1eb058165"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "936343ed-3d6a-4686-8ecb-49c9bde332c6": {
+      "type": "slideshow-split",
+      "blocks": {
+        "template--14836576419918__936343ed-3d6a-4686-8ecb-49c9bde332c6-slide-1": {
+          "type": "slide",
+          "repeater": "{{ page.metafields.custom._page_hero_banners.value }}",
+          "settings": {
+            "top_subheading": "{{ block.repeater.subheading.value }}",
+            "title": "{{ block.repeater.heading | metafield_tag }}",
+            "title_size": 40,
+            "subheading": "{{ block.repeater.text.value }}",
+            "link": "{{ block.repeater.slide_link.value }}",
+            "link_text": "{{ block.repeater.slide_link_text.value }}",
+            "link_2": "{{ block.repeater.slide_link_2.value }}",
+            "link_text_2": "{{ block.repeater.slide_link_text_2.value }}",
+            "text_position": "right",
+            "image": "{{ block.repeater.image.value }}",
+            "indent_image": false,
+            "color_scheme": "3"
+          }
+        }
+      },
+      "block_order": [
+        "template--14836576419918__936343ed-3d6a-4686-8ecb-49c9bde332c6-slide-1"
+      ],
+      "custom_css": [
+        ".btn {margin-top: 10px; background-color: transparent; border: 1px solid #727c83; color: #727c83; font-size: calc(var(--typeBaseSize) - 2px); font-weight: 600;}",
+        ".hero__sidebyside-content-inner {padding: 4vw;}"
+      ],
+      "settings": {
+        "full_width": true,
+        "height": 350,
+        "height_mobile": 350,
+        "style": "minimal",
+        "autoplay": false,
+        "autoplay_speed": 6,
+        "lazyload_images": false
+      }
+    },
+    "promo_grid_wfJi3J": {
+      "type": "promo-grid",
+      "blocks": {
+        "banner_DyrWFk": {
+          "type": "banner",
+          "repeater": "{{ page.metafields.custom.text_banners.value }}",
+          "settings": {
+            "heading": "{{ block.repeater.heading.value }}",
+            "text": "{{ block.repeater.text.value }}",
+            "link": "{{ block.repeater.button_link.value }}",
+            "label": "{{ block.repeater.button_text.value }}",
+            "color_scheme": "none"
+          }
+        }
+      },
+      "block_order": [
+        "banner_DyrWFk"
+      ],
+      "custom_css": [
+        ".promo-grid {margin: 0; padding: 0 0 0 0;}",
+        ".btn {margin: 5px; padding: 5px; background-color: transparent; color: #f6f6f6; border: 1px solid #f6f6f6 !important;}",
+        ".color-scheme-2 {background-color: #0a4047; color: #f6f6f6;}",
+        ".color-scheme-none {background-color: #0a4047; color: #f6f6f6;}"
+      ],
+      "settings": {
+        "full_width": true,
+        "gutter_size": 0,
+        "space_above": false,
+        "space_below": false,
+        "lazyload_images": false
+      }
+    },
+    "1723303277132ada2f": {
+      "type": "apps",
+      "blocks": {
+        "klarna_on_site_messaging_app_block_XBn6Ak": {
+          "type": "shopify://apps/klarna-on-site-messaging/blocks/app-block/b95936a9-74b6-4a95-8103-6a1b6459c25e",
+          "settings": {
+            "data_key": "top-strip-promotion-badge",
+            "theme": "default",
+            "topPadding": "0",
+            "bottomPadding": "0",
+            "messagePrefix": ""
+          }
+        }
+      },
+      "block_order": [
+        "klarna_on_site_messaging_app_block_XBn6Ak"
+      ],
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "space_around": false
+      }
+    },
+    "rich_text_yYfURh": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_jAfgnF": {
+          "type": "heading",
+          "settings": {
+            "title": "Cyber Week is now on instore!",
+            "heading_size": "h0"
+          }
+        },
+        "text_MNKTMP": {
+          "type": "text",
+          "settings": {
+            "enlarge_text": true,
+            "text": "<p>Enjoy up to 40% off trusted brands, try products yourself, and get expert advice — all while shopping in a relaxed, friendly environment. </p>"
+          }
+        },
+        "text_TMDVNK": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "enlarge_text": true,
+            "text": "<p>Plus, we’re open for late-night shopping this Thursday and Friday!</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_jAfgnF",
+        "text_MNKTMP",
+        "text_TMDVNK"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".btn {font-size: calc(var(--typeBaseSize)); background: #9ea79e; text-transform: uppercase;}",
+        ".index-section {margin: 0; padding: 30px 0px 0px 0px; background-color: #FFFFF;}"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "color_scheme": "none",
+        "divider": false
+      }
+    },
+    "1ddc14df-d78b-41ae-95ed-60ad38142670": {
+      "type": "text-columns",
+      "blocks": {
+        "template--14836576125006__1ddc14df-d78b-41ae-95ed-60ad38142670-text_block-1": {
+          "type": "text_block",
+          "repeater": "{{ page.metafields.custom.page_hero_columns.value }}",
+          "settings": {
+            "enable_image": true,
+            "image": "{{ block.repeater.image.value }}",
+            "image_mask": "landscape",
+            "image_width": 650,
+            "title": "{{ block.repeater.heading.value }}",
+            "text": "{{ block.repeater.text | metafield_tag }}",
+            "button_label": "{{ block.repeater.button_label.value }}",
+            "button_link": "{{ block.repeater.link.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "template--14836576125006__1ddc14df-d78b-41ae-95ed-60ad38142670-text_block-1"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".grid__item {padding: 0 0 50px 0; margin: 0 10px 0px 10px; background-color: #beffd4;}",
+        ".color-scheme-3 {background-color: #ffff; color: #0a4047;}",
+        ".btn {background-color: #0a4047; color: #ffff; border-color: #0a4047;}",
+        "@media only screen and (max-width: 769px) {.grid__item {margin: 0 0 30px 0; } .grid {margin-left: 0px; }}",
+        "@media only screen and (min-width: 769px) {.medium-up--one-third {width: 31.33333%; }}",
+        ".grid {margin-left: 0px;}"
+      ],
+      "settings": {
+        "title": "{{ page.metafields.custom.page_info.value.column_title.value }}",
+        "align_text": "center",
+        "divider": false,
+        "color_scheme": "3"
+      }
+    },
+    "slideshow_image_Nmqxxz": {
+      "type": "slideshow-image",
+      "blocks": {
+        "image_7iLB77": {
+          "type": "image",
+          "settings": {
+            "link": "shopify://collections/cybex",
+            "image": "shopify://shop_images/Frame_1_1.jpg",
+            "image_mobile": "shopify://shop_images/Frame_3.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_7iLB77"
+      ],
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "full_width": false,
+        "style": "arrows",
+        "autoplay": true,
+        "autoplay_speed": 7,
+        "lazyload_images": true
+      }
+    },
+    "c2045c1a-0929-49cc-b38c-27b475f9d399": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_mqYBcE": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "title": "Please note: Our store will be closed on Bank Holiday Monday. We’ll reopen as normal on Tuesday.",
+            "heading_size": "h3"
+          }
+        },
+        "ca8bc58c-5cfa-44f1-958f-dc312b1587be": {
+          "type": "page",
+          "disabled": true,
+          "settings": {
+            "page_text": "{{ page }}"
+          }
+        },
+        "heading_nw73Ue": {
+          "type": "heading",
+          "settings": {
+            "title": "Why Visit Us?",
+            "heading_size": "h2"
+          }
+        },
+        "text_raPjMi": {
+          "type": "text",
+          "settings": {
+            "enlarge_text": true,
+            "text": "<p>Our nursery specialists will guide you through everything you need to know about shopping for your new arrival, as well as offering personalised advice and recommendations that are tailored to you and your family.</p>"
+          }
+        },
+        "heading_cgWyg4": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "title": "We're Here to Help – Extended Support During Black Friday",
+            "heading_size": "h2"
+          }
+        },
+        "text_8G3eBJ": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "enlarge_text": true,
+            "text": "<p>During the busy Black Friday period, our store team is here to assist you more than ever with product questions, comparisons,  car seat fittings, pricing, and much more. We’ve extended our availability to ensure you receive the support you need:</p><ul><li><strong>Thursday</strong>: 9am – 7pm</li><li><strong>Black Friday</strong>: 9am – 7pm</li><li><strong>Saturday</strong>: 9am – 7pm</li><li><strong>Sunday</strong>: 11am – 5pm</li><li><strong>Cyber Monday</strong>: 9am – 7pm</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_mqYBcE",
+        "ca8bc58c-5cfa-44f1-958f-dc312b1587be",
+        "heading_nw73Ue",
+        "text_raPjMi",
+        "heading_cgWyg4",
+        "text_8G3eBJ"
+      ],
+      "custom_css": [
+        ".btn {font-size: calc(var(--typeBaseSize)); background: #9ea79e; text-transform: uppercase;}"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "color_scheme": "none",
+        "divider": false
+      }
+    },
+    "faq_3zMtUc": {
+      "type": "faq",
+      "blocks": {
+        "question_3iRymj": {
+          "type": "question",
+          "settings": {
+            "title": "Extended Opening Hours",
+            "text": "<p><strong>Now open every Monday until 2026</strong> </p><p>Mon to Sat | 9am - 5:30pm</p><p>Sun | 11am - 4pm</p><p><strong>Late Night Shopping every Thursday until 2026</strong></p><p>Thurs | 9am - 7pm </p><p><strong>Black Friday</strong></p><p>Fri 28th Nov - 9am - 7pm </p><p><br/></p>"
+          }
+        },
+        "question_QyzRCh": {
+          "type": "question",
+          "settings": {
+            "title": "Holiday Opening Hours",
+            "text": "<p>Mon 22nd Dec - 9am - 5:30pm</p><p>Tues 23rd Dec - 9am - 5:30pm</p><p>Christmas Eve - CLOSED</p><p>Christmas Day - CLOSED</p><p>Boxing Day - CLOSED</p><p>Sat 27th Dec - 9am - 5:30pm</p><p>Sun 28th Dec - 11am - 4pm</p><p>Mon 29th Dec - 9am - 5:30pm</p><p>Tues 30th Dec - 9am - 5:30pm</p><p>New Years Eve - 9am - 4pm</p><p>New Years Day - CLOSED</p><p>Fri 2nd Jan - 9am - 5:30pm</p><p><strong>Christmas Late Night Shopping </strong></p><p>Thurs 4th dec - 9am-7pm</p><p>Thurs 11th dec - 9am-7pm</p><p>Thurs 18th dec - 9am-7pm</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_3iRymj",
+        "question_QyzRCh"
+      ],
+      "disabled": true,
+      "name": "t:sections.faq.presets.faq.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "heading_position": "center"
+      }
+    },
+    "text_columns_8jyWjN": {
+      "type": "text-columns",
+      "blocks": {
+        "text_block_WwJ3qc": {
+          "type": "text_block",
+          "repeater": "{{ page.metafields.custom.page_hero_columns_2.value }}",
+          "settings": {
+            "enable_image": true,
+            "image": "{{ block.repeater.image.value }}",
+            "image_mask": "none",
+            "image_width": 650,
+            "title": "{{ block.repeater.heading.value }}",
+            "text": "{{ block.repeater.text | metafield_tag }}",
+            "button_label": "{{ block.repeater.button_label.value }}",
+            "button_link": "{{ block.repeater.link.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "text_block_WwJ3qc"
+      ],
+      "custom_css": [
+        ".grid__item {padding: 0 0 50px 0; margin: 0 10px 0px 10px; background-color: #9ea79e;}",
+        ".color-scheme-3 {background-color: #ffff; color: #ffff; padding-top: 0;}",
+        ".btn {background-color: #ffff; color: #ffff; border-color: #ffff;}",
+        "@media only screen and (max-width: 769px) {.grid__item {margin: 0 0 30px 0; } .grid {margin-left: 0px; }}",
+        "@media only screen and (min-width: 769px) {.medium-up--one-third {width: 31.33333%; } .grid {margin-left: 0px; }}"
+      ],
+      "settings": {
+        "title": "",
+        "align_text": "center",
+        "divider": false,
+        "color_scheme": "3"
+      }
+    },
+    "slideshow_image_EpwTwi": {
+      "type": "slideshow-image",
+      "blocks": {
+        "image_9W4QVR": {
+          "type": "image",
+          "settings": {
+            "link": "shopify://pages/book-appointment",
+            "image": "shopify://shop_images/Discover_8_1.jpg",
+            "image_mobile": "shopify://shop_images/Mob_-_Bottom_Banner_5_1.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_9W4QVR"
+      ],
+      "settings": {
+        "full_width": false,
+        "style": "arrows",
+        "autoplay": true,
+        "autoplay_speed": 7,
+        "lazyload_images": true
+      }
+    },
+    "rich_text_ziBPem": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_CqarWp": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "title": "Demo products from over 85 brands in-store and save £100s on newborn essentials",
+            "heading_size": "h2"
+          }
+        },
+        "text_hUEgBr": {
+          "type": "text",
+          "settings": {
+            "enlarge_text": true,
+            "text": "<p><strong>Demo products from over 85 brands in-store and save £100s on newborn essentials</strong></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_CqarWp",
+        "text_hUEgBr"
+      ],
+      "custom_css": [
+        ".btn {font-size: calc(var(--typeBaseSize)); background: #9ea79e; text-transform: uppercase;}",
+        ".index-section {margin: 0; padding: 0 0 0px 0; background-color: #FFFFF;}"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "color_scheme": "none",
+        "divider": false
+      }
+    },
+    "logo_blog_list_footer_7dQB4a": {
+      "type": "logo-blog-list-footer",
+      "blocks": {
+        "logo_image_DdmJEE": {
+          "type": "logo_image",
+          "repeater": "{{ page.metafields.custom.brands_logo_block_1.value }}",
+          "settings": {
+            "title": "",
+            "image": "{{ block.repeater.logo.value }}",
+            "link": "{{ block.repeater.link.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "logo_image_DdmJEE"
+      ],
+      "custom_css": [],
+      "settings": {
+        "title": "",
+        "heading_size": "h3",
+        "heading_position": "left",
+        "divider": false
+      }
+    },
+    "rich_text_wYeLLQ": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_wGgUK7": {
+          "type": "heading",
+          "settings": {
+            "title": "Earn Points on Every Purchase",
+            "heading_size": "h2"
+          }
+        },
+        "text_67FBqJ": {
+          "type": "text",
+          "settings": {
+            "enlarge_text": true,
+            "text": "<p>Gain points on all purchases when you shop with us in-store and convert to gift vouchers for your next purchase via our loyalty program.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_wGgUK7",
+        "text_67FBqJ"
+      ],
+      "custom_css": [
+        ".btn {font-size: calc(var(--typeBaseSize)); background: #9ea79e; text-transform: uppercase;}",
+        ".index-section {margin: 0; padding: 0 0 30px 0; background-color: #FFFFF;}"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "color_scheme": "none",
+        "divider": false
+      }
+    },
+    "slideshow_image_xrPhax": {
+      "type": "slideshow-image",
+      "blocks": {
+        "image_pCLynG": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "image": "shopify://shop_images/Untitled_design_33.jpg",
+            "image_mobile": "shopify://shop_images/Facebook_Event_Header_4.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_pCLynG"
+      ],
+      "disabled": true,
+      "settings": {
+        "full_width": false,
+        "style": "arrows",
+        "autoplay": true,
+        "autoplay_speed": 7,
+        "lazyload_images": true
+      }
+    },
+    "slideshow_image_L7Bc4N": {
+      "type": "slideshow-image",
+      "blocks": {
+        "image_PdLdEb": {
+          "type": "image",
+          "settings": {
+            "link": "shopify://pages/buy-now-pay-later",
+            "image": "shopify://shop_images/buy_now_pay_later2.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_PdLdEb"
+      ],
+      "name": "t:sections.slideshow-image.presets.image_optional_slides.name",
+      "settings": {
+        "full_width": false,
+        "style": "arrows",
+        "autoplay": true,
+        "autoplay_speed": 7,
+        "lazyload_images": true
+      }
+    },
+    "logo_blog_list_footer_YWk6Pd": {
+      "type": "logo-blog-list-footer",
+      "blocks": {
+        "logo_image_VNr8Pe": {
+          "type": "logo_image",
+          "disabled": true,
+          "repeater": "{{ page.metafields.custom.brands_logo_block_2.value }}",
+          "settings": {
+            "title": "",
+            "image": "{{ block.repeater.logo.value }}",
+            "link": "{{ block.repeater.link.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "logo_image_VNr8Pe"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "heading_position": "left",
+        "divider": false
+      }
+    },
+    "hero_video_WckcfE": {
+      "type": "hero-video",
+      "settings": {
+        "full_width": false,
+        "title": "",
+        "title_size": 70,
+        "subheading": "",
+        "link_text": "{{ page.metafields.custom.page_info.value.video_button_text.value }}",
+        "link": "{{ page.metafields.custom.page_info.value.video_url.value }}",
+        "color_accent": "rgba(0,0,0,0)",
+        "text_align": "vertical-center horizontal-center",
+        "video_url": "{{ page.metafields.custom.page_info.value.background_video_link.value }}",
+        "overlay_opacity": 0,
+        "height": 500,
+        "height_mobile": 300
+      }
+    },
+    "rich_text_chmUwi": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_RRWzL9": {
+          "type": "heading",
+          "settings": {
+            "title": "Our Story: 18 Years of NBS",
+            "heading_size": "h2"
+          }
+        },
+        "text_GNKeBT": {
+          "type": "text",
+          "settings": {
+            "enlarge_text": true,
+            "text": "<p>We’ve come such a long way together the past 18 years, and it’s a good time to stop and reflect on our many successes, as well as the many challenges we’ve had to overcome to get here.<br/></p>"
+          }
+        },
+        "button_GTpEVd": {
+          "type": "button",
+          "settings": {
+            "link": "shopify://pages/our-story",
+            "link_text": "LEARN MORE"
+          }
+        }
+      },
+      "block_order": [
+        "heading_RRWzL9",
+        "text_GNKeBT",
+        "button_GTpEVd"
+      ],
+      "custom_css": [
+        ".btn {font-size: calc(var(--typeBaseSize)); background: #9ea79e; text-transform: uppercase;}",
+        ".index-section {margin: 0; padding: 0 0 30px 0; background-color: #FFFFF;}"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "color_scheme": "none",
+        "divider": false
+      }
+    },
+    "slideshow_image_zi4eLr": {
+      "type": "slideshow-image",
+      "blocks": {
+        "image_ceK6zT": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "image": "shopify://shop_images/Untitled_design_29_bc6801f3-16ff-430e-a522-8cfebe2e89c4.jpg",
+            "image_mobile": "shopify://shop_images/Facebook_Event_Header_1.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_ceK6zT"
+      ],
+      "settings": {
+        "full_width": false,
+        "style": "arrows",
+        "autoplay": true,
+        "autoplay_speed": 7,
+        "lazyload_images": true
+      }
+    },
+    "c3001b3d-e9ac-4785-8fff-ddd2af82f4e2": {
+      "type": "contact-form",
+      "settings": {
+        "title": "{{ page.metafields.custom.page_info.value.form_title.value }}",
+        "heading_size": "h2",
+        "heading_position": "center",
+        "text": "{{ page.metafields.custom.page_info.value.form_text | metafield_tag }}",
+        "show_phone": true,
+        "narrow_column": true,
+        "color_scheme": "2"
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "825c5333-4f05-42b2-ac55-b29db2932b89": {
+          "type": "question",
+          "repeater": "{{ page.metafields.custom.page_faqs.value }}",
+          "settings": {
+            "title": "{{ block.repeater.question.value }}",
+            "text": "{{ block.repeater.text | metafield_tag }}"
+          }
+        }
+      },
+      "block_order": [
+        "825c5333-4f05-42b2-ac55-b29db2932b89"
+      ],
+      "custom_css": [
+        ".index-section {margin: 30px 0 60px 0; padding: 0;}",
+        ".collapsible-trigger-btn {text-transform: none;}"
+      ],
+      "settings": {
+        "title": "{{ page.metafields.custom.page_faqs_heading.value }}",
+        "heading_size": "h2",
+        "heading_position": "center"
+      }
+    },
+    "1f508328-4681-41bd-98b7-d430a013c29d": {
+      "type": "rich-text",
+      "blocks": {
+        "79779cad-ec30-4031-812a-49656a49bff2": {
+          "type": "text",
+          "settings": {
+            "enlarge_text": false,
+            "text": "{{ page.metafields.custom.page_info.value.base_text_to_setup | metafield_tag }}"
+          }
+        }
+      },
+      "block_order": [
+        "79779cad-ec30-4031-812a-49656a49bff2"
+      ],
+      "custom_css": [
+        ".index-section {margin: 10px 0; padding: 25px 0 35px 0;}"
+      ],
+      "settings": {
+        "align_text": "left",
+        "narrow_column": true,
+        "color_scheme": "none",
+        "divider": false
+      }
+    },
+    "3639394a-4aa1-4bdf-9fca-b720636f50ab": {
+      "type": "map",
+      "custom_css": [
+        ".btn {text-transform: uppercase;}"
+      ],
+      "settings": {
+        "map_title": "{{ page.metafields.custom.page_info.value.map_heading.value }}",
+        "heading_size": "h2",
+        "heading_position": "left",
+        "address": "<p>{{ page.metafields.custom.page_info.value.map_info | metafield_tag }}</p>",
+        "map_address": "{{ page.metafields.custom.page_info.value.google_address.value }}",
+        "api_key": "{{ page.metafields.custom.page_info.value.google_maps_api_key.value }}",
+        "show_button": true,
+        "lazyload_images": true
+      }
+    },
+    "46fd161a-0ad7-41d8-bf0b-4eb1eb058165": {
+      "type": "advanced-content",
+      "blocks": {
+        "template--14836576419918__46fd161a-0ad7-41d8-bf0b-4eb1eb058165-liquid-1": {
+          "type": "liquid",
+          "settings": {
+            "code": "<div\n  class=\"trustpilot-widget\"\n  data-locale=\"en-GB\"\n  data-template-id=\"54ad5defc6454f065c28af8b\"\n  data-businessunit-id=\"4c62b96400006400050d8c76\"\n  data-style-height=\"240px\"\n  data-style-width=\"100%\"\n  data-theme=\"light\"\n  data-tags=\"aftercare\"\n  data-stars=\"4,5\"\n  data-review-languages=\"en\"\n>\n  <a href=\"https://uk.trustpilot.com/review/naturalbabyshower.co.uk\" target=\"_blank\" rel=\"noopener\">Trustpilot</a>\n</div>",
+            "width": "100%",
+            "alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "template--14836576419918__46fd161a-0ad7-41d8-bf0b-4eb1eb058165-liquid-1"
+      ],
+      "custom_css": [
+        ".index-section {padding: 0px; margin: 10px 0 0 0;}"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": true,
+        "lazyload_images": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "936343ed-3d6a-4686-8ecb-49c9bde332c6",
+    "promo_grid_wfJi3J",
+    "1723303277132ada2f",
+    "rich_text_yYfURh",
+    "1ddc14df-d78b-41ae-95ed-60ad38142670",
+    "slideshow_image_Nmqxxz",
+    "c2045c1a-0929-49cc-b38c-27b475f9d399",
+    "faq_3zMtUc",
+    "text_columns_8jyWjN",
+    "slideshow_image_EpwTwi",
+    "rich_text_ziBPem",
+    "logo_blog_list_footer_7dQB4a",
+    "rich_text_wYeLLQ",
+    "slideshow_image_xrPhax",
+    "slideshow_image_L7Bc4N",
+    "logo_blog_list_footer_YWk6Pd",
+    "hero_video_WckcfE",
+    "rich_text_chmUwi",
+    "slideshow_image_zi4eLr",
+    "c3001b3d-e9ac-4785-8fff-ddd2af82f4e2",
+    "faq",
+    "1f508328-4681-41bd-98b7-d430a013c29d",
+    "3639394a-4aa1-4bdf-9fca-b720636f50ab",
+    "46fd161a-0ad7-41d8-bf0b-4eb1eb058165"
+  ]
+}
