@@ -4654,7 +4654,7 @@ if (console && console.log) {
             list.classList.remove(classes.isActive);
           });
         }
-
+  
         this.wrapper.dataset.level = this.config.menuLevel;
         this.scrollMenuToTop();
       },
