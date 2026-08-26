@@ -29,6 +29,7 @@
   --color-cranberry-red: #621D20;
   --color-navy-blue: #3A5779;
   --color-ice-blue: #8BB1D8;
+  --pdp-radius: 12px;
 
   /* Background tokens (same hex values, for background-color: var(--bg-*)) */
   --bg-charcoal-grey: var(--color-charcoal-grey);
@@ -1156,7 +1157,7 @@ color: #585B56;
   font-size: calc(var(--typeBaseSize) * 0.7);
   font-weight:300;
   border: 1px solid transparent;
-  border-radius: var(--buttonRadius);
+  border-radius: var(--pdp-radius);
   gap: 4px;
   margin:0;
   padding: 4px 6px 3px 6px;
@@ -1390,7 +1391,7 @@ font-size:.9em;
   font-size: calc(var(--typeBaseSize) * 0.6);
   font-weight:300;
   border: 1px solid transparent;
-  border-radius: var(--buttonRadius);
+  border-radius: var(--pdp-radius);
   gap: 4px;
   margin:0;
   padding: 4px 6px 3px 6px;
@@ -1996,6 +1997,9 @@ button.btn.btn--full.add-to-cart {
 .variant-input-wrap label {
     box-shadow: 0 0 0 1px #999;
 }
+.variant-input-wrap label:not(.color-swatch) {
+    border-radius: var(--pdp-radius);
+}
 .color-swatch {
     margin: 0 3px 3px;
 }
@@ -2043,6 +2047,7 @@ div#swym-wishlist-title {
 
 .product-block .collapsible-content__inner {
 background-color:#F7F7F7 ;
+border-radius: var(--pdp-radius);
 margin: 0 0 0 0;
 padding: 10px 15px;
 }
@@ -2592,7 +2597,7 @@ input#Search::placeholder {
 
 .product-purchase-info {
   background-color: #f0eeeb;
-  border-radius: 12px;
+  border-radius: var(--pdp-radius);
   color: var(--color-charcoal-grey);
   margin-top: 16px;
   padding: 16px 18px;
@@ -2701,4 +2706,10 @@ input#Search::placeholder {
 
 .product-block--price .product__price-savings span {
   color: inherit;
+}
+
+klarna-placement {
+  border-radius: var(--pdp-radius);
+  display: block;
+  overflow: hidden;
 }
