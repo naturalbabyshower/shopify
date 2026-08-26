@@ -1,0 +1,150 @@
+{% comment %}
+  Variant inventory maps used when the selected option changes.
+  Kept in its own snippet so product-inventory-new stays under the Liquid complexity limit.
+{% endcomment %}
+
+<script>
+        var quantity = {};
+        var policy = {};
+        var oversell_reason = {};
+        var shipping_date = {};
+        var stock_text = {};
+        var ship_text = {};
+        var icon = {};
+          {% for variant in product.variants %}
+            {%- liquid
+              assign lead_date = false
+              assign today = 'today' | date: '%s'
+              assign due_date = variant.metafields.custom.due_date.value | date: '%b %e'
+              assign lead = variant.metafields.custom.oversell_lead
+              assign day_leads = '|3-5 days|5-7 days|7-10 days|10-14 days|'
+              assign lead_token = '|' | append: lead | append: '|'
+
+              if day_leads contains lead_token
+                assign lead_date = false
+              elsif lead contains 'weeks'
+                assign weeks = lead | split: ' ' | first | plus: 0
+                assign seconds = weeks | times: 7 | times: 86400
+                assign lead_date = today | plus: seconds | date: '%b %e'
+              else
+                assign seconds = 30 | times: 86400
+                assign lead_date = today | plus: seconds | date: '%b %e'
+              endif
+
+              if due_date != blank
+                assign lead_date = due_date
+                assign delivery_number = due_date | date: '%e'
+                assign ship_text = ' | Ship by '
+              elsif lead_date != blank
+                assign delivery_number = lead_date | date: '%e'
+                assign ship_text = ' | Ship by '
+              elsif lead_date == false
+                assign lead_date = lead
+                assign delivery_number = ''
+                assign ship_text = ' | Ship in '
+              endif
+
+              if delivery_number == ' 1' or delivery_number == '21' or delivery_number == '31'
+                assign ordinal2 = '<sup>st</sup>'
+              elsif delivery_number == ' 2' or delivery_number == '22'
+                assign ordinal2 = '<sup>nd</sup>'
+              elsif delivery_number == ' 3' or delivery_number == '23'
+                assign ordinal2 = '<sup>rd</sup>'
+              elsif delivery_number == ''
+                assign ordinal2 = ''
+              else
+                assign ordinal2 = '<sup>th</sup>'
+              endif
+            -%}
+
+      quantity[{{- variant.id -}}] = "{{ variant.inventory_quantity | default: 1 }}";
+      policy[{{- variant.id -}}] = "{{ variant.inventory_policy }}";
+      oversell_reason[{{- variant.id -}}] = "{{ variant.metafields.custom.oversell_reason.value }}";
+    {%- if variant.inventory_quantity > 4 %}
+      icon[{{- variant.id -}}] = '';
+      stock_text[{{- variant.id -}}] = '{{ 'products.product.in_stock' | t }}';
+      ship_text[{{- variant.id -}}] = ' | Get it by ';
+      shipping_date[{{- variant.id -}}] = "{{ next_delivery_date }}{{- ordinal -}}";
+    {%- elsif variant.inventory_quantity > 0 %}
+      icon[{{- variant.id -}}] = ' inventory--low';
+      stock_text[{{- variant.id -}}] = '{{ 'products.product.low_stock' | t }}';
+      ship_text[{{- variant.id -}}] = ' | Get it by ';
+      shipping_date[{{- variant.id -}}] = "{{ next_delivery_date }}{{- ordinal -}}";
+    {%- elsif variant.inventory_quantity < 1 and variant.inventory_policy == 'continue' and variant.metafields.custom.oversell_reason.value == 'Standard' %}
+      icon[{{- variant.id -}}] = ' inventory--oversell';
+      stock_text[{{- variant.id -}}] = '{{ 'products.product.stock_incoming' | t }}';
+      ship_text[{{- variant.id -}}] = "{{ ship_text }}";
+      shipping_date[{{- variant.id -}}] = "{{ lead_date }}{{- ordinal2 -}}";
+    {%- elsif variant.inventory_quantity < 1 and variant.inventory_policy == 'continue' and variant.metafields.custom.oversell_reason.value == 'Bundle Only' %}
+      icon[{{- variant.id -}}] = ' inventory--sold-out';
+      stock_text[{{- variant.id -}}] = 'Available in Bundles';
+      ship_text[{{- variant.id -}}] = ' | Back soon ';
+      shipping_date[{{- variant.id -}}] = '';
+    {%- elsif variant.inventory_quantity < 1 and variant.inventory_policy == 'continue' and variant.metafields.custom.oversell_reason.value == 'Dropship' %}
+      icon[{{- variant.id -}}] = ' inventory--dropship';
+      stock_text[{{- variant.id -}}] = '{{ 'products.product.direct' | t }}';
+      ship_text[{{- variant.id -}}] = ' | Ship in ';
+      shipping_date[{{- variant.id -}}] = "{{ lead }}";
+    {%- elsif variant.inventory_quantity < 1 and variant.inventory_policy == 'deny' and product.metafields.custom.product_state.value == 'Discontinued' %}
+      icon[{{- variant.id -}}] = ' inventory--sold-out';
+      stock_text[{{- variant.id -}}] = '{{ 'products.product.sold_out' | t }}';
+      ship_text[{{- variant.id -}}] = ' | Product discontinued ';
+      shipping_date[{{- variant.id -}}] = '';
+    {%- elsif variant.inventory_quantity < 1 and variant.inventory_policy == 'deny' %}
+      icon[{{- variant.id -}}] = ' inventory--sold-out';
+      stock_text[{{- variant.id -}}] = '{{ 'products.product.out_of_stock' | t }}';
+      ship_text[{{- variant.id -}}] = ' | Back soon ';
+      shipping_date[{{- variant.id -}}] = '';
+    {%- endif -%}
+  {% endfor %}
+      document.addEventListener('variant:change', function (evt) {
+      console.log(evt.detail.variant);
+        $(".icon-and-text").removeClass().addClass('icon-and-text');
+        $(".icon-and-text").addClass(icon[evt.detail.variant.id]);
+        $("#stock_text").html(stock_text[evt.detail.variant.id]);
+        $("#ship_text").html(ship_text[evt.detail.variant.id]);
+        $("#shipping_date").html(shipping_date[evt.detail.variant.id]);
+      });
+</script>
+
+{%- assign variants_with_inventory_tracking = product.variants | where: 'inventory_management', 'shopify' -%}
+
+<script>
+    // Store inventory quantities in JS because they're no longer
+    // available directly in JS when a variant changes.
+    // Have an object that holds all potential products so it works
+    // with quick view or with multiple featured products.
+    window.inventories = window.inventories || {};
+    window.inventories['{{ product.id }}'] = {};
+  {%- for variant in variants_with_inventory_tracking %}
+    window.inventories['{{ product.id }}'][{{ variant.id }}] = {
+      'quantity': {{ variant.inventory_quantity | default: 0 }},
+      'policy': '{{ variant.inventory_policy | default: false }}',
+      'incoming': '{{ variant.incoming | default: false }}',
+      'next_incoming_date': {{ variant.next_incoming_date | date: format: 'date' | json }}
+    };
+  {% endfor %}
+</script>
+
+{% comment %}
+  If loaded in quick view, it might be from a JS-loaded function
+  that loads recommended products. If that's the case, the above
+  JS will not set the variant inventory. Add it to an accessible
+  data div to read later instead.
+{% endcomment %}
+<div
+  data-product-id="{{ product.id }}"
+  class="hide js-product-inventory-data"
+  aria-hidden="true"
+>
+  {%- for variant in variants_with_inventory_tracking -%}
+    <div
+      class="js-variant-inventory-data"
+      data-id="{{ variant.id }}"
+      data-quantity="{{ variant.inventory_quantity | default: 0 }}"
+      data-policy="{{ variant.inventory_policy | default: false }}"
+      data-incoming="{{ variant.incoming | default: false }}"
+      data-date="{{ variant.next_incoming_date | date: format: 'date' }}"
+    ></div>
+  {%- endfor -%}
+</div>
