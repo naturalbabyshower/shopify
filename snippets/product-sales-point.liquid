@@ -9,6 +9,7 @@
   codes_affiliate, codes_allowed, codes_google, nogoogle
 {% endcomment %}
 
+{%- unless block.settings.icon == 'truck' or block.settings.icon == 'tag' -%}
 {%- if block.settings.text != blank or product_discount or cs_offer or offer_product_text or save_code15 or save_code10 or save_code5 -%}
   <div
     class="product-block product-block--sales-point"
@@ -182,3 +183,4 @@
     </ul>
   </div>
 {%- endif -%}
+{%- endunless -%}

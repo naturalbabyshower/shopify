@@ -2,6 +2,55 @@
   Delivery, returns, and price-match info shown under Add to Cart.
 {% endcomment %}
 
+{% style %}
+  .product-purchase-info {
+    background-color: #f0eeeb;
+    border-radius: 12px;
+    color: var(--color-charcoal-grey);
+    margin-top: 16px;
+    padding: 16px 18px;
+  }
+  .product-block:has(.product-purchase-info) > .product-block {
+    margin-bottom: 0;
+  }
+  .product-block:has(.product-purchase-info) {
+    margin-bottom: 16px;
+  }
+  .product-purchase-info__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .product-purchase-info__row {
+    align-items: center;
+    display: flex;
+    font-size: calc(var(--typeBaseSize) - 1px);
+    gap: 12px;
+    line-height: 1.35;
+  }
+  .product-purchase-info__row + .product-purchase-info__row {
+    margin-top: 12px;
+  }
+  .product-purchase-info__icon {
+    color: var(--color-charcoal-grey);
+    display: flex;
+    flex: 0 0 22px;
+    height: 22px;
+    width: 22px;
+  }
+  .product-purchase-info__icon svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+  .product-purchase-info a {
+    color: inherit;
+  }
+  .quick-add-modal .product-purchase-info {
+    display: none;
+  }
+{% endstyle %}
+
 {%- liquid
   assign oversell_reason = current_variant.metafields.custom.oversell_reason
   if oversell_reason == 'Dropship'
