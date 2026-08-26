@@ -1,0 +1,14 @@
+{
+  "name": "naturalbabyshower-shopify-theme",
+  "private": true,
+  "description": "Shopify theme (Expanse by Archetype Themes). Local dev tooling via the Shopify CLI.",
+  "scripts": {
+    "dev": "shopify theme dev",
+    "check": "shopify theme check",
+    "push": "shopify theme push",
+    "pull": "shopify theme pull"
+  },
+  "devDependencies": {
+    "@shopify/cli": "^3.66.1"
+  }
+}

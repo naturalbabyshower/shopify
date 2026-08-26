@@ -1,0 +1,4 @@
+{
+  "name": "Shopify Theme (Expanse)",
+  "install": "npm ci"
+}
