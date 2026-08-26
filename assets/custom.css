@@ -1248,6 +1248,17 @@ text-decoration: underline;
 color: #333;
 }
 
+@media only screen and (max-width: 768px) {
+  .breadcrumb-collection {
+    margin: 12px 0 8px;
+  }
+
+  .new-grid[data-type=subcollections]:empty,
+  .scrollable-grid--small[data-type=subcollections]:empty {
+    display: none;
+  }
+}
+
 .cartmessage {
 font-size:.9em;
 font-weight:400;
