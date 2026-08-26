@@ -1,1 +1,133 @@
-{"type":"header","name":"t:sections.header-group.name","sections":{"toolbar":{"type":"toolbar","blocks":{"toolbar-0":{"type":"announcement","settings":{"richtext":"<p>Use code SAVE5 or SAVE10 | <a href=\"\/pages\/additional-terms-offers-competitions\" title=\"Additional Terms | Offers & Competitions\"><span style=\"text-decoration:underline\">T&Cs<\/span><\/a><\/p>","richtext_mobile":"<p>Use code SAVE5 or SAVE10 | <a href=\"\/pages\/additional-terms-offers-competitions\" title=\"Additional Terms | Offers & Competitions\"><span style=\"text-decoration:underline\">T&Cs<\/span><\/a><\/p>"}},"828ec560-a26c-4fba-8d52-f82b906711b5":{"type":"announcement","settings":{"richtext":"<p>FREE 1:1 in-store appointments <a href=\"\/pages\/store\" title=\"Baby Stores Near Me | Parent + Baby Essentials | Natural Baby Shower\"><span style=\"text-decoration:underline\">LEARN MORE<\/span><\/a><\/p>","richtext_mobile":"<p>FREE 1:1 in-store appointments <a href=\"\/pages\/store\" title=\"Baby Stores Near Me | Parent + Baby Essentials | Natural Baby Shower\"><span style=\"text-decoration:underline\">LEARN MORE<\/span><\/a><\/p>"}},"108da214-bf68-4176-a2ef-a4a5a9dab8ca":{"type":"announcement","settings":{"richtext":"<p>Free shipping over £75<\/p>","richtext_mobile":"<p>Free shipping over £75<\/p>"}}},"block_order":["toolbar-0","828ec560-a26c-4fba-8d52-f82b906711b5","108da214-bf68-4176-a2ef-a4a5a9dab8ca"],"settings":{"announcement_center":true,"toolbar_social":true,"show_locale_selector":false,"show_currency_selector":false,"show_currency_flags":false}},"header":{"type":"header","blocks":{"2d6d0c72-4563-4fbb-9b57-b8620eb67ec7":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/Logo-lockup-wide.svg","logo-inverted":"shopify:\/\/shop_images\/Logo-lockup-mob.svg","desktop_logo_width":350,"mobile_logo_width":190}}},"block_order":["2d6d0c72-4563-4fbb-9b57-b8620eb67ec7"],"custom_css":["input {color: #4c4c4c !important;}","svg.icon.icon-search {color: #4c4c4c !important;}",".btn--search path {stroke: #4c4c4c !important;}","input#Search {border: 1px solid; border-color: #4c4c4c;}"],"settings":{"main_menu_link_list":"main-bau","hover_menu":true,"main_menu_alignment":"center","mega_products":false,"header_sticky":true,"header_footer_menu":true,"sticky_index":false,"sticky_collection":false}},"17752283260150fe31":{"type":"_blocks","blocks":{"ai_gen_block_c7c7c24_BpGH77":{"type":"ai_gen_block_c7c7c24","name":"Header bar","settings":{"background_color":"#ffffff","text_color":"#585b56","vertical_padding":10,"max_width":1450,"column_gap":20,"text_size":13,"icon_size":300,"icon_text_gap":6,"mobile_layout":"stack","mobile_stack_gap":5,"show_column_1":true,"column_1_type":"image","column_1_text":"","column_1_image":"shopify:\/\/shop_images\/nbs_truspilot_april_26_f0ddaf33-3f71-406e-9b31-576f87aafff6.png","column_1_link":"","column_1_align":"left","show_column_2":true,"column_2_type":"text","column_2_text":"<p><strong>Multi-award winning Nursery Retailer<\/strong> | Peace of Mind<\/p>","column_2_link":"","column_2_align":"center","show_column_3":true,"column_3_type":"text","column_3_text":"<p><strong>Trusted for 19+ Years<\/strong> | 1.5M+ Happy Parents<\/p>","column_3_link":"","column_3_align":"right"},"blocks":{}}},"block_order":["ai_gen_block_c7c7c24_BpGH77"],"settings":{}}},"order":["toolbar","header","17752283260150fe31"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "t:sections.header-group.name",
+  "sections": {
+    "toolbar": {
+      "type": "toolbar",
+      "blocks": {
+        "toolbar-0": {
+          "type": "announcement",
+          "settings": {
+            "richtext": "<p>Use code SAVE5 or SAVE10 | <a href=\"/pages/additional-terms-offers-competitions\" title=\"Additional Terms | Offers & Competitions\"><span style=\"text-decoration:underline\">T&Cs</span></a></p>",
+            "richtext_mobile": "<p>Use code SAVE5 or SAVE10 | <a href=\"/pages/additional-terms-offers-competitions\" title=\"Additional Terms | Offers & Competitions\"><span style=\"text-decoration:underline\">T&Cs</span></a></p>"
+          }
+        },
+        "828ec560-a26c-4fba-8d52-f82b906711b5": {
+          "type": "announcement",
+          "settings": {
+            "richtext": "<p>FREE 1:1 in-store appointments <a href=\"/pages/store\" title=\"Baby Stores Near Me | Parent + Baby Essentials | Natural Baby Shower\"><span style=\"text-decoration:underline\">LEARN MORE</span></a></p>",
+            "richtext_mobile": "<p>FREE 1:1 in-store appointments <a href=\"/pages/store\" title=\"Baby Stores Near Me | Parent + Baby Essentials | Natural Baby Shower\"><span style=\"text-decoration:underline\">LEARN MORE</span></a></p>"
+          }
+        },
+        "108da214-bf68-4176-a2ef-a4a5a9dab8ca": {
+          "type": "announcement",
+          "settings": {
+            "richtext": "<p>Free shipping over £75</p>",
+            "richtext_mobile": "<p>Free shipping over £75</p>"
+          }
+        }
+      },
+      "block_order": [
+        "toolbar-0",
+        "828ec560-a26c-4fba-8d52-f82b906711b5",
+        "108da214-bf68-4176-a2ef-a4a5a9dab8ca"
+      ],
+      "settings": {
+        "announcement_center": true,
+        "toolbar_social": true,
+        "show_locale_selector": false,
+        "show_currency_selector": false,
+        "show_currency_flags": false
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "2d6d0c72-4563-4fbb-9b57-b8620eb67ec7": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Logo-lockup-wide.svg",
+            "logo-inverted": "shopify://shop_images/Logo-lockup-mob.svg",
+            "desktop_logo_width": 350,
+            "mobile_logo_width": 190
+          }
+        }
+      },
+      "block_order": [
+        "2d6d0c72-4563-4fbb-9b57-b8620eb67ec7"
+      ],
+      "custom_css": [
+        "input {color: #4c4c4c !important;}",
+        "svg.icon.icon-search {color: #4c4c4c !important;}",
+        ".btn--search path {stroke: #4c4c4c !important;}",
+        "input#Search {border: 1px solid; border-color: #4c4c4c;}"
+      ],
+      "settings": {
+        "main_menu_link_list": "main-bau",
+        "hover_menu": true,
+        "main_menu_alignment": "center",
+        "mega_products": false,
+        "header_sticky": true,
+        "header_footer_menu": true,
+        "sticky_index": false,
+        "sticky_collection": false
+      }
+    },
+    "17752283260150fe31": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_c7c7c24_BpGH77": {
+          "type": "ai_gen_block_c7c7c24",
+          "name": "Header bar",
+          "settings": {
+            "background_color": "#ffffff",
+            "text_color": "#585b56",
+            "vertical_padding": 10,
+            "max_width": 1450,
+            "column_gap": 20,
+            "text_size": 13,
+            "icon_size": 300,
+            "icon_text_gap": 6,
+            "mobile_layout": "stack",
+            "mobile_stack_gap": 5,
+            "show_column_1": true,
+            "column_1_type": "image",
+            "column_1_text": "",
+            "column_1_image": "shopify://shop_images/nbs_truspilot_april_26_f0ddaf33-3f71-406e-9b31-576f87aafff6.png",
+            "column_1_link": "",
+            "column_1_align": "left",
+            "show_column_2": true,
+            "column_2_type": "text",
+            "column_2_text": "<p><strong>Multi-award winning Nursery Retailer</strong> | Peace of Mind</p>",
+            "column_2_link": "",
+            "column_2_align": "center",
+            "show_column_3": true,
+            "column_3_type": "text",
+            "column_3_text": "<p><strong>Trusted for 19+ Years</strong> | 1.5M+ Happy Parents</p>",
+            "column_3_link": "",
+            "column_3_align": "right"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_c7c7c24_BpGH77"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "toolbar",
+    "header",
+    "17752283260150fe31"
+  ]
+}

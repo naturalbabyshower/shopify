@@ -1,1 +1,362 @@
-{"sections":{"6dfe159a-d62b-4599-86b3-056a1aaf40aa":{"type":"promo-grid","blocks":{"2f2c9f61-a35f-43fd-8054-dbbab3c74094":{"type":"banner","disabled":true,"settings":{"heading":"Save on Christmas |","text":"Up to 30% off toys, gifts + clothing Shop now","link":"shopify:\/\/collections\/christmas-shop","label":"Shop Now","color_scheme":"none"}}},"block_order":["2f2c9f61-a35f-43fd-8054-dbbab3c74094"],"disabled":true,"custom_css":[".promo-grid {margin: 0; padding: 0 0 0 0;}",".btn {margin: 5px; padding: 5px; background-color: transparent; color: #f6f6f6; border: 1px solid #f6f6f6 !important;}",".color-scheme-2 {background-color: #66b7bf; color: #f6f6f6;}",".color-scheme-none {background-color: #9a0200; color: #f6f6f6;}"],"settings":{"full_width":true,"gutter_size":0,"space_above":false,"space_below":false,"lazyload_images":false}},"collection-header":{"type":"collection-header","disabled":true,"settings":{"enable":false,"collection_image_enable":false,"parallax":false,"parallax_direction":"left"}},"4d550bb3-72d7-45e2-b8d1-97fbadd1893a":{"type":"slideshow-split","blocks":{"template--14884987174990__4d550bb3-72d7-45e2-b8d1-97fbadd1893a-slide-1":{"type":"slide","repeater":"{{ collection.metafields.custom.collection_hero_banner.value }}","settings":{"top_subheading":"{{ block.repeater.subheading.value }}","title":"{{ block.repeater.heading | metafield_tag }}","title_size":40,"subheading":"{{ block.repeater.text.value }}","link":"{{ block.repeater.slide_link.value }}","link_text":"{{ block.repeater.slide_link_text.value }}","link_2":"{{ block.repeater.slide_link_2.value }}","link_text_2":"{{ block.repeater.slide_link_text_2.value }}","text_position":"left","image":"{{ block.repeater.image.value }}","indent_image":false,"color_scheme":"3"}}},"block_order":["template--14884987174990__4d550bb3-72d7-45e2-b8d1-97fbadd1893a-slide-1"],"custom_css":[],"settings":{"full_width":true,"height":275,"height_mobile":300,"style":"minimal","autoplay":false,"autoplay_speed":5,"lazyload_images":false}},"236baa81-acdc-4e3a-a5b0-3294c0016bcf":{"type":"promo-grid","blocks":{"43592a6f-ed1e-49ec-aa9a-6d2e76dbdf8f":{"type":"banner","repeater":"{{ collection.metafields.custom.collection_banners.value }}","settings":{"heading":"{{ block.repeater.heading.value }}","text":"{{ block.repeater.text.value }}","link":"{{ block.repeater.button_link.value }}","label":"{{ block.repeater.button_text.value }}","color_scheme":"2"}}},"block_order":["43592a6f-ed1e-49ec-aa9a-6d2e76dbdf8f"],"custom_css":[".promo-grid {margin: 0; padding: 0 0 0 0;}",".btn {margin: 5px; padding: 5px; background-color: transparent; color: #42655e; border: 1px solid #42655e !important;}",".color-scheme-2 {background-color: #d1dfca; color: #42655e;}",".color-scheme-none {background-color: #deede4; color: #deede4;}"],"settings":{"full_width":true,"gutter_size":0,"space_above":false,"space_below":false,"lazyload_images":false}},"main-collection":{"type":"main-collection","blocks":{"subcollections":{"type":"subcollections","settings":{}},"product_grid":{"type":"product_grid","settings":{"grid_style":"small"}}},"block_order":["subcollections","product_grid"],"custom_css":[],"settings":{"enable_sidebar":true,"collapse_filters":false,"enable_color_swatches":false,"enable_sort":true}},"178032561903d1847d":{"type":"apps","blocks":{"nosto_nosto_placements_block_azbML6":{"type":"shopify:\/\/apps\/nosto\/blocks\/nosto-placements-block\/a67c43f0-0fc3-4649-a7dc-65ac499cae31","settings":{"placement":"categorypage-nosto-1"}},"nosto_nosto_placements_block_xNRwVJ":{"type":"shopify:\/\/apps\/nosto\/blocks\/nosto-placements-block\/a67c43f0-0fc3-4649-a7dc-65ac499cae31","disabled":true,"settings":{"placement":"categorypage-nosto-3"}}},"block_order":["nosto_nosto_placements_block_azbML6","nosto_nosto_placements_block_xNRwVJ"],"settings":{"full_width":false,"space_around":true}},"197bd871-a8a5-4d9f-8a5e-79a57410052e":{"type":"faq","blocks":{"template--14837343387726__197bd871-a8a5-4d9f-8a5e-79a57410052e-question-1":{"type":"question","repeater":"{{ collection.metafields.custom.collection_faqs.value }}","settings":{"title":"{{ block.repeater.question.value }}","text":"{{ block.repeater.text | metafield_tag }}"}}},"block_order":["template--14837343387726__197bd871-a8a5-4d9f-8a5e-79a57410052e-question-1"],"custom_css":[".index-section {margin: 30px 0 60px 0; padding: 10px 0;}"],"settings":{"title":"{{ collection.title }} FAQs","heading_size":"h2","heading_position":"center"}},"logo_list_Eix6NK":{"type":"logo-list","blocks":{"logo_image_948GFJ":{"type":"logo_image","repeater":"{{ collection.metafields.custom.collection_logos.value }}","settings":{"image":"{{ block.repeater.logo.value }}","link":"{{ block.repeater.link.value }}"}}},"block_order":["logo_image_948GFJ"],"settings":{"title":"{{ collection.title }} Brands","heading_size":"h2","heading_position":"center","divider":false}},"text_columns_rAVcxA":{"type":"text-columns","blocks":{"text_block_6pQENW":{"type":"text_block","repeater":"{{ collection.metafields.custom.page_hero_columns.value }}","settings":{"enable_image":true,"image":"{{ block.repeater.image.value }}","image_mask":"square","image_width":350,"title":"{{ block.repeater.heading.value }}","text":"{{ block.repeater.text | metafield_tag }}","button_label":"{{ block.repeater.button_label.value }}","button_link":"{{ block.repeater.link.value }}"}}},"block_order":["text_block_6pQENW"],"custom_css":["h2 {margin: 0;}"],"settings":{"title":"{{ collection.title }} Articles","align_text":"center","divider":false,"color_scheme":"none"}},"178032562815ad8ea8":{"type":"apps","blocks":{"nosto_nosto_placements_block_kMNFNh":{"type":"shopify:\/\/apps\/nosto\/blocks\/nosto-placements-block\/a67c43f0-0fc3-4649-a7dc-65ac499cae31","settings":{"placement":"categorypage-nosto-2"}}},"block_order":["nosto_nosto_placements_block_kMNFNh"],"settings":{"full_width":false,"space_around":true}},"promo_grid_9PtXmJ":{"type":"promo-grid","blocks":{"advanced_86DPMG":{"type":"advanced","repeater":"{{ collection.metafields.custom.enhanced_content.value }}","settings":{"subheading":"{{ block.repeater.subheading.value }}","heading":"{{ block.repeater.heading.value }}","textarea":"{{ block.repeater.text | metafield_tag }}","cta_text1":"{{ block.repeater.button_1_text.value }}","cta_link1":"{{ block.repeater.button_1_link.value }}","cta_text2":"{{ block.repeater.button_2_text.value }}","cta_link2":"{{ block.repeater.button_2_link.value }}","image":"{{ block.repeater.image.value }}","video_url":"{{ block.repeater.video_url.value }}","width":"50","height":500,"text_align":"vertical-center horizontal-center","color_accent":"rgba(0,0,0,0)"}}},"block_order":["advanced_86DPMG"],"settings":{"full_width":false,"gutter_size":20,"space_above":false,"space_below":false,"lazyload_images":true}},"promo_grid_KJAK4t":{"type":"promo-grid","blocks":{"advanced_RPyyii":{"type":"advanced","repeater":"{{ collection.metafields.custom.enhanced_content_wide.value }}","settings":{"subheading":"{{ block.repeater.subheading.value }}","heading":"{{ block.repeater.heading.value }}","textarea":"{{ block.repeater.text | metafield_tag }}","cta_text1":"{{ block.repeater.button_1_text.value }}","cta_link1":"{{ block.repeater.button_1_link.value }}","cta_text2":"{{ block.repeater.button_2_text.value }}","cta_link2":"{{ block.repeater.button_2_link.value }}","image":"{{ block.repeater.image.value }}","video_url":"{{ block.repeater.video_url.value }}","width":"100","height":500,"text_align":"vertical-center horizontal-center","color_accent":"rgba(0,0,0,0)"}}},"block_order":["advanced_RPyyii"],"custom_css":[".promo-grid__container {margin: 20px 0 0px 0;}"],"settings":{"full_width":false,"gutter_size":0,"space_above":false,"space_below":false,"lazyload_images":true}},"recently-viewed":{"type":"recently-viewed","disabled":true,"settings":{}}},"order":["6dfe159a-d62b-4599-86b3-056a1aaf40aa","collection-header","4d550bb3-72d7-45e2-b8d1-97fbadd1893a","236baa81-acdc-4e3a-a5b0-3294c0016bcf","main-collection","178032561903d1847d","197bd871-a8a5-4d9f-8a5e-79a57410052e","logo_list_Eix6NK","text_columns_rAVcxA","178032562815ad8ea8","promo_grid_9PtXmJ","promo_grid_KJAK4t","recently-viewed"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "6dfe159a-d62b-4599-86b3-056a1aaf40aa": {
+      "type": "promo-grid",
+      "blocks": {
+        "2f2c9f61-a35f-43fd-8054-dbbab3c74094": {
+          "type": "banner",
+          "disabled": true,
+          "settings": {
+            "heading": "Save on Christmas |",
+            "text": "Up to 30% off toys, gifts + clothing Shop now",
+            "link": "shopify://collections/christmas-shop",
+            "label": "Shop Now",
+            "color_scheme": "none"
+          }
+        }
+      },
+      "block_order": [
+        "2f2c9f61-a35f-43fd-8054-dbbab3c74094"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".promo-grid {margin: 0; padding: 0 0 0 0;}",
+        ".btn {margin: 5px; padding: 5px; background-color: transparent; color: #f6f6f6; border: 1px solid #f6f6f6 !important;}",
+        ".color-scheme-2 {background-color: #66b7bf; color: #f6f6f6;}",
+        ".color-scheme-none {background-color: #9a0200; color: #f6f6f6;}"
+      ],
+      "settings": {
+        "full_width": true,
+        "gutter_size": 0,
+        "space_above": false,
+        "space_below": false,
+        "lazyload_images": false
+      }
+    },
+    "collection-header": {
+      "type": "collection-header",
+      "disabled": true,
+      "settings": {
+        "enable": false,
+        "collection_image_enable": false,
+        "parallax": false,
+        "parallax_direction": "left"
+      }
+    },
+    "4d550bb3-72d7-45e2-b8d1-97fbadd1893a": {
+      "type": "slideshow-split",
+      "blocks": {
+        "template--14884987174990__4d550bb3-72d7-45e2-b8d1-97fbadd1893a-slide-1": {
+          "type": "slide",
+          "repeater": "{{ collection.metafields.custom.collection_hero_banner.value }}",
+          "settings": {
+            "top_subheading": "{{ block.repeater.subheading.value }}",
+            "title": "{{ block.repeater.heading | metafield_tag }}",
+            "title_size": 40,
+            "subheading": "{{ block.repeater.text.value }}",
+            "link": "{{ block.repeater.slide_link.value }}",
+            "link_text": "{{ block.repeater.slide_link_text.value }}",
+            "link_2": "{{ block.repeater.slide_link_2.value }}",
+            "link_text_2": "{{ block.repeater.slide_link_text_2.value }}",
+            "text_position": "left",
+            "image": "{{ block.repeater.image.value }}",
+            "indent_image": false,
+            "color_scheme": "3"
+          }
+        }
+      },
+      "block_order": [
+        "template--14884987174990__4d550bb3-72d7-45e2-b8d1-97fbadd1893a-slide-1"
+      ],
+      "custom_css": [],
+      "settings": {
+        "full_width": true,
+        "height": 275,
+        "height_mobile": 300,
+        "style": "minimal",
+        "autoplay": false,
+        "autoplay_speed": 5,
+        "lazyload_images": false
+      }
+    },
+    "236baa81-acdc-4e3a-a5b0-3294c0016bcf": {
+      "type": "promo-grid",
+      "blocks": {
+        "43592a6f-ed1e-49ec-aa9a-6d2e76dbdf8f": {
+          "type": "banner",
+          "repeater": "{{ collection.metafields.custom.collection_banners.value }}",
+          "settings": {
+            "heading": "{{ block.repeater.heading.value }}",
+            "text": "{{ block.repeater.text.value }}",
+            "link": "{{ block.repeater.button_link.value }}",
+            "label": "{{ block.repeater.button_text.value }}",
+            "color_scheme": "2"
+          }
+        }
+      },
+      "block_order": [
+        "43592a6f-ed1e-49ec-aa9a-6d2e76dbdf8f"
+      ],
+      "custom_css": [
+        ".promo-grid {margin: 0; padding: 0 0 0 0;}",
+        ".btn {margin: 5px; padding: 5px; background-color: transparent; color: #42655e; border: 1px solid #42655e !important;}",
+        ".color-scheme-2 {background-color: #d1dfca; color: #42655e;}",
+        ".color-scheme-none {background-color: #deede4; color: #deede4;}"
+      ],
+      "settings": {
+        "full_width": true,
+        "gutter_size": 0,
+        "space_above": false,
+        "space_below": false,
+        "lazyload_images": false
+      }
+    },
+    "main-collection": {
+      "type": "main-collection",
+      "blocks": {
+        "subcollections": {
+          "type": "subcollections",
+          "settings": {}
+        },
+        "product_grid": {
+          "type": "product_grid",
+          "settings": {
+            "grid_style": "small"
+          }
+        }
+      },
+      "block_order": [
+        "subcollections",
+        "product_grid"
+      ],
+      "custom_css": [],
+      "settings": {
+        "enable_sidebar": true,
+        "collapse_filters": false,
+        "enable_color_swatches": false,
+        "enable_sort": true
+      }
+    },
+    "178032561903d1847d": {
+      "type": "apps",
+      "blocks": {
+        "nosto_nosto_placements_block_azbML6": {
+          "type": "shopify://apps/nosto/blocks/nosto-placements-block/a67c43f0-0fc3-4649-a7dc-65ac499cae31",
+          "settings": {
+            "placement": "categorypage-nosto-1"
+          }
+        },
+        "nosto_nosto_placements_block_xNRwVJ": {
+          "type": "shopify://apps/nosto/blocks/nosto-placements-block/a67c43f0-0fc3-4649-a7dc-65ac499cae31",
+          "disabled": true,
+          "settings": {
+            "placement": "categorypage-nosto-3"
+          }
+        }
+      },
+      "block_order": [
+        "nosto_nosto_placements_block_azbML6",
+        "nosto_nosto_placements_block_xNRwVJ"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": true
+      }
+    },
+    "197bd871-a8a5-4d9f-8a5e-79a57410052e": {
+      "type": "faq",
+      "blocks": {
+        "template--14837343387726__197bd871-a8a5-4d9f-8a5e-79a57410052e-question-1": {
+          "type": "question",
+          "repeater": "{{ collection.metafields.custom.collection_faqs.value }}",
+          "settings": {
+            "title": "{{ block.repeater.question.value }}",
+            "text": "{{ block.repeater.text | metafield_tag }}"
+          }
+        }
+      },
+      "block_order": [
+        "template--14837343387726__197bd871-a8a5-4d9f-8a5e-79a57410052e-question-1"
+      ],
+      "custom_css": [
+        ".index-section {margin: 30px 0 60px 0; padding: 10px 0;}"
+      ],
+      "settings": {
+        "title": "{{ collection.title }} FAQs",
+        "heading_size": "h2",
+        "heading_position": "center"
+      }
+    },
+    "logo_list_Eix6NK": {
+      "type": "logo-list",
+      "blocks": {
+        "logo_image_948GFJ": {
+          "type": "logo_image",
+          "repeater": "{{ collection.metafields.custom.collection_logos.value }}",
+          "settings": {
+            "image": "{{ block.repeater.logo.value }}",
+            "link": "{{ block.repeater.link.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "logo_image_948GFJ"
+      ],
+      "settings": {
+        "title": "{{ collection.title }} Brands",
+        "heading_size": "h2",
+        "heading_position": "center",
+        "divider": false
+      }
+    },
+    "text_columns_rAVcxA": {
+      "type": "text-columns",
+      "blocks": {
+        "text_block_6pQENW": {
+          "type": "text_block",
+          "repeater": "{{ collection.metafields.custom.page_hero_columns.value }}",
+          "settings": {
+            "enable_image": true,
+            "image": "{{ block.repeater.image.value }}",
+            "image_mask": "square",
+            "image_width": 350,
+            "title": "{{ block.repeater.heading.value }}",
+            "text": "{{ block.repeater.text | metafield_tag }}",
+            "button_label": "{{ block.repeater.button_label.value }}",
+            "button_link": "{{ block.repeater.link.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "text_block_6pQENW"
+      ],
+      "custom_css": [
+        "h2 {margin: 0;}"
+      ],
+      "settings": {
+        "title": "{{ collection.title }} Articles",
+        "align_text": "center",
+        "divider": false,
+        "color_scheme": "none"
+      }
+    },
+    "178032562815ad8ea8": {
+      "type": "apps",
+      "blocks": {
+        "nosto_nosto_placements_block_kMNFNh": {
+          "type": "shopify://apps/nosto/blocks/nosto-placements-block/a67c43f0-0fc3-4649-a7dc-65ac499cae31",
+          "settings": {
+            "placement": "categorypage-nosto-2"
+          }
+        }
+      },
+      "block_order": [
+        "nosto_nosto_placements_block_kMNFNh"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": true
+      }
+    },
+    "promo_grid_9PtXmJ": {
+      "type": "promo-grid",
+      "blocks": {
+        "advanced_86DPMG": {
+          "type": "advanced",
+          "repeater": "{{ collection.metafields.custom.enhanced_content.value }}",
+          "settings": {
+            "subheading": "{{ block.repeater.subheading.value }}",
+            "heading": "{{ block.repeater.heading.value }}",
+            "textarea": "{{ block.repeater.text | metafield_tag }}",
+            "cta_text1": "{{ block.repeater.button_1_text.value }}",
+            "cta_link1": "{{ block.repeater.button_1_link.value }}",
+            "cta_text2": "{{ block.repeater.button_2_text.value }}",
+            "cta_link2": "{{ block.repeater.button_2_link.value }}",
+            "image": "{{ block.repeater.image.value }}",
+            "video_url": "{{ block.repeater.video_url.value }}",
+            "width": "50",
+            "height": 500,
+            "text_align": "vertical-center horizontal-center",
+            "color_accent": "rgba(0,0,0,0)"
+          }
+        }
+      },
+      "block_order": [
+        "advanced_86DPMG"
+      ],
+      "settings": {
+        "full_width": false,
+        "gutter_size": 20,
+        "space_above": false,
+        "space_below": false,
+        "lazyload_images": true
+      }
+    },
+    "promo_grid_KJAK4t": {
+      "type": "promo-grid",
+      "blocks": {
+        "advanced_RPyyii": {
+          "type": "advanced",
+          "repeater": "{{ collection.metafields.custom.enhanced_content_wide.value }}",
+          "settings": {
+            "subheading": "{{ block.repeater.subheading.value }}",
+            "heading": "{{ block.repeater.heading.value }}",
+            "textarea": "{{ block.repeater.text | metafield_tag }}",
+            "cta_text1": "{{ block.repeater.button_1_text.value }}",
+            "cta_link1": "{{ block.repeater.button_1_link.value }}",
+            "cta_text2": "{{ block.repeater.button_2_text.value }}",
+            "cta_link2": "{{ block.repeater.button_2_link.value }}",
+            "image": "{{ block.repeater.image.value }}",
+            "video_url": "{{ block.repeater.video_url.value }}",
+            "width": "100",
+            "height": 500,
+            "text_align": "vertical-center horizontal-center",
+            "color_accent": "rgba(0,0,0,0)"
+          }
+        }
+      },
+      "block_order": [
+        "advanced_RPyyii"
+      ],
+      "custom_css": [
+        ".promo-grid__container {margin: 20px 0 0px 0;}"
+      ],
+      "settings": {
+        "full_width": false,
+        "gutter_size": 0,
+        "space_above": false,
+        "space_below": false,
+        "lazyload_images": true
+      }
+    },
+    "recently-viewed": {
+      "type": "recently-viewed",
+      "disabled": true,
+      "settings": {}
+    }
+  },
+  "order": [
+    "6dfe159a-d62b-4599-86b3-056a1aaf40aa",
+    "collection-header",
+    "4d550bb3-72d7-45e2-b8d1-97fbadd1893a",
+    "236baa81-acdc-4e3a-a5b0-3294c0016bcf",
+    "main-collection",
+    "178032561903d1847d",
+    "197bd871-a8a5-4d9f-8a5e-79a57410052e",
+    "logo_list_Eix6NK",
+    "text_columns_rAVcxA",
+    "178032562815ad8ea8",
+    "promo_grid_9PtXmJ",
+    "promo_grid_KJAK4t",
+    "recently-viewed"
+  ]
+}
