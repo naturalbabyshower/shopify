@@ -1354,6 +1354,11 @@ margin:8px 9px
 margin: 1px;
 }
 
+.aos-animate[data-aos=image-fade-in] .image-element[loading="eager"] {
+  animation: none;
+  opacity: 1;
+}
+
 .grid-product__title {
 font-size: calc(var(--typeBaseSize) * 0.9);
 }
@@ -2222,7 +2227,7 @@ input#Search::placeholder {
   }
 
   .footer__menu .icon-and-text {
-    display: flex
+    display: flex;
     align-items: center;
     gap: 8px;
   }
@@ -2357,6 +2362,14 @@ input#Search::placeholder {
     position: relative;
 }
 
+/* ==========================================
+   PAGE FOOTER (#FooterMenus): lists always visible
+   next.css loads AFTER this file and sets
+   .collapsible-content--all { height:0 }. Markup no longer
+   uses that class; these rules still force lists open if it
+   reappears, and hide accordion chrome on the page footer.
+========================================== */
+
 #FooterMenus .footer__menu-trigger {
   display: none !important;
 }
@@ -2370,17 +2383,6 @@ input#Search::placeholder {
 #FooterMenus .footer__menu-accordion.collapsible-content--all,
 #FooterMenus .footer__menu-accordion.is-open,
 #FooterMenus .footer__menu-accordion:not(.is-open) {
-/* ==========================================
-   Footer menus: accordion on phones only
-   Desktop + tablet stay expanded columns
-.footer__menu-trigger {
-  display: none !important;
-}
-.footer__title--static {
-  display: block;
-}
-.footer__menu-accordion,
-.footer__menu-accordion.collapsible-content {
   height: auto !important;
   max-height: none !important;
   opacity: 1 !important;
@@ -2389,11 +2391,19 @@ input#Search::placeholder {
   transform: none !important;
   border: 0 !important;
 }
-.footer__menu-accordion .collapsible-content__inner {
+
+#FooterMenus .footer__menu-accordion .collapsible-content__inner {
   padding: 0;
   font-size: inherit;
   transform: none !important;
 }
+
+/* ==========================================
+   MOBILE NAV CLONE: FAQ-style accordion, 1 menu per row
+   Scoped to the hamburger clone so page footer is untouched.
+   Not wrapped in max-width:749px — hamburger is visible until
+   769px (medium-up--hide) and cloneFooter runs on bpSmall.
+========================================== */
 
 #MobileNavFooter .footer__blocks,
 .site-header__mobile-nav .footer__blocks,
@@ -2582,122 +2592,3 @@ input#Search::placeholder {
   width: 32px;
   height: 20px;
 }
-@media screen and (max-width: 749px) {
-  #MobileNavFooter .footer__title--static,
-  .site-header__mobile-nav .footer__title--static,
-  .mobile-nav-footer-menus .footer__title--static {
-    display: none !important;
-  }
-  #MobileNavFooter .footer__menu-trigger,
-  .site-header__mobile-nav .footer__menu-trigger,
-  .mobile-nav-footer-menus .footer__menu-trigger {
-    display: block !important;
-    width: 100%;
-    background: transparent;
-    font-size: calc(var(--typeBaseSize) + 1px);
-    font-weight: 700;
-    padding: 12px 17px 12px 0;
-  }
-  #MobileNavFooter .footer__block[data-type="menu"]:first-child .footer__menu-trigger,
-  .site-header__mobile-nav .footer__block[data-type="menu"]:first-child .footer__menu-trigger,
-  .mobile-nav-footer-menus .footer__block[data-type="menu"]:first-child .footer__menu-trigger {
-    border-top: 1px solid var(--colorBorder);
-  }
-  #MobileNavFooter .footer__menu-accordion:not(.is-open),
-  #MobileNavFooter .footer__menu-accordion.collapsible-content:not(.is-open),
-  .site-header__mobile-nav .footer__menu-accordion:not(.is-open),
-  .site-header__mobile-nav .footer__menu-accordion.collapsible-content:not(.is-open),
-  .mobile-nav-footer-menus .footer__menu-accordion:not(.is-open),
-  .mobile-nav-footer-menus .footer__menu-accordion.collapsible-content:not(.is-open) {
-    height: 0 !important;
-    max-height: 0 !important;
-    opacity: 0 !important;
-    overflow: hidden !important;
-    visibility: hidden !important;
-    transform: translateY(-10px);
-    border: 0 !important;
-  }
-  #MobileNavFooter .footer__menu-accordion.is-open,
-  #MobileNavFooter .footer__menu-accordion.collapsible-content.is-open,
-  .site-header__mobile-nav .footer__menu-accordion.is-open,
-  .site-header__mobile-nav .footer__menu-accordion.collapsible-content.is-open,
-  .mobile-nav-footer-menus .footer__menu-accordion.is-open,
-  .mobile-nav-footer-menus .footer__menu-accordion.collapsible-content.is-open {
-    height: auto !important;
-    max-height: none !important;
-    opacity: 1 !important;
-    overflow: hidden !important;
-    visibility: visible !important;
-    transform: none !important;
-  }
-  #MobileNavFooter .footer__menu-accordion .collapsible-content__inner,
-  .site-header__mobile-nav .footer__menu-accordion .collapsible-content__inner,
-  .mobile-nav-footer-menus .footer__menu-accordion .collapsible-content__inner {
-    padding: 0 0 12px;
-  }
-  #MobileNavFooter .footer__menu-accordion .footer__menu,
-  .site-header__mobile-nav .footer__menu-accordion .footer__menu,
-  .mobile-nav-footer-menus .footer__menu-accordion .footer__menu {
-    margin: 0;
-  }
-  #MobileNavFooter .footer__menu-accordion .footer__menu a,
-  .site-header__mobile-nav .footer__menu-accordion .footer__menu a,
-  .mobile-nav-footer-menus .footer__menu-accordion .footer__menu a {
-    display: block;
-    padding: 6px 0;
-  }
-  #MobileNavFooter .footer__block[data-type="contact"],
-  .site-header__mobile-nav .footer__block[data-type="contact"],
-  .mobile-nav-footer-menus .footer__block[data-type="contact"] {
-    grid-column: 1 / -1 !important;
-    flex: 1 1 100% !important;
-    width: 100% !important;
-    max-width: none !important;
-    margin-top: 8px;
-    min-width: 0;
-  }
-  #MobileNavFooter .footer__block[data-type="payment"],
-  .site-header__mobile-nav .footer__block[data-type="payment"],
-  .mobile-nav-footer-menus .footer__block[data-type="payment"] {
-    grid-column: 1 / -1 !important;
-    flex: 1 1 100% !important;
-    width: 100% !important;
-    max-width: none !important;
-    margin-top: 8px;
-    min-width: 0;
-    display: block !important;
-  }
-  #MobileNavFooter .footer__mobile-section,
-  .site-header__mobile-nav .footer__mobile-section,
-  .mobile-nav-footer-menus .footer__mobile-section {
-    border-top: 1px solid var(--colorFooterBorder, var(--colorBorder));
-    margin: 0;
-    padding: 12px 0 0;
-  }
-  #MobileNavFooter .footer__block[data-type="contact"] .footer__blocks--mobile,
-  .site-header__mobile-nav .footer__block[data-type="contact"] .footer__blocks--mobile,
-  .mobile-nav-footer-menus .footer__block[data-type="contact"] .footer__blocks--mobile {
-    display: flex !important;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    gap: 16px;
-    justify-content: flex-start;
-    align-items: stretch;
-  }
-  #MobileNavFooter .footer__block--mobile,
-  .site-header__mobile-nav .footer__block--mobile,
-  .mobile-nav-footer-menus .footer__block--mobile {
-    flex: none !important;
-    width: 100% !important;
-    max-width: none !important;
-    min-width: 0;
-  }
-  #MobileNavFooter .footer__block[data-type="contact"] .footer__title,
-  #MobileNavFooter .footer__block[data-type="payment"] .footer__title,
-  .site-header__mobile-nav .footer__block[data-type="contact"] .footer__title,
-  .site-header__mobile-nav .footer__block[data-type="payment"] .footer__title,
-  .mobile-nav-footer-menus .footer__block[data-type="contact"] .footer__title,
-  .mobile-nav-footer-menus .footer__block[data-type="payment"] .footer__title {
-    font-size: 13px;
-    margin-bottom: 8px;
-  }
