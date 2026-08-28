@@ -22,14 +22,14 @@
             "title": "",
             "title_size": 70,
             "subheading": "",
-            "link": "shopify://collections/sale",
+            "link": "",
             "link_text": "",
             "link_2": "",
             "link_text_2": "",
             "color_accent": "#ffffff",
             "text_align": "vertical-bottom horizontal-left",
-            "image": "shopify://shop_images/footer-banner-web-V2.jpg",
-            "image_mobile": "shopify://shop_images/Footer-banner-mob-V2_1.jpg",
+            "image": "shopify://shop_images/footer-banner-web_50.jpg",
+            "image_mobile": "shopify://shop_images/footer-banner-mobile_12_1.jpg",
             "overlay_opacity": 0
           }
         },

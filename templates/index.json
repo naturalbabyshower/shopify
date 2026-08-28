@@ -99,7 +99,6 @@
       "blocks": {
         "e5a56ff2-b4ad-4fb2-bae7-fe7b2771ed39": {
           "type": "hero",
-          "disabled": true,
           "settings": {
             "top_subheading": "",
             "title": "",
@@ -111,8 +110,8 @@
             "link_text_2": "",
             "color_accent": "rgba(0,0,0,0)",
             "text_align": "vertical-center horizontal-center",
-            "image": "shopify://shop_images/homepage-banner-web_5_c800932c-a819-4361-8760-6827dc522c34.jpg",
-            "image_mobile": "shopify://shop_images/homepage-banner-mobile_6_29ea561e-8182-4f28-8deb-f4f700239a15.jpg",
+            "image": "shopify://shop_images/homepage-banner-web_67.jpg",
+            "image_mobile": "shopify://shop_images/homepage-banner-mobile_41.jpg",
             "overlay_opacity": 0
           }
         },

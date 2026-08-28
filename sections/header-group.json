@@ -17,8 +17,8 @@
         "toolbar-0": {
           "type": "announcement",
           "settings": {
-            "richtext": "<p>Use code SAVE5 or SAVE10 | <a href=\"/pages/additional-terms-offers-competitions\" title=\"Additional Terms | Offers & Competitions\"><span style=\"text-decoration:underline\">T&Cs</span></a></p>",
-            "richtext_mobile": "<p>Use code SAVE5 or SAVE10 | <a href=\"/pages/additional-terms-offers-competitions\" title=\"Additional Terms | Offers & Competitions\"><span style=\"text-decoration:underline\">T&Cs</span></a></p>"
+            "richtext": "<p>10% off with code BANKHOL10 | <a href=\"/pages/additional-terms-offers-competitions\" title=\"Additional Terms | Offers & Competitions\"><span style=\"text-decoration:underline\">T&Cs</span></a></p>",
+            "richtext_mobile": "<p>10% off with code BANKHOL10 | <a href=\"/pages/additional-terms-offers-competitions\" title=\"Additional Terms | Offers & Competitions\"><span style=\"text-decoration:underline\">T&Cs</span></a></p>"
           }
         },
         "828ec560-a26c-4fba-8d52-f82b906711b5": {
