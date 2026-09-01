@@ -99,6 +99,7 @@
       "blocks": {
         "e5a56ff2-b4ad-4fb2-bae7-fe7b2771ed39": {
           "type": "hero",
+          "disabled": true,
           "settings": {
             "top_subheading": "",
             "title": "",
