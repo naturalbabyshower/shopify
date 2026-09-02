@@ -97,6 +97,24 @@
     "8a1a4b23-eaea-400b-a473-0fb201c01bb5": {
       "type": "slideshow",
       "blocks": {
+        "7b51a727-30fa-47f2-9f19-8424122e68f5": {
+          "type": "hero",
+          "settings": {
+            "top_subheading": "",
+            "title": "",
+            "title_size": 46,
+            "subheading": "",
+            "link": "shopify://collections/autumn-winter",
+            "link_text": "",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "rgba(0,0,0,0)",
+            "text_align": "vertical-center horizontal-center",
+            "image": "shopify://shop_images/Winter_Shop_-_2026_-_Homepage_Banner_-_Web_1.jpg",
+            "image_mobile": "shopify://shop_images/Winter_Shop_-_2026_-_Homepage_Banner_-_Mobile_1.jpg",
+            "overlay_opacity": 0
+          }
+        },
         "e5a56ff2-b4ad-4fb2-bae7-fe7b2771ed39": {
           "type": "hero",
           "settings": {
@@ -151,24 +169,6 @@
             "overlay_opacity": 0
           }
         },
-        "7b51a727-30fa-47f2-9f19-8424122e68f5": {
-          "type": "hero",
-          "settings": {
-            "top_subheading": "PUSHCHAIRS",
-            "title": "<p><strong>UPPAbaby James</strong></p>",
-            "title_size": 46,
-            "subheading": "A fresh, refined shade bringing UPPAbaby’s signature style to your everyday adventures.",
-            "link": "shopify://collections/uppababy",
-            "link_text": "SHOP NOW",
-            "link_2": "",
-            "link_text_2": "",
-            "color_accent": "rgba(0,0,0,0)",
-            "text_align": "vertical-center horizontal-center",
-            "image": "shopify://shop_images/UPPAbaby_James_Desktop.jpg",
-            "image_mobile": "shopify://shop_images/UPPAbaby_James_Mobile.jpg",
-            "overlay_opacity": 0
-          }
-        },
         "3b38eda0-e732-4f2d-9942-31aaa425f6db": {
           "type": "hero",
           "settings": {
@@ -189,10 +189,10 @@
         }
       },
       "block_order": [
+        "7b51a727-30fa-47f2-9f19-8424122e68f5",
         "e5a56ff2-b4ad-4fb2-bae7-fe7b2771ed39",
         "template--14836575666254__8a1a4b23-eaea-400b-a473-0fb201c01bb5-hero-1",
         "b2968613-7697-44fb-ab81-89200eb25c0e",
-        "7b51a727-30fa-47f2-9f19-8424122e68f5",
         "3b38eda0-e732-4f2d-9942-31aaa425f6db"
       ],
       "settings": {
