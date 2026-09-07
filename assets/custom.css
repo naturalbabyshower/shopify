@@ -2746,6 +2746,29 @@ klarna-placement {
   overflow: hidden;
 }
 
+/* Reserve space before Klarna OSM hydrates so the bar does not push the page down. */
+.klarna-osm-strip,
+klarna-placement[data-key="top-strip-promotion-badge"],
+.shopify-app-block:has(> klarna-placement[data-key="top-strip-promotion-badge"]) {
+  background-color: #f0eeeb;
+  border-radius: 0;
+  box-sizing: border-box;
+  min-height: 48px;
+  width: 100%;
+}
+
+klarna-placement[data-key="credit-promotion-badge"] {
+  min-height: 40px;
+}
+
+@media only screen and (max-width: 768px) {
+  .klarna-osm-strip,
+  klarna-placement[data-key="top-strip-promotion-badge"],
+  .shopify-app-block:has(> klarna-placement[data-key="top-strip-promotion-badge"]) {
+    min-height: 56px;
+  }
+}
+
 .brand-tabs {
   display: flex;
   width: 100%;
