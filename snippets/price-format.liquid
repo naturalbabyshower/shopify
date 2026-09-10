@@ -1,0 +1,35 @@
+{%- comment -%}
+  Format a Shopify money value for display.
+  Skips superscript decimals when a thousands separator is present, because
+  £1,549<sup>00</sup> is scraped by Google Merchant Center as 1.00 GBP.
+  @param {Number} price - amount in cents
+  @returns formatted HTML (or plain money string)
+{%- endcomment -%}
+{%- liquid
+  assign formatted_price = price | money
+  assign apply_superscript = false
+  assign superscript_sep = ''
+  unless shop.money_format contains 'money' or shop.money_format contains '.'
+    if settings.superscript_decimals and formatted_price != blank
+      if shop.money_format contains '{{amount}}' or shop.money_format contains '{{ amount }}'
+        if formatted_price contains '.'
+          unless formatted_price contains ','
+            assign apply_superscript = true
+            assign superscript_sep = '.'
+          endunless
+        endif
+      elsif shop.money_format contains '{{amount_with_comma_separator}}' or shop.money_format contains '{{ amount_with_comma_separator }}'
+        if formatted_price contains ','
+          unless formatted_price contains '.'
+            assign apply_superscript = true
+            assign superscript_sep = ','
+          endunless
+        endif
+      endif
+    endif
+  endunless
+-%}
+{%- if apply_superscript -%}
+  {%- capture formatted_price -%}{{ formatted_price | replace: superscript_sep, '<sup>' }}</sup>{%- endcapture -%}
+{%- endif -%}
+{{- formatted_price -}}
