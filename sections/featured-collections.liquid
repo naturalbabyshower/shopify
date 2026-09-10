@@ -36,15 +36,9 @@
           assign collection = collections[block.settings.collection]
           assign sizeVariable = section.blocks.size | at_most: 6
 
-          # First 6 tiles are above the fold on mobile (2 rows of 3) and desktop (1 row of 6).
-          # Eager load them so they are visible immediately instead of staying opacity:0 until AOS.
-          if forloop.index <= 6
-            assign item_loading = 'eager'
-          else
-            assign item_loading = 'lazy'
-          endif
-
-          render 'collection-grid-item', collection: collection, block: block, sizeVariable: sizeVariable, fallback: 'variable', loading: item_loading
+          # Eager-load every tile so they are visible immediately instead of
+          # staying opacity:0 until AOS runs.
+          render 'collection-grid-item', collection: collection, block: block, sizeVariable: sizeVariable, fallback: 'variable', loading: 'eager'
         -%}
       {%- endfor -%}
 
