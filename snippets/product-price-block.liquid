@@ -53,7 +53,19 @@
     color: inherit;
   }
 {% endstyle %}
-<div class="product-block product-block--price" {{ block.shopify_attributes }}>
+<div
+  class="product-block product-block--price"
+  itemscope
+  itemtype="https://schema.org/Offer"
+  {{ block.shopify_attributes }}
+>
+  {%- unless product.empty? -%}
+    {%- assign google_price = current_variant.price | money_without_currency | replace: ',', '' -%}
+    <meta itemprop="price" content="{{ google_price }}">
+    <meta itemprop="priceCurrency" content="{{ cart.currency.iso_code }}">
+    <link itemprop="availability" href="https://schema.org/{% if current_variant.available %}InStock{% else %}OutOfStock{% endif %}">
+    <link itemprop="url" href="{{ canonical_url }}">
+  {%- endunless -%}
   <label class="variant__label hide" for="ProductPrice-{{ section_id }}">
     {{ 'cart.label.price' | t }}
   </label>
