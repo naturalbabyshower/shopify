@@ -300,29 +300,25 @@ if (console && console.log) {
   
         return dollarsAmount + centsAmount;
       }
-
-      // Don't turn £1,549.00 into £1,549<sup>00</sup> — Google parses that as £1.00
-      function applySuperScript(amount, decimalChar) {
-        if (!superScript || !amount || !amount.includes(decimalChar)) {
-          return amount;
-        }
-        var thousandsChar = decimalChar === '.' ? ',' : '.';
-        if (amount.includes(thousandsChar)) {
-          return amount;
-        }
-        return amount.replace(decimalChar, '<sup>') + '</sup>';
-      }
   
       switch (formatString.match(placeholderRegex)[1]) {
         case 'amount':
-          value = applySuperScript(formatWithDelimiters(cents, 2), '.');
+          value = formatWithDelimiters(cents, 2);
+  
+          if (superScript && value && value.includes('.')) {
+            value = value.replace('.', '<sup>') + '</sup>';
+          }
   
           break;
         case 'amount_no_decimals':
           value = formatWithDelimiters(cents, 0);
           break;
         case 'amount_with_comma_separator':
-          value = applySuperScript(formatWithDelimiters(cents, 2, '.', ','), ',');
+          value = formatWithDelimiters(cents, 2, '.', ',');
+  
+          if (superScript && value && value.includes(',')) {
+            value = value.replace(',', '<sup>') + '</sup>';
+          }
   
           break;
         case 'amount_no_decimals_with_comma_separator':
