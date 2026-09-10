@@ -1,28 +1,24 @@
 {%- liquid
   assign is_bundle = current_variant.metafields.custom.bundle | downcase | strip
-  assign is_single_variant = false
-  if product.has_only_default_variant or product.variants.size < 2
-    assign is_single_variant = true
-  endif
 -%}
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
-{%- if is_single_variant -%}
+{% if product.has_only_default_variant or product.variants.size < 2 -%}
 "@type": "Product",
-{%- else -%}
-"@type": ["Product", "ProductGroup"],
-{%- endif -%}
+{% else -%}
+"@type": "ProductGroup",
+{% endif -%}
 "@id": {{ product.url | prepend: shop.url | append: "#product" | json }},
 {% render 'schema-core', product: product -%}
+{% if product.has_only_default_variant or product.variants.size < 2 -%}
 {% render 'schema-product-single', product: product -%}
-{%- unless is_single_variant -%}
-,
+{% else -%}
 "productGroupID": "{{ product.id }}",
 {% render 'schema-product-variants', product: product, is_bundle: is_bundle -%}
-{%- endunless -%}
-{% if is_bundle != blank -%}
-  {%- assign vname = current_variant.title | downcase -%}
+{% endif -%}
+{% if is_bundle -%}
+  {%- assign vname = variant.title | downcase -%}
   {%- capture parts_json -%}
   {%- assign first = true -%}
   {%- if vname contains 'cot' or vname contains 'carrycot' -%}
