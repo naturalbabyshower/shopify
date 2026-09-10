@@ -6,13 +6,7 @@
 {%- endunless -%}
 
 {%- for block in section.blocks -%}
-  {%- if block.type contains 'klarna-on-site-messaging' and block.settings.data_key == 'top-strip-promotion-badge' -%}
-    <div class="klarna-osm-strip">
-      {% render block %}
-    </div>
-  {%- else -%}
-    {% render block %}
-  {%- endif -%}
+  {% render block %}
 {%- endfor -%}
 
 {%- unless section.settings.full_width -%}
