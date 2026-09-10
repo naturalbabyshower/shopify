@@ -1,0 +1,5 @@
+{%- comment -%}
+  Google-safe price for JSON-LD: two decimals, no thousands separator, JSON-quoted.
+  @param {Number} amount - Shopify money value in cents
+{%- endcomment -%}
+{{- amount | money_without_currency | replace: ',', '' | strip | json -}}

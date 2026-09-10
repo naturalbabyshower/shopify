@@ -1,17 +1,15 @@
 "offers": {
   "@type": "Offer",
   "url": {{ canonical_url | json }},
-  "priceCurrency": {{ shop.currency | json }},
+  "priceCurrency": {{ cart.currency.iso_code | json }},
+  "price": {% render 'schema-money', amount: variant.price %},
   {%- if variant.compare_at_price > variant.price -%}
-    "price": {{ variant.price | divided_by: 100.0 }},
     "priceSpecification": {
-      "@type": "PriceSpecification",
-      "price": {{ variant.compare_at_price | divided_by: 100.0 }},
-      "priceCurrency": "{{ shop.currency }}",
+      "@type": "UnitPriceSpecification",
+      "price": {% render 'schema-money', amount: variant.compare_at_price %},
+      "priceCurrency": {{ cart.currency.iso_code | json }},
       "priceType": "https://schema.org/ListPrice"
     },
-  {%- else -%}
-    "price": {{ variant.price | divided_by: 100.0 }},
   {%- endif -%}
   "hasMerchantReturnPolicy": {
     "@type": "MerchantReturnPolicy",

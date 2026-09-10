@@ -223,7 +223,7 @@
         "klarna_on_site_messaging_app_block_78h4Jm"
       ],
       "custom_css": [
-        "div#shopify-block-AZWtCTFRONCtOWlZ4N__klarna_on_site_messaging_app_block_78h4Jm {min-height: 46px; background-color: #f0eeeb;}"
+        "klarna-placement,.shopify-app-block {min-height: 48px; background-color: #f0eeeb;}"
       ],
       "settings": {
         "full_width": true,

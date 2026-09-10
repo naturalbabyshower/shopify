@@ -42,11 +42,13 @@
           {%-
             render 'image-element',
             img: collection_image,
-
+            loading: loading,
             sizes: sizes,
             sizeVariable: sizeVariable,
             fallback: fallback,
-            widths: '720, 900, 1080',
+            widths: '180, 360, 540, 720',
+            img_tag_width: collection_image.width,
+            img_height: collection_image.height,
           -%}
         </div>
       {%- endif -%}
